@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from browser_agent_evaluation.browser.binaries import configured_executable
 from browser_agent_evaluation.browser.environment import (
     browser_use_privacy_environment,
     load_local_runtime_environment,
@@ -36,6 +37,13 @@ def test_browser_use_environment_forces_telemetry_and_cloud_sync_off() -> None:
     assert environment["ANONYMIZED_TELEMETRY"] == "false"
     assert environment["BROWSER_USE_CLOUD_SYNC"] == "false"
     assert environment["UNCHANGED"] == "value"
+
+
+def test_configured_executable_reports_missing_path(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("BROWSER_EVAL_TEST_EXECUTABLE", raising=False)
+
+    with pytest.raises(RuntimeError, match="BROWSER_EVAL_TEST_EXECUTABLE"):
+        configured_executable("BROWSER_EVAL_TEST_EXECUTABLE")
 
 
 def test_browser_use_environment_does_not_mutate_caller_mapping() -> None:

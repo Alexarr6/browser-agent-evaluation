@@ -14,7 +14,6 @@ from playwright.async_api import async_playwright
 from browser_agent_evaluation.agents.browser_use.runner import (
     VISUAL_PARITY_VIEWPORT,
 )
-from browser_agent_evaluation.browser.binaries import REFERENCE_CHROMIUM
 from browser_agent_evaluation.configuration.paths import TASKS_ROOT
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec
@@ -80,6 +79,8 @@ async def run_round(
     max_trial_usd: float,
     max_requests_per_trial: int,
     max_tokens_per_trial: int | None,
+    reference_chromium: Path,
+    browser_use_chromium: Path,
     runners: tuple[str, ...] = AI_RUNNERS,
     browser_use_model: str = COMMON_MODEL,
     headless: bool = True,
@@ -98,7 +99,7 @@ async def run_round(
     )
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(
-            headless=headless, executable_path=str(REFERENCE_CHROMIUM)
+            headless=headless, executable_path=str(reference_chromium)
         )
         try:
             for planned in build_round_plan(tasks, seed=seed, runners=runners):
@@ -148,6 +149,7 @@ async def run_round(
                             budget=budget,
                             trial_id=trial_id,
                             model_id=browser_use_model,
+                            chromium_executable=browser_use_chromium,
                             headless=headless,
                             visual_parity=visual_parity,
                         )
@@ -158,6 +160,7 @@ async def run_round(
                             api_key=api_key,
                             budget=budget,
                             trial_id=trial_id,
+                            chromium_executable=reference_chromium,
                             headless=headless,
                             visual_parity=visual_parity,
                             progress=progress,

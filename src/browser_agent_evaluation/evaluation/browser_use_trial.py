@@ -7,7 +7,6 @@ from browser_agent_evaluation.agents.browser_use.runner import (
     BrowserUsePilotError,
     run_browser_use_task,
 )
-from browser_agent_evaluation.browser.binaries import BROWSER_USE_CHROMIUM
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec, TrialEvidence, now_utc
 from browser_agent_evaluation.reporting.evidence import write_trial_evidence
@@ -21,6 +20,7 @@ async def run_browser_use_trial(
     budget: ModelBudget,
     trial_id: str,
     model_id: str,
+    chromium_executable: Path,
     headless: bool,
     visual_parity: bool = False,
 ) -> Path:
@@ -31,7 +31,7 @@ async def run_browser_use_trial(
             run_browser_use_task(
                 task=task,
                 api_key=api_key,
-                chromium_executable=BROWSER_USE_CHROMIUM,
+                chromium_executable=chromium_executable,
                 max_steps=task.max_actions,
                 budget=budget,
                 trial_id=trial_id,

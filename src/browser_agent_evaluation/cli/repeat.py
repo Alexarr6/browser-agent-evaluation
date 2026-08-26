@@ -6,6 +6,7 @@ import os
 from collections.abc import Sequence
 from pathlib import Path
 
+from browser_agent_evaluation.browser.binaries import configured_executable
 from browser_agent_evaluation.browser.environment import load_local_runtime_environment
 from browser_agent_evaluation.configuration.loader import load_experiment_configuration
 from browser_agent_evaluation.configuration.paths import PROJECT_ROOT
@@ -79,6 +80,10 @@ def main(argv: Sequence[str] | None = None) -> None:
     )
     if max_total_usd is None or max_trial_usd is None:
         raise SystemExit("set --max-total-usd and --max-trial-usd for the repeated pilot")
+    reference_chromium = configured_executable(configuration.browser.executable_path_env)
+    browser_use_chromium = configured_executable(
+        configuration.browser.browser_use_executable_path_env
+    )
     output_dir = args.output_dir or PROJECT_ROOT / "runs/repeated" / task_language
     all_artifacts: list[Path] = []
     for round_index in range(args.round, args.round + repetitions):
@@ -111,6 +116,8 @@ def main(argv: Sequence[str] | None = None) -> None:
                         if args.max_tokens_per_trial is not None
                         else configuration.budget.max_tokens_per_run
                     ),
+                    reference_chromium=reference_chromium,
+                    browser_use_chromium=browser_use_chromium,
                     runners=runners,
                     browser_use_model=(
                         args.browser_use_model or configuration.runners.browser_use.model

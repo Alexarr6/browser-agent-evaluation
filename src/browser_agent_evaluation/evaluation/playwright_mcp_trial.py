@@ -16,7 +16,6 @@ from browser_agent_evaluation.agents.playwright_mcp.runner import PlaywrightMcpP
 from browser_agent_evaluation.browser.binaries import (
     MCP_ACTION_TIMEOUT_SECONDS,
     MCP_NAVIGATION_TIMEOUT_SECONDS,
-    REFERENCE_CHROMIUM,
 )
 from browser_agent_evaluation.configuration.paths import NODE_MODULES_ROOT, PROJECT_ROOT
 from browser_agent_evaluation.core.assertions import PageState, evaluate_acceptance
@@ -32,6 +31,7 @@ async def run_playwright_mcp_trial(
     api_key: str,
     budget: ModelBudget,
     trial_id: str,
+    chromium_executable: Path,
     headless: bool,
     visual_parity: bool = False,
     progress: Callable[[str], None] | None = None,
@@ -60,7 +60,7 @@ async def run_playwright_mcp_trial(
             "--isolated",
             "--block-service-workers",
             "--executable-path",
-            str(REFERENCE_CHROMIUM),
+            str(chromium_executable),
             "--output-dir",
             str(temporary_output),
             "--timeout-action",

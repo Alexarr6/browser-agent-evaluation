@@ -48,6 +48,12 @@ credentials. Never commit `.env`:
 cp runtime.env.example .env
 ```
 
+The two browser paths are required because `browser-use` 0.13.8 uses a separate
+Chromium compatibility line. On macOS, Playwright stores binaries under
+`~/Library/Caches/ms-playwright/.../chrome-mac/Chromium.app/Contents/MacOS/Chromium`;
+on Linux, paths normally use `~/.cache/ms-playwright/.../chrome-linux/chrome`. Install
+the matching browser revisions before setting the variables.
+
 The default English matrix contains seven tasks:
 
 - Wikipedia search
@@ -75,7 +81,8 @@ uv run browser-eval repeat \
 
 Use a new output directory for every run. Raw run artifacts are intentionally ignored
 by Git. The harness prints per-round, per-runner progress and writes sanitized trial
-evidence locally.
+evidence locally. Browser executable paths are read from `.env`, so the same checkout
+works on Linux and macOS without relying on another machine's cache path.
 
 Live runs require explicit operator approval. They can spend money, consume provider
 quota, and interact with public websites. The Amazon task permits only an anonymous
