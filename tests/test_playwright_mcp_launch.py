@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from browser_agent_evaluation.runners.playwright_mcp import (
+from browser_agent_evaluation.adapters.playwright_mcp import (
     McpLaunchConfiguration,
     build_mcp_command,
 )

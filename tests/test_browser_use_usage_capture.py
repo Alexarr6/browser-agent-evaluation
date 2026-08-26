@@ -5,7 +5,7 @@ import gzip
 
 import httpx
 
-from browser_agent_evaluation.browser_use_capture import OpenRouterUsageCapture
+from browser_agent_evaluation.agents.browser_use.usage import OpenRouterUsageCapture
 
 
 def test_usage_capture_preserves_response_and_accumulates_provider_cost() -> None:

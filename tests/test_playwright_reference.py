@@ -5,16 +5,16 @@ from pathlib import Path
 
 import pytest
 
-from browser_agent_evaluation.assertions import PageState
-from browser_agent_evaluation.micro_pilot import _reference_actions, load_task
-from browser_agent_evaluation.models import (
+from browser_agent_evaluation.agents.reference import PlaywrightReferenceRunner
+from browser_agent_evaluation.core.assertions import PageState
+from browser_agent_evaluation.core.models import (
     AcceptanceSpec,
     ActionTarget,
     RestrictedBrowserAction,
     TaskPolicy,
     TaskSpec,
 )
-from browser_agent_evaluation.runners.playwright_reference import PlaywrightReferenceRunner
+from browser_agent_evaluation.evaluation.tasks import load_task, reference_actions
 
 
 class FakeExecutor:
@@ -54,8 +54,8 @@ def test_english_reference_recipes_match_spanish_action_shapes() -> None:
 
     for spanish_path in sorted(spanish_root.glob("*.yaml")):
         english_path = english_root / spanish_path.name.replace(".yaml", "-en.yaml")
-        spanish_actions = _reference_actions(load_task(spanish_path))
-        english_actions = _reference_actions(load_task(english_path))
+        spanish_actions = reference_actions(load_task(spanish_path))
+        english_actions = reference_actions(load_task(english_path))
         assert [action.type for action in english_actions] == [
             action.type for action in spanish_actions
         ]
@@ -70,7 +70,7 @@ def test_english_reference_recipes_match_spanish_action_shapes() -> None:
 )
 def test_open_ended_references_only_check_landing_page_reachability(filename: str) -> None:
     path = Path(__file__).parents[1] / "tasks/experimental" / filename
-    actions = _reference_actions(load_task(path))
+    actions = reference_actions(load_task(path))
 
     assert [action.type for action in actions] == ["navigate"]
 
@@ -84,7 +84,7 @@ def test_selenium_reference_recipes_have_bounded_multi_action_shape() -> None:
     }
 
     for filename, (count, final_action) in expected.items():
-        actions = _reference_actions(load_task(root / filename))
+        actions = reference_actions(load_task(root / filename))
         assert len(actions) == count
         assert actions[0].type == "navigate"
         assert actions[-1].type == final_action

@@ -2,15 +2,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from browser_agent_evaluation.micro_pilot import load_task
-from browser_agent_evaluation.repeat_pilot import (
+from browser_agent_evaluation.evaluation.playwright_mcp_trial import task_origins
+from browser_agent_evaluation.evaluation.rounds import (
     AI_RUNNERS,
     ENGLISH_TASK_PATHS,
     STANDARD_ENGLISH_TASK_PATHS,
     TASK_PATHS,
-    _task_origins,
     build_round_plan,
 )
+from browser_agent_evaluation.evaluation.tasks import load_task
 
 
 def test_round_plan_is_seeded_and_covers_each_runner_once() -> None:
@@ -56,8 +56,8 @@ def test_mcp_allowed_origins_include_every_task_domain() -> None:
     mdn = load_task(Path(__file__).parents[1] / "tasks/mdn-reference.yaml")
     wikipedia = load_task(Path(__file__).parents[1] / "tasks/en/wikipedia-search-en.yaml")
 
-    assert _task_origins(mdn) == "https://developer.mozilla.org"
-    assert _task_origins(wikipedia) == "https://www.wikipedia.org;https://en.wikipedia.org"
+    assert task_origins(mdn) == "https://developer.mozilla.org"
+    assert task_origins(wikipedia) == "https://www.wikipedia.org;https://en.wikipedia.org"
 
 
 def test_round_plan_changes_order_with_a_different_seed() -> None:

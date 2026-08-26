@@ -11,7 +11,7 @@ from browser_agent_evaluation.connectors.base import (
     ObservedPageState,
     SessionRequest,
 )
-from browser_agent_evaluation.workflow import WorkflowStepRequest
+from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 ReferenceStepExecutor = Callable[[WorkflowStepRequest], Awaitable[ConnectorStepResult]]
 ReferenceObserver = Callable[[], Awaitable[ObservedPageState]]

@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 from pydantic import ValidationError
 
-from browser_agent_evaluation.models import (
+from browser_agent_evaluation.core.models import (
     AcceptanceSpec,
     ActionTarget,
     BrowserActionProposal,

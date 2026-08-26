@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import pytest
 
-from browser_agent_evaluation.provider import COMMON_MODEL, COMMON_PROVIDER, OPENROUTER_ENDPOINT
-from browser_agent_evaluation.runners.base import AdapterCapabilities, AdapterConfiguration
-from browser_agent_evaluation.runners.playwright_mcp import PlaywrightMcpAdapter, ToolScopeError
-from browser_agent_evaluation.runners.stagehand import StagehandAdapter
+from browser_agent_evaluation.adapters.base import AdapterCapabilities, AdapterConfiguration
+from browser_agent_evaluation.adapters.playwright_mcp import PlaywrightMcpAdapter, ToolScopeError
+from browser_agent_evaluation.adapters.stagehand import StagehandAdapter
+from browser_agent_evaluation.providers.openai import (
+    COMMON_MODEL,
+    COMMON_PROVIDER,
+    OPENROUTER_ENDPOINT,
+)
 
 
 def configuration(runner: str) -> AdapterConfiguration:

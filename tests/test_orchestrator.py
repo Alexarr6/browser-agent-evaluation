@@ -11,9 +11,9 @@ from browser_agent_evaluation.connectors.base import (
     ObservedPageState,
     SessionRequest,
 )
-from browser_agent_evaluation.models import UsageEvidence
-from browser_agent_evaluation.orchestrator import WorkflowOrchestrator
-from browser_agent_evaluation.workflow import WorkflowSpec, load_workflow
+from browser_agent_evaluation.core.models import UsageEvidence
+from browser_agent_evaluation.workflows.models import WorkflowSpec, load_workflow
+from browser_agent_evaluation.workflows.orchestrator import WorkflowOrchestrator
 
 EXPERIMENT_ROOT = Path(__file__).parents[1]
 

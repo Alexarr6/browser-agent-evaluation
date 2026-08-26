@@ -6,13 +6,13 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-from browser_agent_evaluation.configuration import (
-    ExperimentConfiguration,
+from browser_agent_evaluation.configuration.loader import (
     configuration_sha256,
     load_experiment_configuration,
 )
-from browser_agent_evaluation.preflight import build_runtime_approval_plan
-from browser_agent_evaluation.workflow import load_workflow
+from browser_agent_evaluation.configuration.models import ExperimentConfiguration
+from browser_agent_evaluation.configuration.preflight import build_runtime_approval_plan
+from browser_agent_evaluation.workflows.models import load_workflow
 
 EXPERIMENT_ROOT = Path(__file__).parents[1]
 

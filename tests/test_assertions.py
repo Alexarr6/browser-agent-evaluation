@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from browser_agent_evaluation.assertions import PageState, evaluate_acceptance
-from browser_agent_evaluation.models import AcceptanceSpec
+from browser_agent_evaluation.core.assertions import PageState, evaluate_acceptance
+from browser_agent_evaluation.core.models import AcceptanceSpec
 
 
 def test_acceptance_requires_all_declared_conditions() -> None:

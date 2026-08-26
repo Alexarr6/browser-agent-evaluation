@@ -4,11 +4,11 @@ import os
 from pathlib import Path
 
 from browser_agent_evaluation.connectors.base import CapabilityResult, SessionRequest
-from browser_agent_evaluation.connectors.mcp import PlaywrightMcpConnector
-from browser_agent_evaluation.connectors.mcp_session import PlaywrightMcpSession
+from browser_agent_evaluation.connectors.playwright_mcp import PlaywrightMcpConnector
+from browser_agent_evaluation.connectors.playwright_mcp_session import PlaywrightMcpSession
 from browser_agent_evaluation.connectors.restricted import RestrictedConnector
 from browser_agent_evaluation.connectors.restricted_session import RestrictedSession
-from browser_agent_evaluation.models import TaskPolicy
+from browser_agent_evaluation.core.models import TaskPolicy
 
 
 class ConnectorConfiguration:

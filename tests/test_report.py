@@ -6,8 +6,11 @@ from pathlib import Path
 
 import pytest
 
-from browser_agent_evaluation.models import TrialEvidence, UsageEvidence
-from browser_agent_evaluation.report import load_comparable_evidence, render_comparison_report
+from browser_agent_evaluation.core.models import TrialEvidence, UsageEvidence
+from browser_agent_evaluation.reporting.comparison import (
+    load_comparable_evidence,
+    render_comparison_report,
+)
 
 
 def test_report_requires_complete_valid_matrix_and_renders_aggregates(tmp_path: Path) -> None:

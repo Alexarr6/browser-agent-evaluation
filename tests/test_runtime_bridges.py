@@ -4,8 +4,12 @@ import json
 
 import pytest
 
-from browser_agent_evaluation.runners.playwright_mcp import McpToolCall, McpToolLoop, ToolScopeError
-from browser_agent_evaluation.runners.stagehand import (
+from browser_agent_evaluation.adapters.playwright_mcp import (
+    McpToolCall,
+    McpToolLoop,
+    ToolScopeError,
+)
+from browser_agent_evaluation.adapters.stagehand import (
     NdjsonBridgeError,
     StagehandRequest,
     encode_request,

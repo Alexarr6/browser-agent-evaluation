@@ -5,7 +5,8 @@ import asyncio
 import pytest
 from pydantic import ValidationError
 
-from browser_agent_evaluation.models import (
+from browser_agent_evaluation.agents.restricted.agent import RestrictedBrowserAgent
+from browser_agent_evaluation.core.models import (
     AcceptanceSpec,
     ActionTarget,
     BrowserActionProposal,
@@ -14,7 +15,6 @@ from browser_agent_evaluation.models import (
     TaskPolicy,
     TaskSpec,
 )
-from browser_agent_evaluation.restricted_agent import RestrictedBrowserAgent
 
 
 class FakeBrowser:

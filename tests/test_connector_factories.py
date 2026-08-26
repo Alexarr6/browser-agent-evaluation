@@ -7,10 +7,10 @@ from browser_agent_evaluation.connectors.base import (
     CleanupResult,
     ConnectorStepResult,
 )
-from browser_agent_evaluation.connectors.mcp import PlaywrightMcpConnector
+from browser_agent_evaluation.connectors.playwright_mcp import PlaywrightMcpConnector
 from browser_agent_evaluation.connectors.restricted import RestrictedConnector
-from browser_agent_evaluation.models import UsageEvidence
-from browser_agent_evaluation.workflow import WorkflowStepRequest
+from browser_agent_evaluation.core.models import UsageEvidence
+from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 
 class Session:

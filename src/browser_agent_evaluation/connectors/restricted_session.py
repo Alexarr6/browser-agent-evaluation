@@ -5,7 +5,11 @@ from dataclasses import dataclass, field
 import httpx
 from playwright.async_api import Browser, Page, Playwright, async_playwright
 
-from browser_agent_evaluation.budget import ModelBudget
+from browser_agent_evaluation.agents.restricted.agent import AgentOutcome, RestrictedBrowserAgent
+from browser_agent_evaluation.browser.playwright import (
+    LivePlaywrightController,
+    restrict_page_network,
+)
 from browser_agent_evaluation.connectors.base import (
     CleanupResult,
     ConnectorSession,
@@ -13,14 +17,10 @@ from browser_agent_evaluation.connectors.base import (
     ObservedPageState,
     SessionRequest,
 )
-from browser_agent_evaluation.live_playwright import (
-    LivePlaywrightController,
-    restrict_page_network,
-)
-from browser_agent_evaluation.models import BrowserActionProposal, TaskSpec, UsageEvidence
-from browser_agent_evaluation.provider import COMMON_MODEL, OpenRouterPlanner
-from browser_agent_evaluation.restricted_agent import AgentOutcome, RestrictedBrowserAgent
-from browser_agent_evaluation.workflow import WorkflowStepRequest
+from browser_agent_evaluation.core.budget import ModelBudget
+from browser_agent_evaluation.core.models import BrowserActionProposal, TaskSpec, UsageEvidence
+from browser_agent_evaluation.providers.openai import COMMON_MODEL, OpenRouterPlanner
+from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 
 @dataclass
@@ -224,7 +224,7 @@ class _Planner:
 
 
 def _permissive_acceptance() -> object:
-    from browser_agent_evaluation.models import AcceptanceSpec
+    from browser_agent_evaluation.core.models import AcceptanceSpec
 
     return AcceptanceSpec(page_title=" ")
 

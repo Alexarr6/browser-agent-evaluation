@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pytest
 
-from browser_agent_evaluation.models import UsageEvidence
-from browser_agent_evaluation.provider import (
+from browser_agent_evaluation.core.models import UsageEvidence
+from browser_agent_evaluation.providers.openai import (
     COMMON_MODEL,
     COMMON_PROVIDER,
     OPENROUTER_ENDPOINT,

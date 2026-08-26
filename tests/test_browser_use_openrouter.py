@@ -6,8 +6,8 @@ import json
 import httpx
 from pydantic import BaseModel
 
-from browser_agent_evaluation.browser_use_openrouter import BrowserUseOpenRouter
-from browser_agent_evaluation.budget import BudgetExceeded, ModelBudget
+from browser_agent_evaluation.agents.browser_use.model import BrowserUseOpenRouter
+from browser_agent_evaluation.core.budget import BudgetExceeded, ModelBudget
 
 
 class ExampleOutput(BaseModel):

@@ -1,4 +1,4 @@
-from browser_agent_evaluation.pricing import provider_cost_or_luna_estimate
+from browser_agent_evaluation.core.pricing import provider_cost_or_luna_estimate
 
 
 def test_estimates_luna_standard_cost_including_cached_input() -> None:

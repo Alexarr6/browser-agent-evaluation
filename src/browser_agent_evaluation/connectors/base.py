@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from browser_agent_evaluation.models import TaskPolicy, UsageEvidence
-from browser_agent_evaluation.workflow import WorkflowStepRequest
+from browser_agent_evaluation.core.models import TaskPolicy, UsageEvidence
+from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 
 @dataclass(frozen=True)

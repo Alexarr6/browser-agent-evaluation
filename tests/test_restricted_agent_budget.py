@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import asyncio
 
-from browser_agent_evaluation.budget import BudgetExceeded
-from browser_agent_evaluation.models import BrowserActionProposal, TaskSpec
-from browser_agent_evaluation.restricted_agent import RestrictedBrowserAgent
+from browser_agent_evaluation.agents.restricted.agent import RestrictedBrowserAgent
+from browser_agent_evaluation.core.budget import BudgetExceeded
+from browser_agent_evaluation.core.models import BrowserActionProposal, TaskSpec
 
 
 class FakeBrowser:

@@ -3,8 +3,8 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from browser_agent_evaluation.live_playwright import LivePlaywrightController
-from browser_agent_evaluation.models import ActionTarget
+from browser_agent_evaluation.browser.playwright import LivePlaywrightController
+from browser_agent_evaluation.core.models import ActionTarget
 
 
 class FakeLocator:

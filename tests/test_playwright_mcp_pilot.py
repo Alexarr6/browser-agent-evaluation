@@ -8,16 +8,16 @@ from types import SimpleNamespace
 import httpx
 import pytest
 
-from browser_agent_evaluation.budget import ModelBudget
-from browser_agent_evaluation.micro_pilot import load_task
-from browser_agent_evaluation.playwright_mcp_pilot import (
+from browser_agent_evaluation.agents.playwright_mcp.runner import PlaywrightMcpPilot
+from browser_agent_evaluation.agents.playwright_mcp.tools import (
     McpPilotError,
-    PlaywrightMcpPilot,
-    _normalize_mcp_tool_arguments,
-    _openrouter_tools,
-    _validate_tool_call,
+    normalize_tool_arguments,
+    openrouter_tools,
     parse_mcp_snapshot,
+    validate_tool_call,
 )
+from browser_agent_evaluation.core.budget import ModelBudget
+from browser_agent_evaluation.evaluation.tasks import load_task
 
 
 def test_tool_projection_exposes_only_bounded_browser_tools() -> None:
@@ -56,7 +56,7 @@ def test_tool_projection_exposes_only_bounded_browser_tools() -> None:
         for name in names
     ]
 
-    projected = _openrouter_tools(tools)  # type: ignore[arg-type]
+    projected = openrouter_tools(tools)  # type: ignore[arg-type]
 
     projected_names = {item["function"]["name"] for item in projected}
     assert "browser_snapshot" not in projected_names
@@ -175,13 +175,13 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
 
 
 def test_mcp_normalizes_only_exact_alpha_accessibility_refs() -> None:
-    assert _normalize_mcp_tool_arguments(
+    assert normalize_tool_arguments(
         name="browser_type", arguments={"target": "ref=e3", "text": "Ada"}
     ) == {"target": "e3", "text": "Ada"}
-    assert _normalize_mcp_tool_arguments(
+    assert normalize_tool_arguments(
         name="browser_type", arguments={"target": "ref=unsafe"}
     ) == {"target": "ref=unsafe"}
-    assert _normalize_mcp_tool_arguments(
+    assert normalize_tool_arguments(
         name="browser_navigate", arguments={"url": "https://example.test"}
     ) == {"url": "https://example.test"}
 
@@ -321,7 +321,7 @@ def test_mcp_retries_provider_rate_limits_with_terminal_status() -> None:
 
 
 def test_mcp_normalizes_python_style_case_insensitive_regex() -> None:
-    assert _normalize_mcp_tool_arguments(
+    assert normalize_tool_arguments(
         name="browser_find", arguments={"regex": "/(?i)(coffee|café).*beans/"}
     ) == {"regex": "/(coffee|café).*beans/i"}
 
@@ -330,7 +330,7 @@ def test_navigation_rejects_domain_outside_task_policy() -> None:
     task = load_task(Path(__file__).parents[1] / "tasks/wikipedia-search.yaml")
 
     with pytest.raises(McpPilotError, match="outside"):
-        _validate_tool_call(
+        validate_tool_call(
             name="browser_navigate", arguments={"url": "https://example.com"}, task=task
         )
 
@@ -339,7 +339,7 @@ def test_new_mcp_tab_navigation_rejects_domain_outside_task_policy() -> None:
     task = load_task(Path(__file__).parents[1] / "tasks/wikipedia-search.yaml")
 
     with pytest.raises(McpPilotError, match="outside"):
-        _validate_tool_call(
+        validate_tool_call(
             name="browser_tabs",
             arguments={"action": "new", "url": "https://example.com"},
             task=task,

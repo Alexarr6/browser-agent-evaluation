@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from browser_agent_evaluation.runtime_environment import (
+from browser_agent_evaluation.browser.environment import (
     browser_use_privacy_environment,
     load_local_runtime_environment,
 )

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from browser_agent_evaluation.models import ActionTarget, RestrictedBrowserAction, TaskSpec
-from browser_agent_evaluation.policy import validate_action
+from browser_agent_evaluation.core.models import ActionTarget, RestrictedBrowserAction, TaskSpec
+from browser_agent_evaluation.core.policy import validate_action
 
 
 def task() -> TaskSpec:

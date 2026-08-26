@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import pytest
 
-from browser_agent_evaluation.provider import COMMON_MODEL, COMMON_PROVIDER, OPENROUTER_ENDPOINT
-from browser_agent_evaluation.runners.base import (
+from browser_agent_evaluation.adapters.base import (
     AdapterCapabilities,
     AdapterConfiguration,
     AdapterContractError,
     validate_adapter_configuration,
+)
+from browser_agent_evaluation.providers.openai import (
+    COMMON_MODEL,
+    COMMON_PROVIDER,
+    OPENROUTER_ENDPOINT,
 )
 
 

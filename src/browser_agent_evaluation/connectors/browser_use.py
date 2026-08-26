@@ -6,10 +6,10 @@ from typing import Any
 
 import httpx
 
-from browser_agent_evaluation.browser_use_capture import OpenRouterUsageCapture, usage_delta
-from browser_agent_evaluation.browser_use_openrouter import BrowserUseOpenRouter
-from browser_agent_evaluation.budget import ModelBudget
-from browser_agent_evaluation.configuration import ExperimentConfiguration
+from browser_agent_evaluation.agents.browser_use.model import BrowserUseOpenRouter
+from browser_agent_evaluation.agents.browser_use.usage import OpenRouterUsageCapture, usage_delta
+from browser_agent_evaluation.browser.environment import BROWSER_USE_PRIVACY_OVERRIDES
+from browser_agent_evaluation.configuration.models import ExperimentConfiguration
 from browser_agent_evaluation.connectors.base import (
     BrowserConnector,
     CapabilityResult,
@@ -19,8 +19,8 @@ from browser_agent_evaluation.connectors.base import (
     ObservedPageState,
     SessionRequest,
 )
-from browser_agent_evaluation.runtime_environment import BROWSER_USE_PRIVACY_OVERRIDES
-from browser_agent_evaluation.workflow import WorkflowStepRequest
+from browser_agent_evaluation.core.budget import ModelBudget
+from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 
 class BrowserUseConnector(BrowserConnector):

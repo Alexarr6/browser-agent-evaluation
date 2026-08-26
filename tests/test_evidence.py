@@ -4,8 +4,8 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-from browser_agent_evaluation.evidence import redact_and_bound, write_trial_evidence
-from browser_agent_evaluation.models import TrialEvidence, UsageEvidence
+from browser_agent_evaluation.core.models import TrialEvidence, UsageEvidence
+from browser_agent_evaluation.reporting.evidence import redact_and_bound, write_trial_evidence
 
 
 def evidence() -> TrialEvidence:

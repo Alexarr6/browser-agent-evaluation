@@ -62,7 +62,7 @@ A one-repetition visual-parity run for all three AI arms is:
 
 ```bash
 DISPLAY=:99 UV_CACHE_DIR=/tmp/uv-cache \
-uv run python -m browser_agent_evaluation.repeat_pilot \
+uv run browser-eval repeat \
   --repetitions 1 \
   --task-language en \
   --runners restricted browser_use playwright_mcp \
@@ -116,11 +116,14 @@ configured forwarded port. Do not use a personal browser profile.
 ## Repository layout
 
 ```text
-src/browser_agent_evaluation/  Python harness and adapters
+src/browser_agent_evaluation/  Layered Python package
 tests/                         Offline unit and contract tests
 tasks/                         Public task contracts and workflows
-evidence/                      Selected, reviewable Markdown reports
-docs/                         Design and historical documentation
+evidence/                      Ignored generated runtime evidence
+docs/architecture/             Current package and boundary design
+docs/compatibility/            Browser and framework compatibility notes
+docs/results/                  Selected, sanitized Markdown reports
+docs/archive/                  Historical preflight and diagnostic notes
 experiment.yaml                Local experiment configuration
 runtime.env.example            Safe environment template
 pyproject.toml / uv.lock       Python project and dependency lock
@@ -134,6 +137,10 @@ Local-only material is deliberately excluded from version control:
 - `.venv/`, `node_modules/`, caches, build products, and logs
 - generated JSON evidence and screenshots
 - Pi/editor/runtime state
+
+The package boundaries and dependency direction are documented in
+[`docs/architecture/package-structure.md`](docs/architecture/package-structure.md).
+See [`docs/README.md`](docs/README.md) for the complete documentation index.
 
 ## Development practices
 

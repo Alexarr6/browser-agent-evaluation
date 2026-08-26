@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from browser_agent_evaluation.budget import BudgetExceeded, ModelBudget
+from browser_agent_evaluation.core.budget import BudgetExceeded, ModelBudget
 
 
 def test_budget_enforces_trial_request_and_cost_limits() -> None:

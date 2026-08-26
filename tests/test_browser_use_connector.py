@@ -6,10 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from browser_agent_evaluation.browser_use_capture import usage_delta
-from browser_agent_evaluation.configuration import load_experiment_configuration
+from browser_agent_evaluation.agents.browser_use.usage import usage_delta
+from browser_agent_evaluation.configuration.loader import load_experiment_configuration
 from browser_agent_evaluation.connectors.browser_use import BrowserUseConnector
-from browser_agent_evaluation.models import UsageEvidence
+from browser_agent_evaluation.core.models import UsageEvidence
 
 EXPERIMENT_ROOT = Path(__file__).parents[1]
 

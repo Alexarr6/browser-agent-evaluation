@@ -5,19 +5,23 @@ import subprocess
 
 import pytest
 
-from browser_agent_evaluation.browser_use_openrouter import _response_diagnostic
-from browser_agent_evaluation.browser_use_pilot import (
-    BrowserUsePilotError,
-    _block_external_browser_launch,
-)
-from browser_agent_evaluation.models import UsageEvidence
-from browser_agent_evaluation.provider import COMMON_MODEL, COMMON_PROVIDER, OPENROUTER_ENDPOINT
-from browser_agent_evaluation.runners.base import (
+from browser_agent_evaluation.adapters.base import (
     AdapterCapabilities,
     AdapterConfiguration,
     AdapterContractError,
 )
-from browser_agent_evaluation.runners.browser_use import BrowserUseAdapter
+from browser_agent_evaluation.adapters.browser_use import BrowserUseAdapter
+from browser_agent_evaluation.agents.browser_use.model import _response_diagnostic
+from browser_agent_evaluation.agents.browser_use.runner import (
+    BrowserUsePilotError,
+    _block_external_browser_launch,
+)
+from browser_agent_evaluation.core.models import UsageEvidence
+from browser_agent_evaluation.providers.openai import (
+    COMMON_MODEL,
+    COMMON_PROVIDER,
+    OPENROUTER_ENDPOINT,
+)
 
 
 def configuration() -> AdapterConfiguration:

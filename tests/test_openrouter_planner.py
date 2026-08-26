@@ -4,9 +4,9 @@ import asyncio
 
 import httpx
 
-from browser_agent_evaluation.budget import ModelBudget
-from browser_agent_evaluation.models import TaskSpec
-from browser_agent_evaluation.provider import OpenRouterPlanner
+from browser_agent_evaluation.core.budget import ModelBudget
+from browser_agent_evaluation.core.models import TaskSpec
+from browser_agent_evaluation.providers.openai import OpenRouterPlanner
 
 
 def test_openrouter_planner_requests_strict_json_and_records_usage() -> None:

@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from browser_agent_evaluation.models import TaskSpec
+from browser_agent_evaluation.core.models import TaskSpec
 
 TASKS_ROOT = Path(__file__).parents[1] / "tasks"
 ENGLISH_TASKS_ROOT = TASKS_ROOT / "en"
