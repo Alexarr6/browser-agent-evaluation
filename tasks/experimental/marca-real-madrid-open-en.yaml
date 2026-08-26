@@ -1,0 +1,18 @@
+schema_version: 1
+id: marca-real-madrid-open-en
+start_url: https://www.marca.com/
+instruction: |
+  1. Find any currently published news article on this site whose main subject is Real Madrid.
+  2. Use the site's own navigation or search; do not use an external search engine.
+  3. Open the article.
+  4. Return the exact headline and the final article URL.
+  5. Finish.
+completion: The final page is a Marca article about Real Madrid and the response includes its exact headline and URL.
+policy:
+  allowed_domains: [www.marca.com, marca.com]
+  risk: read_only
+  allow_form_submit: false
+max_actions: 48
+timeout_seconds: 300
+acceptance:
+  visible_text: Real Madrid

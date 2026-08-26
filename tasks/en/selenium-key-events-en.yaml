@@ -1,0 +1,21 @@
+schema_version: 1
+id: selenium-key-events-en
+start_url: https://www.selenium.dev/selenium/web/key_logger.html
+instruction: |
+  1. Click the single text field to focus it.
+  2. Press the "A" key.
+  3. Press the "d" key.
+  4. Press the "a" key.
+  5. Press "ArrowLeft".
+  6. Press "Backspace".
+  7. Press "Tab" to move focus out of the field.
+  8. Verify that the visible log includes the "change" event and finish.
+completion: The log confirms the key sequence and final field change.
+policy:
+  allowed_domains: [www.selenium.dev]
+  risk: synthetic_form
+  allow_form_submit: false
+max_actions: 48
+timeout_seconds: 300
+acceptance:
+  visible_text: change

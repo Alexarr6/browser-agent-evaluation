@@ -1,0 +1,19 @@
+schema_version: 1
+id: wikipedia-search
+start_url: https://www.wikipedia.org/
+instruction: |
+  1. Busca "Playwright".
+  2. Abre el artículo principal.
+  3. Comprueba que el título de la página es "Playwright".
+  4. Termina.
+completion: La página final muestra el artículo solicitado.
+policy:
+  allowed_domains: [www.wikipedia.org, en.wikipedia.org]
+  risk: read_only
+  allow_form_submit: false
+  allowed_submit_labels: [Search Wikipedia]
+max_actions: 12
+timeout_seconds: 60
+acceptance:
+  page_title: Playwright
+  url_contains: /wiki/Playwright

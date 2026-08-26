@@ -1,0 +1,38 @@
+schema_version: 1
+browser:
+  # Chromium 151 for reference and Playwright MCP.
+  executable_path_env: BROWSER_EVAL_CHROMIUM
+  # Chromium 140 required by browser-use 0.13.8 on ARM64.
+  browser_use_executable_path_env: BROWSER_EVAL_BROWSER_USE_CHROMIUM
+  headless: false
+  fresh_profile: true
+provider:
+  endpoint: ${BROWSER_EVAL_PROVIDER_ENDPOINT:-https://api.openai.com/v1}
+  api_key_env: OPENAI_API_KEY
+budget:
+  # OpenAI reports token usage but not per-request USD cost.
+  max_total_usd: null
+  max_run_usd: null
+  max_tokens_per_run: 1000000
+runners:
+  playwright_reference: true
+  restricted:
+    enabled: true
+    model: ${BROWSER_EVAL_MODEL:-gpt-5.6-luna}
+  browser_use:
+    enabled: true
+    model: ${BROWSER_EVAL_MODEL:-gpt-5.6-luna}
+    # null omits max_tokens from the provider request.
+    completion_tokens: null
+  playwright_mcp:
+    enabled: true
+    model: ${BROWSER_EVAL_MODEL:-gpt-5.6-luna}
+execution:
+  repetitions: 3
+  seed: 20260824
+  task_language: en
+  max_requests_per_run: 48
+workflows:
+  directory: tasks/workflows/en
+reports:
+  directory: evidence

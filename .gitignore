@@ -1,0 +1,48 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Runtime approvals and generated evaluation output
+approvals/*.json
+runs/
+evidence/**/*.json
+evidence/**/*.ndjson
+*.trace
+*.har
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+.pyre/
+.pytype/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Logs
+*.log
+
+# Editors and operating systems
+.atl/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

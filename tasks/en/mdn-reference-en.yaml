@@ -1,0 +1,18 @@
+schema_version: 1
+id: mdn-reference-en
+start_url: https://developer.mozilla.org/
+instruction: |
+  1. Search for the CSS reference for the ":has()" selector.
+  2. Open the matching reference page.
+  3. Verify that the page shows the ":has()" selector.
+  4. Finish.
+completion: The final page shows the requested CSS reference.
+policy:
+  allowed_domains: [developer.mozilla.org]
+  risk: read_only
+  allow_form_submit: false
+max_actions: 48
+timeout_seconds: 300
+acceptance:
+  url_contains: /Web/CSS/Reference/Selectors/:has
+  visible_text: ":has()"

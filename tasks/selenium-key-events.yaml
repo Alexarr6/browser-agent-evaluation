@@ -1,0 +1,21 @@
+schema_version: 1
+id: selenium-key-events
+start_url: https://www.selenium.dev/selenium/web/key_logger.html
+instruction: |
+  1. Haz clic en el único campo de texto para enfocarlo.
+  2. Pulsa la tecla "A".
+  3. Pulsa la tecla "d".
+  4. Pulsa la tecla "a".
+  5. Pulsa "ArrowLeft".
+  6. Pulsa "Backspace".
+  7. Pulsa "Tab" para sacar el foco del campo.
+  8. Comprueba que el registro visible incluye el evento "change" y termina.
+completion: El registro confirma la secuencia de teclado y el cambio final del campo.
+policy:
+  allowed_domains: [www.selenium.dev]
+  risk: synthetic_form
+  allow_form_submit: false
+max_actions: 24
+timeout_seconds: 90
+acceptance:
+  visible_text: change

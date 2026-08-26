@@ -1,0 +1,23 @@
+schema_version: 1
+id: wikipedia-search-en
+start_url: https://www.wikipedia.org/
+policy:
+  allowed_domains:
+    - www.wikipedia.org
+    - en.wikipedia.org
+  risk: read_only
+steps:
+  - id: search-playwright
+    instruction: Search Wikipedia for Playwright.
+    acceptance:
+      url_contains: wikipedia.org
+  - id: open-article
+    instruction: Open the main Playwright article.
+    acceptance:
+      url_contains: Playwright
+  - id: verify-title
+    instruction: Verify that the page title is Playwright.
+    acceptance:
+      page_title: Playwright
+final_acceptance:
+  page_title: Playwright

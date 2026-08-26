@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "browser-agent-evaluation-adapters",
+  "version": "0.0.0",
+  "description": "Pinned Node adapters for the browser-agent evaluation pilot",
+  "engines": {
+    "node": ">=22.18.0 <23"
+  },
+  "dependencies": {
+    "@browserbasehq/stagehand": "4.0.2",
+    "@playwright/mcp": "0.0.79"
+  }
+}

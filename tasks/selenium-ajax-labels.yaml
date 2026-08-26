@@ -1,0 +1,20 @@
+schema_version: 1
+id: selenium-ajax-labels
+start_url: https://www.selenium.dev/selenium/web/ajaxy_page.html
+instruction: |
+  1. Escribe "Ada" en el único campo de texto.
+  2. Pulsa "Add Label".
+  3. Espera hasta que se muestre "Done!" y el formulario vuelva a estar habilitado.
+  4. Escribe "Lovelace" en el único campo de texto.
+  5. Pulsa "Add Label".
+  6. Espera de nuevo hasta que se muestre "Done!".
+  7. Comprueba que la página muestra las etiquetas "Ada" y "Lovelace" y termina.
+completion: La página muestra las dos etiquetas sintéticas después de dos ciclos asíncronos.
+policy:
+  allowed_domains: [www.selenium.dev]
+  risk: synthetic_form
+  allow_form_submit: true
+max_actions: 24
+timeout_seconds: 90
+acceptance:
+  visible_text: Lovelace

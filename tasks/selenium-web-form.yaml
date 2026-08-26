@@ -1,0 +1,22 @@
+schema_version: 1
+id: selenium-web-form
+start_url: https://www.selenium.dev/selenium/web/web-form.html
+instruction: |
+  1. Rellena "Text input" con "Ada Lovelace".
+  2. Rellena "Textarea" con "Prueba sintética".
+  3. Elige "Two" en "Dropdown (select)".
+  4. Rellena "Dropdown (datalist)" con "New York".
+  5. Marca "Default checkbox".
+  6. Marca "Default radio".
+  7. Pulsa "Submit".
+  8. Comprueba que se muestra "Received!" y termina.
+completion: La página final confirma el envío del formulario sintético con "Received!".
+policy:
+  allowed_domains: [www.selenium.dev]
+  risk: synthetic_form
+  allow_form_submit: true
+max_actions: 24
+timeout_seconds: 90
+acceptance:
+  url_contains: /selenium/web/submitted-form.html
+  visible_text: Received!
