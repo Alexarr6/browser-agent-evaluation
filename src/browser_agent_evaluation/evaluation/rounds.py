@@ -21,7 +21,7 @@ from browser_agent_evaluation.evaluation.browser_use_trial import run_browser_us
 from browser_agent_evaluation.evaluation.playwright_mcp_trial import run_playwright_mcp_trial
 from browser_agent_evaluation.evaluation.reference_trial import run_reference_trial
 from browser_agent_evaluation.evaluation.restricted_trial import run_restricted_trial
-from browser_agent_evaluation.providers.openai import COMMON_MODEL
+from browser_agent_evaluation.providers.chat_completions import DEFAULT_MODEL
 
 AI_RUNNERS = ("restricted", "browser_use", "playwright_mcp")
 TASK_FILENAMES = (
@@ -82,7 +82,8 @@ async def run_round(
     reference_chromium: Path,
     browser_use_chromium: Path,
     runners: tuple[str, ...] = AI_RUNNERS,
-    browser_use_model: str = COMMON_MODEL,
+    model: str = DEFAULT_MODEL,
+    provider_endpoint: str,
     headless: bool = True,
     rendering_profile: str = "strict",
 ) -> list[Path]:
@@ -138,6 +139,8 @@ async def run_round(
                                 restrict_network=not visual_parity,
                                 viewport=(VISUAL_PARITY_VIEWPORT if visual_parity else None),
                                 progress=progress,
+                                model=model,
+                                provider_endpoint=provider_endpoint,
                             ),
                             timeout=planned.task.timeout_seconds,
                         )
@@ -148,7 +151,8 @@ async def run_round(
                             api_key=api_key,
                             budget=budget,
                             trial_id=trial_id,
-                            model_id=browser_use_model,
+                            model_id=model,
+                            provider_endpoint=provider_endpoint,
                             chromium_executable=browser_use_chromium,
                             headless=headless,
                             visual_parity=visual_parity,
@@ -161,6 +165,8 @@ async def run_round(
                             budget=budget,
                             trial_id=trial_id,
                             chromium_executable=reference_chromium,
+                            model_id=model,
+                            provider_endpoint=provider_endpoint,
                             headless=headless,
                             visual_parity=visual_parity,
                             progress=progress,

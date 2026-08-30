@@ -16,11 +16,13 @@ class ConnectorConfiguration:
         self,
         *,
         model_id: str,
+        provider_endpoint: str,
         api_key_env: str,
         browser_env: str,
         node_modules: Path,
     ) -> None:
         self.model_id = model_id
+        self.provider_endpoint = provider_endpoint
         self.api_key_env = api_key_env
         self.browser_env = browser_env
         self.node_modules = node_modules
@@ -58,6 +60,8 @@ def mcp_connector(
             executable=configuration.browser_executable(),
             node_modules=configuration.node_modules,
             trial_id=trial_id,
+            model_id=configuration.model_id,
+            provider_endpoint=configuration.provider_endpoint,
         )
         await session._start()
         return session
@@ -82,6 +86,8 @@ def restricted_connector(
             request=request,
             api_key=configuration.api_key(),
             trial_id=trial_id,
+            model_id=configuration.model_id,
+            provider_endpoint=configuration.provider_endpoint,
         )
 
     return RestrictedConnector(

@@ -19,7 +19,10 @@ from browser_agent_evaluation.connectors.base import (
 )
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import BrowserActionProposal, TaskSpec, UsageEvidence
-from browser_agent_evaluation.providers.openai import COMMON_MODEL, OpenRouterPlanner
+from browser_agent_evaluation.providers.chat_completions import (
+    DEFAULT_MODEL,
+    ChatCompletionsPlanner,
+)
 from browser_agent_evaluation.workflows.models import WorkflowStepRequest
 
 
@@ -33,7 +36,8 @@ class RestrictedSession(ConnectorSession):
     request: SessionRequest
     api_key: str
     trial_id: str
-    model_id: str = COMMON_MODEL
+    provider_endpoint: str
+    model_id: str = DEFAULT_MODEL
     max_completion_tokens: int | None = None
     max_requests_per_run: int = 48
     max_total_usd: float | None = None
@@ -62,7 +66,8 @@ class RestrictedSession(ConnectorSession):
         request: SessionRequest,
         api_key: str,
         trial_id: str,
-        model_id: str = COMMON_MODEL,
+        provider_endpoint: str,
+        model_id: str = DEFAULT_MODEL,
         max_completion_tokens: int | None = None,
         max_requests_per_run: int = 48,
         max_total_usd: float | None = None,
@@ -75,6 +80,7 @@ class RestrictedSession(ConnectorSession):
             api_key=api_key,
             trial_id=trial_id,
             model_id=model_id,
+            provider_endpoint=provider_endpoint,
             max_completion_tokens=max_completion_tokens,
             max_requests_per_run=max_requests_per_run,
             max_total_usd=max_total_usd,
@@ -96,9 +102,7 @@ class RestrictedSession(ConnectorSession):
         self.playwright = await async_playwright().start()
         self.browser = await self.playwright.chromium.launch(headless=self.headless)
         self.page = await self.browser.new_page()
-        await restrict_page_network(
-            self.page, allowed_domains=self.request.policy.allowed_domains
-        )
+        await restrict_page_network(self.page, allowed_domains=self.request.policy.allowed_domains)
         await self.page.goto(self.request.start_url)
 
     async def execute_step(self, request: WorkflowStepRequest) -> ConnectorStepResult:
@@ -112,6 +116,7 @@ class RestrictedSession(ConnectorSession):
                 self.budget,
                 self.trial_id,
                 model=self.model_id,
+                endpoint=self.provider_endpoint,
                 max_completion_tokens=self.max_completion_tokens,
             )
         )
@@ -181,20 +186,23 @@ class _Planner:
         trial_id: str,
         *,
         model: str,
+        endpoint: str,
         max_completion_tokens: int | None,
     ) -> None:
         self._api_key = api_key
         self._budget = budget
         self._trial_id = trial_id
         self._model = model
+        self._endpoint = endpoint
         self._max_completion_tokens = max_completion_tokens
         self._client = httpx.AsyncClient()
-        self._planner = OpenRouterPlanner(
+        self._planner = ChatCompletionsPlanner(
             api_key=api_key,
             budget=budget,
             trial_id=trial_id,
             client=self._client,
             model=model,
+            endpoint=endpoint,
             max_completion_tokens=max_completion_tokens,
         )
         self.usage = UsageEvidence(
@@ -249,4 +257,4 @@ def usage_delta(before: UsageEvidence, after: UsageEvidence) -> UsageEvidence:
     )
 
 
-__all__ = ["RestrictedSession", "COMMON_MODEL"]
+__all__ = ["RestrictedSession", "DEFAULT_MODEL"]

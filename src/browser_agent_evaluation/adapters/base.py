@@ -6,11 +6,6 @@ from typing import Literal, Protocol
 from pydantic import BaseModel, ConfigDict
 
 from browser_agent_evaluation.core.models import RunnerName, TaskSpec, TrialEvidence
-from browser_agent_evaluation.providers.openai import (
-    COMMON_MODEL,
-    COMMON_PROVIDER,
-    OPENROUTER_ENDPOINT,
-)
 
 
 class AdapterContractError(RuntimeError):
@@ -44,12 +39,10 @@ class BrowserRunner(Protocol):
 def validate_adapter_configuration(
     configuration: AdapterConfiguration, capabilities: AdapterCapabilities
 ) -> None:
-    if (
-        configuration.provider != COMMON_PROVIDER
-        or configuration.model != COMMON_MODEL
-        or configuration.endpoint.rstrip("/") != OPENROUTER_ENDPOINT
-    ):
-        raise AdapterContractError("adapter must use the configured common OpenRouter model")
+    if not configuration.provider.strip() or not configuration.model.strip():
+        raise AdapterContractError("adapter must identify its configured provider and model")
+    if not configuration.endpoint.startswith("https://"):
+        raise AdapterContractError("adapter provider endpoint must use HTTPS")
     if not configuration.headless:
         raise AdapterContractError("adapter must use headless browser mode")
     if not configuration.fresh_profile:

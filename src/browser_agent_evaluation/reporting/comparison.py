@@ -188,7 +188,7 @@ def render_comparison_report(
             "failures remain visible rather than being replaced by retries.",
             "- Playwright MCP is viable with Luna when observation is controller-owned and "
             "optional empty page titles are handled by the evidence parser.",
-            "- browser-use is viable only with the disclosed OpenRouter structured-output adapter, "
+            "- browser-use is viable only with the disclosed Chat Completions adapter, "
             "exact controller-owned start URL and Chromium 140 compatibility line on ARM64.",
             "- Deterministic Playwright remains the appropriate correctness and site-health "
             "reference, not a substitute for evaluating agent planning.",
@@ -203,7 +203,7 @@ def render_comparison_report(
             "- Action counts are framework-native and not directly equivalent. Setup navigation "
             "is controller-owned in MCP but can appear as an agent action elsewhere.",
             "- Stagehand is excluded because its standard model and tracing contracts do not meet "
-            "the approved OpenRouter/privacy configuration.",
+            "the configured provider endpoint and privacy controls.",
             "- Selected failed trials remain in the matrix. Superseded harness diagnostics remain "
             "outside it but still count toward adapter complexity and total spend.",
             "",

@@ -5,20 +5,20 @@ import pytest
 from browser_agent_evaluation.adapters.base import AdapterCapabilities, AdapterConfiguration
 from browser_agent_evaluation.adapters.playwright_mcp import PlaywrightMcpAdapter, ToolScopeError
 from browser_agent_evaluation.adapters.stagehand import StagehandAdapter
-from browser_agent_evaluation.providers.openai import (
-    COMMON_MODEL,
-    COMMON_PROVIDER,
-    OPENROUTER_ENDPOINT,
+from browser_agent_evaluation.providers.chat_completions import (
+    DEFAULT_MODEL,
 )
+
+TEST_PROVIDER_ENDPOINT = "https://provider.example/v1"
 
 
 def configuration(runner: str) -> AdapterConfiguration:
     return AdapterConfiguration.model_validate(
         {
             "runner": runner,
-            "provider": COMMON_PROVIDER,
-            "model": COMMON_MODEL,
-            "endpoint": OPENROUTER_ENDPOINT,
+            "provider": "direct-openai",
+            "model": DEFAULT_MODEL,
+            "endpoint": TEST_PROVIDER_ENDPOINT,
             "headless": True,
             "fresh_profile": True,
             "cleanup_evidence_required": True,

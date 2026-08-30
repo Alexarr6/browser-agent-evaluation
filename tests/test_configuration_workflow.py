@@ -20,6 +20,8 @@ EXPERIMENT_ROOT = Path(__file__).parents[1]
 def test_default_configuration_is_strict_and_hashable() -> None:
     configuration = load_experiment_configuration(EXPERIMENT_ROOT / "experiment.yaml")
 
+    assert configuration.provider.endpoint == "https://api.openai.com/v1"
+    assert configuration.provider.api_key_env == "OPENAI_API_KEY"
     assert configuration.runners.browser_use.model == "gpt-5.6-luna"
     assert configuration.budget.max_tokens_per_run == 1_000_000
     assert configuration.runners.browser_use.completion_tokens is None
@@ -27,8 +29,7 @@ def test_default_configuration_is_strict_and_hashable() -> None:
     assert configuration.browser.headless is False
     assert configuration.browser.executable_path_env == "BROWSER_EVAL_CHROMIUM"
     assert (
-        configuration.browser.browser_use_executable_path_env
-        == "BROWSER_EVAL_BROWSER_USE_CHROMIUM"
+        configuration.browser.browser_use_executable_path_env == "BROWSER_EVAL_BROWSER_USE_CHROMIUM"
     )
     assert configuration_sha256(configuration) == configuration_sha256(configuration)
 
@@ -75,9 +76,7 @@ def test_configuration_rejects_unknown_or_unsafe_execution_values() -> None:
 
 
 def test_workflow_hides_machine_acceptance_from_connector_request() -> None:
-    workflow = load_workflow(
-        EXPERIMENT_ROOT / "tasks/workflows/en/wikipedia-search-en.yaml"
-    )
+    workflow = load_workflow(EXPERIMENT_ROOT / "tasks/workflows/en/wikipedia-search-en.yaml")
 
     request = workflow.connector_step_request(workflow.steps[0])
 

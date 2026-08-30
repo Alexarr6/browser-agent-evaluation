@@ -95,6 +95,7 @@ def _mcp_connector(
             executable=executable,
             node_modules=NODE_MODULES,
             trial_id=trial_id,
+            provider_endpoint=configuration.provider.endpoint,
             model_id=model_id,
             max_model_requests=max_requests_per_run,
             max_total_usd=configuration.budget.max_total_usd,
@@ -129,6 +130,7 @@ def _restricted_connector(
             request=request,
             api_key=api_key,
             trial_id=trial_id,
+            provider_endpoint=configuration.provider.endpoint,
             model_id=model_id,
             max_requests_per_run=max_requests_per_run,
             max_total_usd=configuration.budget.max_total_usd,
@@ -189,9 +191,7 @@ async def _smoke(configuration: ExperimentConfiguration) -> dict[str, dict[str, 
     executable = Path(os.environ[configuration.browser.executable_path_env])
     api_key = os.environ[configuration.provider.api_key_env]
     receipts: dict[str, dict[str, object]] = {}
-    orchestrator = WorkflowOrchestrator(
-        configuration_sha256=configuration_sha256(configuration)
-    )
+    orchestrator = WorkflowOrchestrator(configuration_sha256=configuration_sha256(configuration))
     workflow = _workflow(configuration)
     connectors = _connectors(configuration, executable, api_key)
     for name in configuration.enabled_runner_ids:

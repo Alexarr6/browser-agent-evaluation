@@ -3,38 +3,49 @@ from __future__ import annotations
 import pytest
 
 from browser_agent_evaluation.core.models import UsageEvidence
-from browser_agent_evaluation.providers.openai import (
-    COMMON_MODEL,
-    COMMON_PROVIDER,
-    OPENROUTER_ENDPOINT,
+from browser_agent_evaluation.providers.chat_completions import (
+    DEFAULT_MODEL,
     ProviderConfiguration,
     ProviderContractError,
     require_comparable_usage,
 )
 
+TEST_PROVIDER_ENDPOINT = "https://provider.example/v1"
 
-def test_common_provider_configuration_is_pinned_to_openrouter_gpt_5_6_mini() -> None:
+
+def test_provider_configuration_accepts_configured_identity_model_and_endpoint() -> None:
     configuration = ProviderConfiguration(
-        provider=COMMON_PROVIDER,
-        model=COMMON_MODEL,
-        endpoint=OPENROUTER_ENDPOINT,
+        provider="direct-openai",
+        model=DEFAULT_MODEL,
+        endpoint=TEST_PROVIDER_ENDPOINT,
     )
 
     assert configuration.model == "gpt-5.6-luna"
 
 
+def test_provider_configuration_is_not_pinned_to_one_provider() -> None:
+    configuration = ProviderConfiguration(
+        provider="compatible-provider",
+        model="other-model",
+        endpoint="https://provider.example/v1",
+    )
+
+    assert configuration.provider == "compatible-provider"
+
+
 @pytest.mark.parametrize(
-    ("model", "endpoint"),
+    ("provider", "model", "endpoint"),
     [
-        ("openai/gpt-5.6-mini", OPENROUTER_ENDPOINT),
-        (COMMON_MODEL, "https://openrouter.ai/api/v1"),
+        ("", DEFAULT_MODEL, TEST_PROVIDER_ENDPOINT),
+        ("direct-openai", "", TEST_PROVIDER_ENDPOINT),
+        ("direct-openai", DEFAULT_MODEL, "http://provider.example/v1"),
     ],
 )
-def test_provider_configuration_rejects_non_equivalent_model_or_endpoint(
-    model: str, endpoint: str
+def test_provider_configuration_rejects_incomplete_or_insecure_values(
+    provider: str, model: str, endpoint: str
 ) -> None:
     with pytest.raises(ProviderContractError):
-        ProviderConfiguration(provider=COMMON_PROVIDER, model=model, endpoint=endpoint)
+        ProviderConfiguration(provider=provider, model=model, endpoint=endpoint)
 
 
 def test_comparable_usage_requires_provider_reported_tokens_and_cost() -> None:

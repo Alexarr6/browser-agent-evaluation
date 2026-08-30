@@ -1,4 +1,4 @@
-"""Documented, deterministic USD estimates for direct OpenAI usage."""
+"""Documented, deterministic model-price estimates independent of transport."""
 
 from __future__ import annotations
 
@@ -35,9 +35,11 @@ def estimate_luna_standard_cost(usage: dict[str, Any]) -> float | None:
     ) / 1_000_000
 
 
-def provider_cost_or_luna_estimate(usage: dict[str, Any]) -> float | None:
-    """Prefer a provider cost field; estimate direct OpenAI usage when absent."""
+def provider_cost_or_model_estimate(usage: dict[str, Any], *, model: str) -> float | None:
+    """Prefer reported cost; otherwise use a documented estimate for a known model."""
     cost = usage.get("cost")
     if isinstance(cost, int | float) and cost >= 0:
         return float(cost)
-    return estimate_luna_standard_cost(usage)
+    if model == "gpt-5.6-luna":
+        return estimate_luna_standard_cost(usage)
+    return None

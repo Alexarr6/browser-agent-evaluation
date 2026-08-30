@@ -15,9 +15,9 @@ from mcp.types import Tool
 from browser_agent_evaluation.agents.playwright_mcp.tools import (
     McpPilotError,
     assistant_message,
+    chat_completion_tools,
     controller_snapshot,
     normalize_tool_arguments,
-    openrouter_tools,
     parse_mcp_snapshot,
     parse_tool_call,
     provider_usage,
@@ -28,7 +28,7 @@ from browser_agent_evaluation.agents.playwright_mcp.tools import (
 )
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec, UsageEvidence
-from browser_agent_evaluation.providers.openai import COMMON_MODEL, OPENROUTER_ENDPOINT
+from browser_agent_evaluation.providers.chat_completions import DEFAULT_MODEL
 
 
 @dataclass(frozen=True)
@@ -49,7 +49,8 @@ class PlaywrightMcpPilot:
     client: httpx.AsyncClient
     budget: ModelBudget
     trial_id: str
-    model: str = COMMON_MODEL
+    endpoint: str
+    model: str = DEFAULT_MODEL
     max_completion_tokens: int | None = None
     max_model_requests: int = 12
     max_tool_calls: int = 24
@@ -69,7 +70,7 @@ class PlaywrightMcpPilot:
             request_count=self.request_count,
             cost_usd=self.cost_usd,
             unavailable_reason=(
-                "OpenAI Chat Completions does not report per-request USD cost"
+                "configured provider does not report per-request USD cost"
                 if self.cost_usd is None
                 else None
             ),
@@ -78,7 +79,7 @@ class PlaywrightMcpPilot:
     async def run(
         self, *, task: TaskSpec, session: ClientSession, available_tools: list[Tool]
     ) -> McpPilotResult:
-        tools = openrouter_tools(available_tools)
+        tools = chat_completion_tools(available_tools)
         initial = await session.call_tool("browser_navigate", {"url": task.start_url})
         if initial.isError:
             raise McpPilotError("initial MCP navigation failed: " + tool_text(initial)[:1_000])
@@ -110,7 +111,7 @@ class PlaywrightMcpPilot:
             self.budget.before_request(self.trial_id)
             payload = await self._request(messages=messages, tools=tools)
             self.request_count += 1
-            prompt, completion, cost = provider_usage(payload)
+            prompt, completion, cost = provider_usage(payload, model=self.model)
             self.budget.consume_usage(self.trial_id, cost, prompt, completion)
             self.prompt_tokens += prompt
             self.completion_tokens += completion
@@ -211,25 +212,23 @@ class PlaywrightMcpPilot:
             request_payload["max_completion_tokens"] = self.max_completion_tokens
         for retry_index in range(3):
             response = await self.client.post(
-                f"{OPENROUTER_ENDPOINT}/chat/completions",
+                f"{self.endpoint.rstrip('/')}/chat/completions",
                 headers={"Authorization": f"Bearer {self.api_key}"},
                 json=request_payload,
                 timeout=120,
             )
             if response.status_code == 429 and retry_index < 2:
                 delay = _rate_limit_delay(response)
-                self._emit(
-                    f"provider rate limited; retry {retry_index + 1}/2 after {delay:.1f}s"
-                )
+                self._emit(f"provider rate limited; retry {retry_index + 1}/2 after {delay:.1f}s")
                 await asyncio.sleep(delay)
                 continue
             if response.is_error:
                 raise McpPilotError(
-                    f"OpenRouter returned HTTP {response.status_code}: {response.text[:1_000]}"
+                    f"provider returned HTTP {response.status_code}: {response.text[:1_000]}"
                 )
             payload = response.json()
             if not isinstance(payload, dict):
-                raise McpPilotError("OpenRouter response is not an object")
+                raise McpPilotError("provider response is not an object")
             return payload
         raise AssertionError("unreachable rate-limit retry loop")
 

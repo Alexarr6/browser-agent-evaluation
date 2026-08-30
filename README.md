@@ -54,6 +54,16 @@ Chromium compatibility line. On macOS, Playwright stores binaries under
 on Linux, paths normally use `~/.cache/ms-playwright/.../chrome-linux/chrome`. Install
 the matching browser revisions before setting the variables.
 
+### Provider boundary
+
+The harness is provider-neutral at its configuration boundary. `experiment.yaml`
+currently selects OpenAI directly through `https://api.openai.com/v1` and
+`OPENAI_API_KEY`; every AI runner receives the same configured endpoint and model.
+Runner, task, policy and evidence contracts contain no gateway-specific behavior. The current transport contract is the Chat Completions API.
+
+Use `--model` to override the common model for all AI runners. The older
+`--browser-use-model` spelling remains temporarily as a command-line alias only.
+
 The default English matrix contains seven tasks:
 
 - Wikipedia search
@@ -72,7 +82,7 @@ uv run browser-eval repeat \
   --repetitions 1 \
   --task-language en \
   --runners restricted browser_use playwright_mcp \
-  --browser-use-model gpt-5.6-luna \
+  --model gpt-5.6-luna \
   --max-total-usd 2.00 \
   --max-trial-usd 0.25 \
   --rendering-profile visual-parity \

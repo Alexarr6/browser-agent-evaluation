@@ -37,7 +37,7 @@ is still approval-bound.
 1. Resolve exact package artifacts and lockfile entries, including hashes where
    available.
 2. Verify browser-use, Stagehand and the generic Playwright-MCP loop can all use
-   OpenRouter `openai/gpt-5.6-luna` and expose comparable usage fields.
+   the configured model and provider endpoint and expose comparable usage fields.
 3. Verify Playwright Chromium availability for the local ARM64 host before any
    public target visit.
 4. Read the relevant telemetry and data-flow settings; disable optional telemetry

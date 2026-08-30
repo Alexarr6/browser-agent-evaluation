@@ -6,8 +6,10 @@ import json
 import httpx
 from pydantic import BaseModel
 
-from browser_agent_evaluation.agents.browser_use.model import BrowserUseOpenRouter
+from browser_agent_evaluation.agents.browser_use.model import BrowserUseChatModel
 from browser_agent_evaluation.core.budget import BudgetExceeded, ModelBudget
+
+TEST_PROVIDER_ENDPOINT = "https://provider.example/v1"
 
 
 class ExampleOutput(BaseModel):
@@ -24,9 +26,7 @@ def test_adapter_prompt_contains_lowercase_json_for_openai_compatibility() -> No
         async def responder(request: httpx.Request) -> httpx.Response:
             payload = json.loads(request.content)
             prompt = "\n".join(
-                message["content"]
-                for message in payload["messages"]
-                if message["role"] == "system"
+                message["content"] for message in payload["messages"] if message["role"] == "system"
             )
             assert "json" in prompt
             return httpx.Response(
@@ -41,8 +41,12 @@ def test_adapter_prompt_contains_lowercase_json_for_openai_compatibility() -> No
         budget = ModelBudget(max_total_usd=5.0, max_trial_usd=0.25, max_requests_per_trial=3)
         budget.start_trial("trial")
         async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
-            adapter = BrowserUseOpenRouter(
-                api_key="secret", http_client=client, budget=budget, trial_id="trial"
+            adapter = BrowserUseChatModel(
+                api_key="secret",
+                http_client=client,
+                budget=budget,
+                trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
             )
             await adapter.ainvoke([], output_format=ExampleOutput)
 
@@ -76,12 +80,14 @@ async def _invoke(content: str) -> None:
         )
 
     async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
-        budget = ModelBudget(
-            max_total_usd=5.0, max_trial_usd=0.25, max_requests_per_trial=3
-        )
+        budget = ModelBudget(max_total_usd=5.0, max_trial_usd=0.25, max_requests_per_trial=3)
         budget.start_trial("trial")
-        adapter = BrowserUseOpenRouter(
-            api_key="secret", http_client=client, budget=budget, trial_id="trial"
+        adapter = BrowserUseChatModel(
+            api_key="secret",
+            http_client=client,
+            budget=budget,
+            trial_id="trial",
+            endpoint=TEST_PROVIDER_ENDPOINT,
         )
         result = await adapter.ainvoke([], output_format=ExampleOutput)
 
@@ -107,8 +113,12 @@ def test_adapter_omits_json_response_format_for_free_text_extraction() -> None:
         budget = ModelBudget(max_total_usd=5.0, max_trial_usd=0.25, max_requests_per_trial=3)
         budget.start_trial("trial")
         async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
-            adapter = BrowserUseOpenRouter(
-                api_key="secret", http_client=client, budget=budget, trial_id="trial"
+            adapter = BrowserUseChatModel(
+                api_key="secret",
+                http_client=client,
+                budget=budget,
+                trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
             )
             result = await adapter.ainvoke([])
 
@@ -145,11 +155,12 @@ def test_adapter_omits_completion_cap_when_configuration_is_unbounded() -> None:
         budget = ModelBudget(max_total_usd=5.0, max_trial_usd=0.25, max_requests_per_trial=3)
         budget.start_trial("trial")
         async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
-            adapter = BrowserUseOpenRouter(
+            adapter = BrowserUseChatModel(
                 api_key="secret",
                 http_client=client,
                 budget=budget,
                 trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
                 max_completion_tokens=None,
             )
             result = await adapter.ainvoke([], output_format=ExampleOutput)
@@ -172,8 +183,12 @@ def test_adapter_checks_budget_before_provider_request() -> None:
         budget.start_trial("trial")
         budget.before_request("trial")
         async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
-            adapter = BrowserUseOpenRouter(
-                api_key="secret", http_client=client, budget=budget, trial_id="trial"
+            adapter = BrowserUseChatModel(
+                api_key="secret",
+                http_client=client,
+                budget=budget,
+                trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
             )
             try:
                 await adapter.ainvoke([], output_format=ExampleOutput)

@@ -13,12 +13,9 @@ from browser_agent_evaluation.core.models import (
     UsageEvidence,
     render_runner_instruction,
 )
-from browser_agent_evaluation.core.pricing import provider_cost_or_luna_estimate
+from browser_agent_evaluation.core.pricing import provider_cost_or_model_estimate
 
-COMMON_PROVIDER = "openai"
-# All comparable AI connectors default to this configured provider identity.
-COMMON_MODEL = "gpt-5.6-luna"
-OPENROUTER_ENDPOINT = "https://api.openai.com/v1"
+DEFAULT_MODEL = "gpt-5.6-luna"
 
 
 class ProviderContractError(RuntimeError):
@@ -32,12 +29,12 @@ class ProviderConfiguration:
     endpoint: str
 
     def __post_init__(self) -> None:
-        if self.provider != COMMON_PROVIDER:
-            raise ProviderContractError("provider must be OpenAI")
-        if self.model != COMMON_MODEL:
-            raise ProviderContractError(f"model must be {COMMON_MODEL}")
-        if self.endpoint.rstrip("/") != OPENROUTER_ENDPOINT:
-            raise ProviderContractError("endpoint must be the OpenAI API base URL")
+        if not self.provider.strip():
+            raise ProviderContractError("provider identity is required")
+        if not self.model.strip():
+            raise ProviderContractError("provider model is required")
+        if not self.endpoint.startswith("https://"):
+            raise ProviderContractError("provider endpoint must use HTTPS")
 
 
 def require_comparable_usage(usage: UsageEvidence) -> None:
@@ -45,7 +42,7 @@ def require_comparable_usage(usage: UsageEvidence) -> None:
         raise ProviderContractError("comparable usage requires provider-reported tokens")
 
 
-class OpenRouterPlanner:
+class ChatCompletionsPlanner:
     """Bounded JSON-only restricted-agent planner using the approved endpoint."""
 
     def __init__(
@@ -55,16 +52,18 @@ class OpenRouterPlanner:
         budget: ModelBudget,
         trial_id: str,
         client: httpx.AsyncClient,
-        model: str = COMMON_MODEL,
+        endpoint: str,
+        model: str = DEFAULT_MODEL,
         max_completion_tokens: int | None = None,
     ) -> None:
         if not api_key:
-            raise ValueError("OpenRouter API key is required")
+            raise ValueError("provider API key is required")
         self._api_key = api_key
         self._budget = budget
         self._trial_id = trial_id
         self._client = client
         self._model = model
+        self._endpoint = endpoint.rstrip("/")
         self._max_completion_tokens = max_completion_tokens
         self._prompt_tokens = 0
         self._completion_tokens = 0
@@ -79,7 +78,7 @@ class OpenRouterPlanner:
             request_count=self._request_count,
             cost_usd=self._cost_usd,
             unavailable_reason=(
-                "OpenAI Chat Completions does not report per-request USD cost"
+                "configured provider does not report per-request USD cost"
                 if self._cost_usd is None
                 else None
             ),
@@ -132,38 +131,32 @@ class OpenRouterPlanner:
         if self._max_completion_tokens is not None:
             request_payload["max_completion_tokens"] = self._max_completion_tokens
         response = await self._client.post(
-            f"{OPENROUTER_ENDPOINT}/chat/completions",
+            f"{self._endpoint}/chat/completions",
             headers={"Authorization": f"Bearer {self._api_key}"},
             json=request_payload,
             timeout=120,
         )
         if response.is_error:
             raise ProviderContractError(
-                f"OpenRouter returned HTTP {response.status_code}: {_safe_error_detail(response)}"
+                f"provider returned HTTP {response.status_code}: {_safe_error_detail(response)}"
             )
         payload = response.json()
         usage = payload.get("usage", {})
         if not isinstance(usage, dict):
-            raise ProviderContractError("OpenRouter response lacks usage")
+            raise ProviderContractError("provider response lacks usage")
         prompt_tokens = _required_int(usage, "prompt_tokens")
         completion_tokens = _required_int(usage, "completion_tokens")
-        cost = provider_cost_or_luna_estimate(usage)
-        self._budget.consume_usage(
-            self._trial_id, cost, prompt_tokens, completion_tokens
-        )
+        cost = provider_cost_or_model_estimate(usage, model=self._model)
+        self._budget.consume_usage(self._trial_id, cost, prompt_tokens, completion_tokens)
         self._prompt_tokens += prompt_tokens
         self._completion_tokens += completion_tokens
-        self._cost_usd = (
-            None if cost is None or self._cost_usd is None else self._cost_usd + cost
-        )
+        self._cost_usd = None if cost is None or self._cost_usd is None else self._cost_usd + cost
         self._request_count += 1
         try:
             content = payload["choices"][0]["message"]["content"]
         except (IndexError, KeyError, TypeError) as error:
-            raise ProviderContractError("OpenRouter response lacks a planner message") from error
-        return parse_planner_proposal(
-            content, step_index=task.max_actions - remaining_actions + 1
-        )
+            raise ProviderContractError("provider response lacks a planner message") from error
+        return parse_planner_proposal(content, step_index=task.max_actions - remaining_actions + 1)
 
 
 def parse_planner_proposal(content: str, *, step_index: int) -> BrowserActionProposal:
@@ -174,9 +167,9 @@ def parse_planner_proposal(content: str, *, step_index: int) -> BrowserActionPro
     try:
         payload = json.loads(content)
     except json.JSONDecodeError as error:
-        raise ProviderContractError("OpenRouter planner response violates action schema") from error
+        raise ProviderContractError("provider planner response violates action schema") from error
     if not isinstance(payload, dict):
-        raise ProviderContractError("OpenRouter planner response violates action schema")
+        raise ProviderContractError("provider planner response violates action schema")
     try:
         expected_state = None
         action_payload = dict(payload)
@@ -197,7 +190,7 @@ def parse_planner_proposal(content: str, *, step_index: int) -> BrowserActionPro
             expected_state=expected_state,
         )
     except (KeyError, TypeError, ValueError) as error:
-        raise ProviderContractError("OpenRouter planner response violates action schema") from error
+        raise ProviderContractError("provider planner response violates action schema") from error
 
 
 _TARGET_FIELDS = frozenset({"role", "name", "text", "label", "placeholder"})
@@ -239,5 +232,5 @@ def _safe_error_detail(response: httpx.Response) -> str:
 def _required_int(usage: dict[str, object], field: str) -> int:
     value = usage.get(field)
     if not isinstance(value, int) or value < 0:
-        raise ProviderContractError(f"OpenRouter response lacks non-negative {field}")
+        raise ProviderContractError(f"provider response lacks non-negative {field}")
     return value

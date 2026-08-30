@@ -34,7 +34,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-requests-per-trial", type=int, default=None)
     parser.add_argument("--max-tokens-per-trial", type=int, default=None)
     parser.add_argument("--runners", nargs="+", choices=AI_RUNNERS, default=None)
-    parser.add_argument("--browser-use-model", default=None)
+    parser.add_argument(
+        "--model",
+        "--browser-use-model",
+        dest="model",
+        default=None,
+        help="common model for every AI runner; --browser-use-model is a legacy alias",
+    )
     parser.add_argument(
         "--rendering-profile",
         choices=("strict", "visual-parity"),
@@ -119,9 +125,8 @@ def main(argv: Sequence[str] | None = None) -> None:
                     reference_chromium=reference_chromium,
                     browser_use_chromium=browser_use_chromium,
                     runners=runners,
-                    browser_use_model=(
-                        args.browser_use_model or configuration.runners.browser_use.model
-                    ),
+                    model=args.model or configuration.runners.browser_use.model,
+                    provider_endpoint=configuration.provider.endpoint,
                     headless=configuration.browser.headless,
                     rendering_profile=args.rendering_profile,
                 )

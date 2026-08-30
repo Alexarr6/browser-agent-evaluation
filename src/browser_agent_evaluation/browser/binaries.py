@@ -15,5 +15,6 @@ def configured_executable(environment_name: str) -> Path:
         raise RuntimeError(f"{environment_name} does not point to a file: {executable}")
     return executable
 
+
 MCP_ACTION_TIMEOUT_SECONDS = 60
 MCP_NAVIGATION_TIMEOUT_SECONDS = 90

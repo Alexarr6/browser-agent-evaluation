@@ -31,13 +31,13 @@ def usage_delta(before: UsageEvidence, after: UsageEvidence) -> UsageEvidence:
         unavailable_reason=(
             None
             if cost_usd is not None
-            else "OpenAI Chat Completions does not report per-request USD cost"
+            else "configured provider does not report per-request USD cost"
         ),
     )
 
 
-class OpenRouterUsageCapture(httpx.AsyncBaseTransport):
-    """Pass through HTTP unchanged while recording OpenRouter's response usage."""
+class ChatCompletionsUsageCapture(httpx.AsyncBaseTransport):
+    """Pass through HTTP unchanged while recording Chat Completions response usage."""
 
     def __init__(self, transport: httpx.AsyncBaseTransport) -> None:
         self._transport = transport
@@ -63,7 +63,7 @@ class OpenRouterUsageCapture(httpx.AsyncBaseTransport):
             request_count=self._request_count,
             cost_usd=self._cost_usd,
             unavailable_reason=(
-                "OpenAI Chat Completions does not report per-request USD cost"
+                "configured provider does not report per-request USD cost"
                 if self._cost_usd is None
                 else None
             ),

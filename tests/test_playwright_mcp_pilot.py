@@ -11,13 +11,15 @@ import pytest
 from browser_agent_evaluation.agents.playwright_mcp.runner import PlaywrightMcpPilot
 from browser_agent_evaluation.agents.playwright_mcp.tools import (
     McpPilotError,
+    chat_completion_tools,
     normalize_tool_arguments,
-    openrouter_tools,
     parse_mcp_snapshot,
     validate_tool_call,
 )
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.evaluation.tasks import load_task
+
+TEST_PROVIDER_ENDPOINT = "https://provider.example/v1"
 
 
 def test_tool_projection_exposes_only_bounded_browser_tools() -> None:
@@ -56,7 +58,7 @@ def test_tool_projection_exposes_only_bounded_browser_tools() -> None:
         for name in names
     ]
 
-    projected = openrouter_tools(tools)  # type: ignore[arg-type]
+    projected = chat_completion_tools(tools)  # type: ignore[arg-type]
 
     projected_names = {item["function"]["name"] for item in projected}
     assert "browser_snapshot" not in projected_names
@@ -96,9 +98,7 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
                     {
                         "message": {
                             "role": "assistant",
-                            "content": (
-                                '{"done":true,"success":true,"summary":"complete"}'
-                            ),
+                            "content": ('{"done":true,"success":true,"summary":"complete"}'),
                         }
                     }
                 ],
@@ -114,9 +114,7 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
             def __init__(self) -> None:
                 self.calls: list[str] = []
 
-            async def call_tool(
-                self, name: str, arguments: dict[str, object]
-            ) -> SimpleNamespace:
+            async def call_tool(self, name: str, arguments: dict[str, object]) -> SimpleNamespace:
                 self.calls.append(name)
                 if name == "browser_snapshot":
                     text = (
@@ -150,7 +148,11 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
         session = FakeSession()
         async with httpx.AsyncClient(transport=httpx.MockTransport(responder)) as client:
             result = await PlaywrightMcpPilot(
-                api_key="secret", client=client, budget=budget, trial_id="trial"
+                api_key="secret",
+                client=client,
+                budget=budget,
+                trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
             ).run(
                 task=task,
                 session=session,  # type: ignore[arg-type]
@@ -178,9 +180,9 @@ def test_mcp_normalizes_only_exact_alpha_accessibility_refs() -> None:
     assert normalize_tool_arguments(
         name="browser_type", arguments={"target": "ref=e3", "text": "Ada"}
     ) == {"target": "e3", "text": "Ada"}
-    assert normalize_tool_arguments(
-        name="browser_type", arguments={"target": "ref=unsafe"}
-    ) == {"target": "ref=unsafe"}
+    assert normalize_tool_arguments(name="browser_type", arguments={"target": "ref=unsafe"}) == {
+        "target": "ref=unsafe"
+    }
     assert normalize_tool_arguments(
         name="browser_navigate", arguments={"url": "https://example.test"}
     ) == {"url": "https://example.test"}
@@ -232,9 +234,7 @@ def test_mcp_recovers_from_a_stale_tool_target() -> None:
             return httpx.Response(200, json=response, request=request)
 
         class FakeSession:
-            async def call_tool(
-                self, name: str, arguments: dict[str, object]
-            ) -> SimpleNamespace:
+            async def call_tool(self, name: str, arguments: dict[str, object]) -> SimpleNamespace:
                 if name == "browser_snapshot":
                     return SimpleNamespace(
                         isError=False,
@@ -275,6 +275,7 @@ def test_mcp_recovers_from_a_stale_tool_target() -> None:
                 client=client,
                 budget=budget,
                 trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
                 progress=progress.append,
             ).run(task=task, session=FakeSession(), available_tools=tools)  # type: ignore[arg-type]
 
@@ -309,6 +310,7 @@ def test_mcp_retries_provider_rate_limits_with_terminal_status() -> None:
                 client=client,
                 budget=budget,
                 trial_id="trial",
+                endpoint=TEST_PROVIDER_ENDPOINT,
                 progress=progress.append,
             )
             payload = await pilot._request(messages=[], tools=[])

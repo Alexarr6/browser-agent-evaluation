@@ -18,7 +18,7 @@ configuration is read by outer layers; core does not read configuration
 | `core` | Stable task, action, evidence, policy, budget, assertion, and pricing contracts. |
 | `configuration` | Strict configuration models, environment-aware loading, paths, and preflight. |
 | `browser` | Playwright execution, isolated contexts, binaries, and runtime environment. |
-| `providers` | Provider protocol and OpenAI-compatible model client behavior. |
+| `providers` | Configurable Chat Completions transport contracts and response validation. |
 | `agents` | Agent-specific planning and execution for restricted, browser-use, MCP, and reference. |
 | `adapters` | Framework capability and launch contracts used during preflight. |
 | `connectors` | Persistent workflow-session implementations behind the common connector boundary. |
@@ -30,6 +30,9 @@ configuration is read by outer layers; core does not read configuration
 ## Boundary rules
 
 - `core` cannot import browser frameworks, providers, connectors, or CLI modules.
+- Tasks, policies, agents and evidence never select a provider. Outer layers inject one
+  endpoint, credential environment name and common model from `experiment.yaml`.
+- Provider URLs are configuration data; source modules do not hardcode a gateway or API host.
 - CLI modules parse input and delegate; they do not implement browser behavior.
 - Agent-specific tool normalization stays with that agent.
 - Browser isolation and Playwright primitives stay under `browser`.

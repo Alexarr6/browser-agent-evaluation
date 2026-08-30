@@ -5,7 +5,7 @@ import gzip
 
 import httpx
 
-from browser_agent_evaluation.agents.browser_use.usage import OpenRouterUsageCapture
+from browser_agent_evaluation.agents.browser_use.usage import ChatCompletionsUsageCapture
 
 
 def test_usage_capture_preserves_response_and_accumulates_provider_cost() -> None:
@@ -23,9 +23,9 @@ async def _capture_response() -> None:
             request=request,
         )
 
-    capture = OpenRouterUsageCapture(httpx.MockTransport(responder))
+    capture = ChatCompletionsUsageCapture(httpx.MockTransport(responder))
     async with httpx.AsyncClient(transport=capture) as client:
-        response = await client.post("https://openrouter.ai/api/v1/chat/completions", json={})
+        response = await client.post("https://provider.example/v1/chat/completions", json={})
 
     assert response.json()["choices"][0]["message"]["content"] == "ok"
     assert capture.usage.prompt_tokens == 12
@@ -38,9 +38,7 @@ def test_usage_capture_returns_decoded_gzip_body_without_stale_encoding_headers(
 
 
 async def _gzip_response() -> None:
-    raw = (
-        b'{"choices":[],"usage":{"prompt_tokens":1,"completion_tokens":2,"cost":0.003}}'
-    )
+    raw = b'{"choices":[],"usage":{"prompt_tokens":1,"completion_tokens":2,"cost":0.003}}'
 
     async def responder(request: httpx.Request) -> httpx.Response:
         return httpx.Response(
@@ -50,9 +48,9 @@ async def _gzip_response() -> None:
             request=request,
         )
 
-    capture = OpenRouterUsageCapture(httpx.MockTransport(responder))
+    capture = ChatCompletionsUsageCapture(httpx.MockTransport(responder))
     async with httpx.AsyncClient(transport=capture) as client:
-        response = await client.post("https://openrouter.ai/api/v1/chat/completions", json={})
+        response = await client.post("https://provider.example/v1/chat/completions", json={})
 
     assert response.json()["usage"]["cost"] == 0.003
     assert "content-encoding" not in response.headers
@@ -70,12 +68,12 @@ async def _missing_cost() -> None:
             request=request,
         )
 
-    capture = OpenRouterUsageCapture(httpx.MockTransport(responder))
+    capture = ChatCompletionsUsageCapture(httpx.MockTransport(responder))
     async with httpx.AsyncClient(transport=capture) as client:
-        await client.post("https://openrouter.ai/api/v1/chat/completions", json={})
+        await client.post("https://provider.example/v1/chat/completions", json={})
 
     assert capture.usage.cost_usd is None
     assert (
-            capture.usage.unavailable_reason
-            == "OpenAI Chat Completions does not report per-request USD cost"
-        )
+        capture.usage.unavailable_reason
+        == "configured provider does not report per-request USD cost"
+    )

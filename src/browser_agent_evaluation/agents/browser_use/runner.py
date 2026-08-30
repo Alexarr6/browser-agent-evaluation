@@ -10,13 +10,16 @@ from typing import Any
 
 import httpx
 
-from browser_agent_evaluation.agents.browser_use.model import BrowserUseOpenRouter
-from browser_agent_evaluation.agents.browser_use.usage import OpenRouterUsageCapture
+from browser_agent_evaluation.agents.browser_use.model import BrowserUseChatModel
+from browser_agent_evaluation.agents.browser_use.usage import ChatCompletionsUsageCapture
 from browser_agent_evaluation.browser.environment import BROWSER_USE_PRIVACY_OVERRIDES
 from browser_agent_evaluation.core.assertions import PageState, evaluate_acceptance
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec, UsageEvidence, render_runner_instruction
-from browser_agent_evaluation.providers.openai import COMMON_MODEL, require_comparable_usage
+from browser_agent_evaluation.providers.chat_completions import (
+    DEFAULT_MODEL,
+    require_comparable_usage,
+)
 
 
 class BrowserUsePilotError(RuntimeError):
@@ -81,30 +84,32 @@ async def run_browser_use_task(
     max_steps: int,
     budget: ModelBudget,
     trial_id: str,
-    model: str = COMMON_MODEL,
+    provider_endpoint: str,
+    model: str = DEFAULT_MODEL,
     headless: bool = True,
     visual_parity: bool = False,
 ) -> BrowserUsePilotResult:
     """Run one approved local browser-use task with provider-reported usage."""
     if not api_key:
-        raise ValueError("OpenRouter API key is required")
+        raise ValueError("provider API key is required")
     if max_steps < 1 or max_steps > task.max_actions:
         raise ValueError("browser-use step cap must fit task action cap")
     os.environ.update(BROWSER_USE_PRIVACY_OVERRIDES)
     from browser_use import Agent, Browser, Tools
 
-    capture = OpenRouterUsageCapture(httpx.AsyncHTTPTransport())
-    llm: BrowserUseOpenRouter | None = None
+    capture = ChatCompletionsUsageCapture(httpx.AsyncHTTPTransport())
+    llm: BrowserUseChatModel | None = None
     cleanup_verified = False
     try:
         with _block_external_browser_launch() as blocked_launch_log:
             async with httpx.AsyncClient(transport=capture) as client:
-                llm = BrowserUseOpenRouter(
+                llm = BrowserUseChatModel(
                     api_key=api_key,
                     http_client=client,
                     budget=budget,
                     trial_id=trial_id,
                     model=model,
+                    endpoint=provider_endpoint,
                 )
                 browser = Browser(
                     executable_path=chromium_executable,

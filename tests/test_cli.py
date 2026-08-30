@@ -18,6 +18,13 @@ def test_repeat_cli_exposes_rendering_profile_without_running() -> None:
     assert args.rendering_profile == "visual-parity"
 
 
+def test_repeat_cli_uses_one_common_model_option_with_legacy_alias() -> None:
+    assert build_parser().parse_args(["--model", "model-a"]).model == "model-a"
+    assert (
+        build_parser().parse_args(["--browser-use-model", "model-b"]).model == "model-b"
+    )
+
+
 def test_root_cli_rejects_unknown_commands() -> None:
     with pytest.raises(SystemExit, match="unknown command"):
         main(["unknown"])

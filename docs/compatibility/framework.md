@@ -25,18 +25,16 @@ superseded failure remains evidence of the raw tool-protocol cost.
 
 ## Stagehand: deferred from the cost-comparable pilot
 
-Stagehand 4.0.2 can receive a local `browserCdpUrl`, but its standard
-`ModelConfig` schema only supports provider prefixes `openai`, `anthropic`,
-`google`, `groq` and `cerebras`, with enumerated model IDs. It cannot represent
-the required OpenRouter identity `openai/gpt-5.6-luna` or the OpenRouter base
-URL in its standard model configuration.
+Stagehand 4.0.2 can receive a local `browserCdpUrl`, and its standard
+`ModelConfig` can represent the currently selected direct OpenAI provider. Provider
+identity is therefore no longer a reason to exclude it from a future comparison.
 
 The package also requires a telemetry trace object and its default OTLP endpoint
 is `https://example.com/v1/traces`; the inspected schema exposes no false/off
 mode. Letting it run unchanged could create outbound trace traffic and make data
 flow and latency incomparable.
 
-A custom Stagehand client LLM that calls OpenRouter, plus a local trace sink,
-may be technically possible. It would be a new integration to design, test and
-approve, not an out-of-the-box framework comparison. It is deferred so the first
-pilot remains controlled and interpretable.
+A local trace sink or another verified telemetry-disable mechanism may be
+technically possible. It would be a new integration to design, test and approve,
+not an out-of-the-box framework comparison. Stagehand remains deferred so the
+current comparison stays controlled and interpretable.

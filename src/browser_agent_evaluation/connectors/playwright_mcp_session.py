@@ -19,9 +19,9 @@ from browser_agent_evaluation.agents.playwright_mcp.tools import (
     ALLOWED_MCP_TOOLS,
     McpPilotError,
     assistant_message,
+    chat_completion_tools,
     controller_snapshot,
     normalize_tool_arguments,
-    openrouter_tools,
     parse_mcp_snapshot,
     parse_tool_call,
     provider_usage,
@@ -37,7 +37,7 @@ from browser_agent_evaluation.connectors.base import (
     SessionRequest,
 )
 from browser_agent_evaluation.core.models import UsageEvidence
-from browser_agent_evaluation.providers.openai import COMMON_MODEL
+from browser_agent_evaluation.providers.chat_completions import DEFAULT_MODEL
 
 
 @dataclass
@@ -49,7 +49,8 @@ class PlaywrightMcpSession(ConnectorSession):
     executable: Path
     node_modules: Path
     trial_id: str
-    model_id: str = COMMON_MODEL
+    provider_endpoint: str
+    model_id: str = DEFAULT_MODEL
     max_completion_tokens: int | None = None
     max_total_usd: float | None = None
     max_run_usd: float | None = None
@@ -90,7 +91,7 @@ class PlaywrightMcpSession(ConnectorSession):
             command=_node_executable(),
             args=[
                 str(self.node_modules / "@playwright/mcp/cli.js"),
-                *( ["--headless"] if self.headless else [] ),
+                *(["--headless"] if self.headless else []),
                 "--isolated",
                 "--block-service-workers",
                 "--executable-path",
@@ -158,9 +159,9 @@ class PlaywrightMcpSession(ConnectorSession):
             pilot.budget.before_request(pilot.trial_id)
             payload = await pilot._request(
                 messages=self.messages,
-                tools=openrouter_tools(self.available_tools),
+                tools=chat_completion_tools(self.available_tools),
             )
-            prompt, completion, cost = provider_usage(payload)
+            prompt, completion, cost = provider_usage(payload, model=pilot.model)
             pilot.budget.consume_usage(pilot.trial_id, cost, prompt, completion)
             self.usage = pilot.usage
             self.last_trace = json.dumps(payload, sort_keys=True)[:1_000]
@@ -262,6 +263,7 @@ class PlaywrightMcpSession(ConnectorSession):
                 budget=budget,
                 trial_id=self.trial_id,
                 model=self.model_id,
+                endpoint=self.provider_endpoint,
                 max_completion_tokens=self.max_completion_tokens,
                 max_model_requests=self.max_model_requests,
                 max_tool_calls=self.max_tool_calls,

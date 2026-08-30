@@ -13,21 +13,21 @@ os.environ.setdefault("PYTHON_DOTENV_DISABLED", "1")
 from browser_use.llm.base import BaseChatModel  # noqa: E402
 from browser_use.llm.exceptions import ModelProviderError, ModelRateLimitError  # noqa: E402
 from browser_use.llm.messages import BaseMessage  # noqa: E402
-from browser_use.llm.openrouter.serializer import OpenRouterMessageSerializer  # noqa: E402
 from browser_use.llm.schema import SchemaOptimizer  # noqa: E402
 from browser_use.llm.views import ChatInvokeCompletion, ChatInvokeUsage  # noqa: E402
 from pydantic import BaseModel, ValidationError
 
+from browser_agent_evaluation.agents.browser_use.serialization import serialize_messages
 from browser_agent_evaluation.core.budget import ModelBudget
-from browser_agent_evaluation.core.pricing import provider_cost_or_luna_estimate
-from browser_agent_evaluation.providers.openai import COMMON_MODEL, OPENROUTER_ENDPOINT
+from browser_agent_evaluation.core.pricing import provider_cost_or_model_estimate
+from browser_agent_evaluation.providers.chat_completions import DEFAULT_MODEL
 
 T = TypeVar("T", bound=BaseModel)
 
 
 @dataclass
-class BrowserUseOpenRouter(BaseChatModel):
-    """browser-use BaseChatModel adapter for OpenRouter models without JSON Schema mode."""
+class BrowserUseChatModel(BaseChatModel):
+    """Adapt browser-use to a configured Chat Completions endpoint."""
 
     _verified_api_keys = True
 
@@ -35,14 +35,15 @@ class BrowserUseOpenRouter(BaseChatModel):
     http_client: httpx.AsyncClient
     budget: ModelBudget
     trial_id: str
-    model: str = COMMON_MODEL
+    endpoint: str
+    model: str = DEFAULT_MODEL
     max_completion_tokens: int | None = None
     last_raw_content: str = field(default="", init=False)
     response_diagnostics: list[str] = field(default_factory=list, init=False)
 
     @property
     def provider(self) -> str:
-        return "openai"
+        return "configured-chat-completions"
 
     @property
     def name(self) -> str:
@@ -68,7 +69,7 @@ class BrowserUseOpenRouter(BaseChatModel):
         output_format: type[T] | None = None,
         **kwargs: Any,
     ) -> ChatInvokeCompletion[T] | ChatInvokeCompletion[str]:
-        serialized = list(OpenRouterMessageSerializer.serialize_messages(messages))
+        serialized = serialize_messages(messages)
         if output_format is not None:
             schema = SchemaOptimizer.create_optimized_json_schema(output_format)
             serialized.insert(
@@ -92,18 +93,18 @@ class BrowserUseOpenRouter(BaseChatModel):
         if self.max_completion_tokens is not None:
             request_payload["max_completion_tokens"] = self.max_completion_tokens
         response = await self.http_client.post(
-            f"{OPENROUTER_ENDPOINT}/chat/completions",
+            f"{self.endpoint.rstrip('/')}/chat/completions",
             headers={"Authorization": f"Bearer {self.api_key}"},
             json=request_payload,
             timeout=120,
         )
         if response.status_code == 429:
-            raise ModelRateLimitError(message="OpenRouter rate limit", model=self.name)
+            raise ModelRateLimitError(message="provider rate limit", model=self.name)
         if response.is_error:
             body = response.text[:1_000]
             detail = f": {body}" if body else ""
             raise ModelProviderError(
-                message=f"OpenRouter returned HTTP {response.status_code}{detail}",
+                message=f"provider returned HTTP {response.status_code}{detail}",
                 status_code=response.status_code,
                 model=self.name,
             )
@@ -111,21 +112,19 @@ class BrowserUseOpenRouter(BaseChatModel):
         finish_reason = _finish_reason(payload)
         usage = _usage(payload)
         if usage is None:
-            raise ModelProviderError("OpenRouter response lacks comparable usage", model=self.name)
+            raise ModelProviderError("provider response lacks comparable usage", model=self.name)
         self.budget.consume_usage(
             self.trial_id,
-            _provider_cost(payload),
+            _provider_cost(payload, model=self.model),
             usage.prompt_tokens,
             usage.completion_tokens,
         )
         try:
             content = payload["choices"][0]["message"]["content"]
         except (IndexError, KeyError, TypeError) as error:
-            raise ModelProviderError(
-                "OpenRouter response lacks content", model=self.name
-            ) from error
+            raise ModelProviderError("provider response lacks content", model=self.name) from error
         if not isinstance(content, str):
-            raise ModelProviderError("OpenRouter response content is not text", model=self.name)
+            raise ModelProviderError("provider response content is not text", model=self.name)
         self.last_raw_content = content[:8_000]
         if output_format is None:
             return ChatInvokeCompletion(completion=content, usage=usage)
@@ -147,7 +146,7 @@ class BrowserUseOpenRouter(BaseChatModel):
                 )
             )
             message = (
-                "OpenRouter output is not JSON"
+                "provider output is not JSON"
                 if isinstance(error, ModelProviderError)
                 else "Browser-use output failed local schema validation"
             )
@@ -194,7 +193,7 @@ def _normalize_browser_use_output(content: str) -> object:
     try:
         payload = json.loads(stripped)
     except json.JSONDecodeError as error:
-        raise ModelProviderError("OpenRouter output is not JSON", model=COMMON_MODEL) from error
+        raise ModelProviderError("provider output is not JSON", model=DEFAULT_MODEL) from error
     if not isinstance(payload, dict):
         return payload
     if set(payload) == {"agent_output"} and isinstance(payload["agent_output"], dict):
@@ -204,9 +203,9 @@ def _normalize_browser_use_output(content: str) -> object:
     return payload
 
 
-def _provider_cost(payload: dict[str, object]) -> float | None:
+def _provider_cost(payload: dict[str, object], *, model: str) -> float | None:
     usage = payload.get("usage")
-    return provider_cost_or_luna_estimate(usage) if isinstance(usage, dict) else None
+    return provider_cost_or_model_estimate(usage, model=model) if isinstance(usage, dict) else None
 
 
 def _usage(payload: dict[str, object]) -> ChatInvokeUsage | None:

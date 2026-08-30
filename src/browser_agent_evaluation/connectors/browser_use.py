@@ -6,8 +6,11 @@ from typing import Any
 
 import httpx
 
-from browser_agent_evaluation.agents.browser_use.model import BrowserUseOpenRouter
-from browser_agent_evaluation.agents.browser_use.usage import OpenRouterUsageCapture, usage_delta
+from browser_agent_evaluation.agents.browser_use.model import BrowserUseChatModel
+from browser_agent_evaluation.agents.browser_use.usage import (
+    ChatCompletionsUsageCapture,
+    usage_delta,
+)
 from browser_agent_evaluation.browser.environment import BROWSER_USE_PRIVACY_OVERRIDES
 from browser_agent_evaluation.configuration.models import ExperimentConfiguration
 from browser_agent_evaluation.connectors.base import (
@@ -45,9 +48,7 @@ class BrowserUseConnector(BrowserConnector):
         return CapabilityResult(True)
 
     async def open_session(self, request: SessionRequest) -> ConnectorSession:
-        executable = Path(
-            os.environ[self._configuration.browser.browser_use_executable_path_env]
-        )
+        executable = Path(os.environ[self._configuration.browser.browser_use_executable_path_env])
         api_key = os.environ[self._configuration.provider.api_key_env]
         if not executable.is_file():
             raise RuntimeError("configured browser executable does not exist")
@@ -61,14 +62,15 @@ class BrowserUseConnector(BrowserConnector):
             max_tokens_per_trial=self._configuration.budget.max_tokens_per_run,
         )
         budget.start_trial(self._run_id)
-        capture = OpenRouterUsageCapture(httpx.AsyncHTTPTransport())
+        capture = ChatCompletionsUsageCapture(httpx.AsyncHTTPTransport())
         client = httpx.AsyncClient(transport=capture)
-        llm = BrowserUseOpenRouter(
+        llm = BrowserUseChatModel(
             api_key=api_key,
             http_client=client,
             budget=budget,
             trial_id=self._run_id,
             model=self.model_id,
+            endpoint=self._configuration.provider.endpoint,
             max_completion_tokens=self._configuration.runners.browser_use.completion_tokens,
         )
         browser = Browser(
@@ -90,8 +92,8 @@ class _BrowserUseSession(ConnectorSession):
         *,
         browser: Any,
         client: httpx.AsyncClient,
-        llm: BrowserUseOpenRouter,
-        capture: OpenRouterUsageCapture,
+        llm: BrowserUseChatModel,
+        capture: ChatCompletionsUsageCapture,
     ) -> None:
         self._browser = browser
         self._client = client

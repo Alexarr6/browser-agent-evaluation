@@ -9,7 +9,7 @@ from mcp import ClientSession
 from mcp.types import Tool
 
 from browser_agent_evaluation.core.models import TaskSpec
-from browser_agent_evaluation.core.pricing import provider_cost_or_luna_estimate
+from browser_agent_evaluation.core.pricing import provider_cost_or_model_estimate
 
 ALLOWED_MCP_TOOLS = frozenset(
     {
@@ -37,7 +37,7 @@ class TerminalOutput(TypedDict):
     summary: str
 
 
-def openrouter_tools(tools: list[Tool]) -> list[dict[str, Any]]:
+def chat_completion_tools(tools: list[Tool]) -> list[dict[str, Any]]:
     selected: list[dict[str, Any]] = []
     for tool in tools:
         if tool.name not in ALLOWED_MCP_TOOLS:
@@ -71,13 +71,13 @@ def assistant_message(payload: dict[str, Any]) -> dict[str, Any]:
     try:
         message = payload["choices"][0]["message"]
     except (IndexError, KeyError, TypeError) as error:
-        raise McpPilotError("OpenRouter response lacks an assistant message") from error
+        raise McpPilotError("provider response lacks an assistant message") from error
     if not isinstance(message, dict):
-        raise McpPilotError("OpenRouter assistant message is invalid")
+        raise McpPilotError("provider assistant message is invalid")
     return message
 
 
-def provider_usage(payload: dict[str, Any]) -> tuple[int, int, float | None]:
+def provider_usage(payload: dict[str, Any], *, model: str) -> tuple[int, int, float | None]:
     try:
         usage = payload["usage"]
         prompt = usage["prompt_tokens"]
@@ -86,7 +86,7 @@ def provider_usage(payload: dict[str, Any]) -> tuple[int, int, float | None]:
         raise McpPilotError("provider response lacks comparable usage") from error
     if not isinstance(prompt, int) or not isinstance(completion, int):
         raise McpPilotError("provider token usage is invalid")
-    return prompt, completion, provider_cost_or_luna_estimate(usage)
+    return prompt, completion, provider_cost_or_model_estimate(usage, model=model)
 
 
 def parse_tool_call(call: object) -> tuple[str, dict[str, Any], str]:

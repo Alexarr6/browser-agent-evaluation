@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import pytest
 
-from browser_agent_evaluation.providers.openai import ProviderContractError, parse_planner_proposal
+from browser_agent_evaluation.providers.chat_completions import (
+    ProviderContractError,
+    parse_planner_proposal,
+)
 
 
 def test_minimal_planner_output_maps_only_semantic_actions() -> None:

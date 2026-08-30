@@ -70,7 +70,7 @@ class BudgetConfiguration(BrowserEvalModel):
 
 class ModelRunnerConfiguration(BrowserEvalModel):
     enabled: bool = True
-    model: str = "openai/gpt-5.6-luna"
+    model: str = "gpt-5.6-luna"
 
     @field_validator("model")
     @classmethod
