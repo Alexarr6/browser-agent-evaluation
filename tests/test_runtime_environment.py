@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from browser_agent_evaluation.browser.binaries import configured_executable
+from browser_agent_evaluation.browser.binaries import configured_executable, executable_version
 from browser_agent_evaluation.browser.environment import (
     browser_use_privacy_environment,
     load_local_runtime_environment,
@@ -52,3 +52,7 @@ def test_browser_use_environment_does_not_mutate_caller_mapping() -> None:
     browser_use_privacy_environment(source)
 
     assert source == {"ANONYMIZED_TELEMETRY": "true"}
+
+
+def test_executable_version_returns_none_when_binary_cannot_run(tmp_path: Path) -> None:
+    assert executable_version(tmp_path / "missing-browser") is None

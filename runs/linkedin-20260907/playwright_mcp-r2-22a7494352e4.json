@@ -1,0 +1,31 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 12554,
+  "ended_at": "2026-09-07T12:05:24.575050Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:05:12.020886Z",
+  "task_id": "mdn-reference-en",
+  "trace": "browser_click {\"element\": \"Search the site button\", \"target\": \"e54\"}\nbrowser_type {\"element\": \"Search field\", \"submit\": true, \"target\": \"e318\", \"text\": \":has()\"}\nbrowser_click {\"element\": \"English (US) language filter\", \"target\": \"f1e108\"}\nbrowser_navigate {\"url\": \"https://developer.mozilla.org/en-US/docs/Web/CSS/:has\"}\nOpened the MDN CSS reference page for :has(); the page heading visibly shows ':has() CSS pseudo-class'.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:aa991d528a24785cc5246f6defdbd558d7d926d438f9be178985a0d8a2aca0c1",
+  "trial_id": "playwright_mcp-r2-22a7494352e4",
+  "usage": {
+    "completion_tokens": 156,
+    "cost_usd": 0.00795408,
+    "prompt_tokens": 55428,
+    "request_count": 5,
+    "unavailable_reason": null
+  }
+}

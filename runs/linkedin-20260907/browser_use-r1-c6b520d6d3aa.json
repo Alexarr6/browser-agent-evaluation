@@ -1,0 +1,30 @@
+{
+  "action_count": 9,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 33199,
+  "ended_at": "2026-09-07T11:57:34.030058Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T11:57:00.830081Z",
+  "task_id": "selenium-ajax-labels-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully waited for the second asynchronous cycle to complete; the page shows Done!, Ada, and Lovelace, and the form is enabled again.\",\"memory\":\"Completed both asynchronous label cycles on www.selenium.dev. Verified that the page displays Done!, Ada, and Lovelace, with the text field and Add Label control enabled.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed the task successfully. Entered and submitted \\\"Ada\\\", waited for Done!, entered and submitted \\\"Lovelace\\\", waited again, and verified that the page shows both \\\"Ada\\\" and \\\"Lovelace\\\" labels with \\\"Done!\\\" displayed and the form enabled.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:2e37682f1d52c01c95cabd39d899346d4de875f19266895877fe05298cdc1db7",
+  "trial_id": "browser_use-r1-c6b520d6d3aa",
+  "usage": {
+    "completion_tokens": 1231,
+    "cost_usd": null,
+    "prompt_tokens": 70310,
+    "request_count": 9,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}

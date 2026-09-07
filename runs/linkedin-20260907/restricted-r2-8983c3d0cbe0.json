@@ -1,0 +1,31 @@
+{
+  "action_count": 7,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 20118,
+  "ended_at": "2026-09-07T12:06:55.699513Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:06:35.581342Z",
+  "task_id": "selenium-web-form-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"textbox\",\"name\":\"Text input\"},\"value\":\"Ada Lovelace\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Ada Lovelace\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"textbox\",\"name\":\"Textarea\"},\"value\":\"Synthetic test\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Synthetic test\"}}\n{\"step_index\":3,\"step_status\":\"in_progress\",\"action\":{\"type\":\"select\",\"target\":{\"role\":\"combobox\",\"name\":\"Dropdown (select)\"},\"value\":\"Two\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Two\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"combobox\",\"name\":\"Dropdown (datalist)\"},\"value\":\"New York\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"New York\"}}\n{\"step_index\":5,\"step_status\":\"in_progress\",\"action\":{\"type\":\"check\",\"target\":{\"role\":\"checkbox\",\"name\":\"Default checkbox\"}}}\n{\"step_index\":6,\"step_status\":\"in_progress\",\"action\":{\"type\":\"check\",\"target\":{\"role\":\"radio\",\"name\":\"Default radio\"}},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Default radio selected\"}}\n{\"step_index\":7,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"button\",\"name\":\"Submit\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Received!\"}}\n{\"step_index\":8,\"step_status\":\"complete\",\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Received!\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:0040916a29051abb5bade1a4df3ab0ed8f63c703f63c8d294c0b2b99b208355e",
+  "trial_id": "restricted-r2-8983c3d0cbe0",
+  "usage": {
+    "completion_tokens": 991,
+    "cost_usd": 0.0034025200000000005,
+    "prompt_tokens": 11857,
+    "request_count": 8,
+    "unavailable_reason": null
+  }
+}

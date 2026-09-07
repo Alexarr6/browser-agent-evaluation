@@ -1,0 +1,31 @@
+{
+  "action_count": 9,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 29766,
+  "ended_at": "2026-09-07T12:07:25.470971Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:06:55.704246Z",
+  "task_id": "selenium-web-form-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully clicked Submit and verified that the resulting page displays \\\"Received!\\\".\",\"memory\":\"All requested form fields were completed: Text input was set to Ada Lovelace, Textarea to Synthetic test, select to Two, datalist to New York, checkbox and radio were checked. Submission succeeded and the confirmation page shows \\\"Received!\\\".\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed the synthetic Selenium form. The submitted page confirms: \\\"Received!\\\"\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:a043369ce69076412eee2940cc771e9c45652b3cc5c8cbaf6f6220ac976ea4dd",
+  "trial_id": "browser_use-r2-4ed75b7f3d7f",
+  "usage": {
+    "completion_tokens": 1306,
+    "cost_usd": null,
+    "prompt_tokens": 74617,
+    "request_count": 9,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "action_count": 10,
+  "assertion_results": {
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 36274,
+  "ended_at": "2026-09-07T12:10:58.029535Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "failed",
+  "policy_events": [
+    "framework_or_acceptance_failed"
+  ],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:10:21.755493Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "browser_click {\"element\": \"Rechazar button\", \"target\": \"f2e29\"}\nbrowser_type {\"element\": \"Amazon search box\", \"submit\": true, \"target\": \"f2e120\", \"text\": \"coffee beans\"}\nbrowser_find {\"regex\": \"/ASIN|Caf\\u00e9|caf\\u00e9|beans|granos|kg|g\\\\b|EUR|\\u20ac|Patrocinado|Sponsored/i\"}\nbrowser_select_option {\"element\": \"Sort order dropdown\", \"target\": \"f4e270\", \"values\": [\"Precio: De menor a mayor\"]}\nbrowser_wait_for {\"time\": 3}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=coffee+beans&i=grocery&rh=p_n_size_browse-bin%3A3046405031\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=coffee+beans&rh=p_36%3A500-1500\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=granos+de+cafe+1kg\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=coffee+beans&sort=price-asc-rank\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=granos+de+cafe&rh=p_n_size_browse-bin%3A3046405031&s=price-asc-rank\"}\nNo se pudo completar la b\u00fasqueda: Amazon.es no mostr\u00f3 resultados accesibles con t\u00edtulo, peso y precio verificables en la primera p\u00e1gina, por lo que no fue posible seleccionar ni a\u00f1adir un producto elegible al carrito.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:14c40276e828b2f38e4f6bff8864fbfd98da9038ee4443ee767ee5cb1e8802f2",
+  "trial_id": "playwright_mcp-r3-b9b171ee6c45",
+  "usage": {
+    "completion_tokens": 432,
+    "cost_usd": 0.04595936000000001,
+    "prompt_tokens": 461312,
+    "request_count": 11,
+    "unavailable_reason": null
+  }
+}

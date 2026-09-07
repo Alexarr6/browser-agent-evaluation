@@ -1,0 +1,30 @@
+{
+  "action_count": 6,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 17600,
+  "ended_at": "2026-09-07T12:19:27.721113Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:19:10.120190Z",
+  "task_id": "selenium-ajax-labels-en",
+  "trace": "browser_type {\"element\": \"single text field\", \"target\": \"e3\", \"text\": \"Ada\"}\nbrowser_click {\"element\": \"Add Label button\", \"target\": \"e6\"}\nbrowser_wait_for {\"text\": \"Done!\"}\nbrowser_type {\"element\": \"single text field\", \"target\": \"e3\", \"text\": \"Lovelace\"}\nbrowser_click {\"element\": \"Add Label button\", \"target\": \"e6\"}\nbrowser_wait_for {\"text\": \"Done!\"}\nAdded Ada and Lovelace labels through two asynchronous cycles; both are displayed.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:34db199ab309e287d673514debe13d6abc777f31ab29e9c1400187c2d59ace78",
+  "trial_id": "playwright_mcp-r3-c664a0204409",
+  "usage": {
+    "completion_tokens": 175,
+    "cost_usd": 0.0013963200000000002,
+    "prompt_tokens": 13425,
+    "request_count": 7,
+    "unavailable_reason": null
+  }
+}

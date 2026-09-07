@@ -1,0 +1,30 @@
+{
+  "action_count": 9,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 31999,
+  "ended_at": "2026-09-07T11:58:19.122710Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T11:57:47.123141Z",
+  "task_id": "selenium-ajax-labels-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully waited for the second asynchronous cycle to complete; the page shows Done! and both Ada and Lovelace labels.\",\"memory\":\"Completed both asynchronous label cycles. Verified the form is enabled again and the page displays Done!, Ada, and Lovelace.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Task completed successfully. The page shows both synthetic labels, Ada and Lovelace, and displays Done! after the second asynchronous cycle.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:15f25369c012bd213fc830644df3a5652027f60b4fbf31d07a2a781fbc867ad4",
+  "trial_id": "browser_use-r2-ee6d637d4801",
+  "usage": {
+    "completion_tokens": 1204,
+    "cost_usd": null,
+    "prompt_tokens": 70420,
+    "request_count": 9,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}

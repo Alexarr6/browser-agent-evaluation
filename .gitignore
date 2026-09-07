@@ -6,7 +6,6 @@
 
 # Runtime approvals and generated evaluation output
 approvals/*.json
-runs/
 evidence/**/*.json
 evidence/**/*.ndjson
 *.trace

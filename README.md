@@ -57,10 +57,10 @@ task YAML + experiment.yaml + local .env
                     v
         deterministic reference trial
                     |
-          pass -----+----- fail
-            |                 |
-            v                 v
-   randomized AI runners   skip AI trials
+          site-health result
+                    |
+                    v
+         randomized AI runners
             |
             v
  independent assertions + usage/cleanup evidence
@@ -112,10 +112,12 @@ trajectory proof or an LLM-as-judge score.
    A failure can originate in the site, provider, browser, policy, harness, or agent.
    Inspect the evidence before attributing it to planning quality.
 
-4. **The runtime environments are not perfectly identical.** `browser-use` 0.13.8
-   uses its compatible Chromium 140 line on ARM64, while the reference, restricted, and
-   MCP arms use Chromium 151. Trial duration also includes runner-specific startup and
-   teardown, so it measures operational latency rather than a pure model-speed contest.
+4. **Browser compatibility requirements can differ between frameworks.** `browser-use`
+   0.13.8 targets its compatible Chromium 140 line on ARM64, while the project-owned
+   Playwright stack can target a newer line. The run manifest records the binaries that
+   were actually used; both browser paths in the latest run reported Chromium
+   140.0.7339.16. Trial duration also includes runner-specific startup and teardown, so
+   it measures operational latency rather than a pure model-speed contest.
 
 5. **Equal models do not mean equal model inputs.** All AI runners can use the same
    provider and model, but prompts, tool schemas, context growth, observation formats,
@@ -127,10 +129,10 @@ trajectory proof or an LLM-as-judge score.
    success. Do not generalize these tasks to authenticated, high-risk, or arbitrary web
    automation.
 
-7. **Reference gating can remove a task from the AI matrix.** If the deterministic
-   reference fails, the AI runners are skipped for that task. This protects the budget
-   from known site or contract failures, but the skipped cell must not be counted as an
-   AI failure or success.
+7. **A reference failure is a confound, not an automatic veto.** By default, all AI
+   runners still execute so that every task remains in the matrix. The optional
+   `--skip-ai-on-reference-failure` mode protects a constrained diagnostic budget; its
+   skipped cells are reported separately and are not AI failures or successes.
 
 ## Quick start
 
@@ -247,10 +249,37 @@ untrusted tasks or high-impact browser automation.
 
 ## Results and evidence
 
-Selected, sanitized historical reports live under [`docs/results/`](docs/results/).
-Each report should be read with its own date, model, task matrix, runtime limits, browser
-versions, and known confounds. Historical results are not guarantees about the current
-code or live websites.
+The current sanitized report lives under [`docs/results/`](docs/results/). Read it with
+its recorded date, model, task matrix, runtime limits, browser versions, and known
+confounds. Its results are not guarantees about future code or live websites.
+
+### Latest repeated run
+
+The [7 September 2026 report](docs/results/english-repeated-20260907.md) covers all seven
+tasks with three repetitions per runner in headless, visual-parity mode using
+`gpt-5.6-luna`.
+
+| AI runner | Success | Median passing time | Requests | Tokens | Known cost |
+|---|---:|---:|---:|---:|---:|
+| `browser-use` | 20/21 | 23.828s | 152 | 1,659,451 | Unavailable for all trials |
+| Playwright MCP | 18/21 | 13.987s | 142 | 2,224,404 | $0.23690940 |
+| Restricted agent | 14/21 | 21.343s | 120 | 273,315 | $0.10838136 |
+
+These are observed system-level outcomes, not a universal ranking. In particular, the
+deterministic Wikipedia reference hit a harness/domain-policy failure in all three
+repetitions even though every AI runner passed that task. The experimental Marca and
+Amazon assertions also provide weaker semantic coverage. Playwright MCP's three Amazon
+attempts failed without hitting the configured request or token ceiling, while
+`browser-use` passed two of three. Read the report's per-task table and warnings before
+sharing the aggregate figures.
+
+After a completed run, render its manifested report with:
+
+```bash
+uv run browser-eval report \
+  --manifest runs/example-visual-parity/run-manifest.json \
+  --output docs/results/english-repeated-YYYYMMDD.md
+```
 
 Raw traces, screenshots, provider responses, and generated run directories remain
 local. A comparable report should:
@@ -277,7 +306,7 @@ tasks/                            Standard and experimental task contracts
 tests/                            Offline unit and contract tests
 docs/architecture/                Package boundaries and design notes
 docs/compatibility/               Framework and browser compatibility decisions
-docs/results/                     Selected sanitized historical reports
+docs/results/                     Current sanitized evaluation report
 experiment.yaml                  Default local experiment configuration
 runtime.env.example              Safe environment template
 pyproject.toml / uv.lock         Python dependencies and tooling

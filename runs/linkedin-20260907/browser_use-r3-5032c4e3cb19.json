@@ -1,0 +1,31 @@
+{
+  "action_count": 9,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 28953,
+  "ended_at": "2026-09-07T12:09:05.413870Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:08:36.460172Z",
+  "task_id": "selenium-web-form-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully clicked Submit and verified that the submitted page displays \\\"Received!\\\".\",\"memory\":\"All requested form fields were completed: Text input \\\"Ada Lovelace\\\", Textarea \\\"Synthetic test\\\", select \\\"Two\\\", datalist \\\"New York\\\", Default checkbox checked, and Default radio checked. The submission page now visibly confirms \\\"Received!\\\".\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Form submission completed successfully. The Selenium submitted-form page visibly shows \\\"Received!\\\".\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:01a687423edd665326b411bb8ec67f25fed2c531b60f220fc5aad9190a9ad239",
+  "trial_id": "browser_use-r3-5032c4e3cb19",
+  "usage": {
+    "completion_tokens": 1385,
+    "cost_usd": null,
+    "prompt_tokens": 74755,
+    "request_count": 9,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}

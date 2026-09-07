@@ -1,0 +1,32 @@
+{
+  "action_count": 1,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 36844,
+  "ended_at": "2026-09-07T12:04:47.031012Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "failed",
+  "policy_events": [
+    "non_progress"
+  ],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:04:10.186571Z",
+  "task_id": "marca-real-madrid-open-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"Mbapp\u00e9 pasa al ataque: \\\"\u00bfDefender m\u00e1s? \u00bfS\u00f3lo Vinicius y yo...?\\\"\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"The Marca Real Madrid article opens\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"Mbapp\u00e9 pasa al ataque: \\\"\u00bfDefender m\u00e1s? \u00bfS\u00f3lo Vinicius y yo...?\\\"\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Open the selected Marca article about Real Madrid\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:b056271904f379b0a99060fecd40fb3a36a7ca9062de79d823b4f1e2c8a70f73",
+  "trial_id": "restricted-r2-b2996e5885b4",
+  "usage": {
+    "completion_tokens": 278,
+    "cost_usd": 0.0032812000000000006,
+    "prompt_tokens": 6952,
+    "request_count": 2,
+    "unavailable_reason": null
+  }
+}

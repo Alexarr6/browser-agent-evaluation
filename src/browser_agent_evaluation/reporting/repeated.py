@@ -4,186 +4,428 @@ import argparse
 import hashlib
 import json
 from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 from statistics import median
 
 from browser_agent_evaluation.core.models import RunnerName, TrialEvidence
-from browser_agent_evaluation.reporting.comparison import RUNNER_LABELS, RUNNER_ORDER, TASK_LABELS
+from browser_agent_evaluation.reporting.comparison import RUNNER_LABELS, TASK_LABELS
+from browser_agent_evaluation.reporting.manifest import (
+    EvaluationManifest,
+    ManifestTask,
+    load_evaluation_manifest,
+)
 
 
 class RepeatedReportError(ValueError):
-    """Raised when a repeated evidence set is incomplete or non-comparable."""
+    """Raised when a manifested repeated evidence set is incomplete or invalid."""
 
 
-def load_english_repeated_evidence(paths: list[Path]) -> list[tuple[Path, str, TrialEvidence]]:
-    records: list[tuple[Path, str, TrialEvidence]] = []
+@dataclass(frozen=True)
+class EvidenceRecord:
+    path: Path
+    sha256: str
+    trial: TrialEvidence
+
+
+@dataclass(frozen=True)
+class RepeatedEvidence:
+    manifest_path: Path
+    manifest: EvaluationManifest
+    records: tuple[EvidenceRecord, ...]
+
+
+def load_repeated_evidence(manifest_path: Path) -> RepeatedEvidence:
+    manifest = load_evaluation_manifest(manifest_path)
+    records: list[EvidenceRecord] = []
     trial_ids: set[str] = set()
-    for path in paths:
+    task_ids = {task.id for task in manifest.tasks}
+    runner_ids = {"playwright_reference", *manifest.ai_runners}
+
+    for filename in manifest.artifact_files:
+        path = manifest_path.parent / filename
+        if not path.is_file():
+            raise RepeatedReportError(f"manifested evidence does not exist: {path}")
         raw = path.read_bytes()
         envelope = json.loads(raw)
         if not isinstance(envelope, dict):
-            raise RepeatedReportError(f"evidence is not an object: {path}")
+            raise RepeatedReportError(f"evidence is not a JSON object: {path}")
         trial = TrialEvidence.model_validate(
             {key: value for key, value in envelope.items() if key in TrialEvidence.model_fields}
         )
-        if not trial.task_id.endswith("-en"):
-            raise RepeatedReportError(f"non-English evidence is outside this report: {path}")
         if trial.trial_id in trial_ids:
             raise RepeatedReportError(f"duplicate trial id: {trial.trial_id}")
-        if not trial.cleanup_verified:
-            raise RepeatedReportError(f"trial lacks verified cleanup: {path}")
-        if (
-            trial.runner != "playwright_reference"
-            and trial.outcome == "passed"
-            and trial.usage.unavailable_reason is not None
+        if trial.task_id not in task_ids:
+            raise RepeatedReportError(f"evidence task is outside the manifest: {path}")
+        if trial.runner not in runner_ids:
+            raise RepeatedReportError(f"evidence runner is outside the manifest: {path}")
+        if not trial.cleanup_verified and trial.outcome != "invalidated":
+            raise RepeatedReportError(f"non-invalidated trial lacks verified cleanup: {path}")
+        if trial.outcome == "passed" and (
+            not trial.assertion_results or not all(trial.assertion_results.values())
         ):
-            raise RepeatedReportError(f"passing AI trial lacks provider usage: {path}")
+            raise RepeatedReportError(f"passing trial lacks successful assertions: {path}")
         trial_ids.add(trial.trial_id)
-        records.append((path, hashlib.sha256(raw).hexdigest(), trial))
+        records.append(
+            EvidenceRecord(path=path, sha256=hashlib.sha256(raw).hexdigest(), trial=trial)
+        )
 
-    expected_tasks = {task_id for task_id in TASK_LABELS if task_id.endswith("-en")}
-    grouped: dict[tuple[str, RunnerName], list[TrialEvidence]] = defaultdict(list)
-    for _, _, trial in records:
-        grouped[(trial.task_id, trial.runner)].append(trial)
-    expected = {(task_id, runner) for task_id in expected_tasks for runner in RUNNER_ORDER}
-    if set(grouped) != expected:
-        raise RepeatedReportError("English repeated evidence matrix is incomplete")
-    counts = {len(trials) for trials in grouped.values()}
-    if counts != {3}:
-        raise RepeatedReportError("every task and runner requires exactly three repetitions")
-    return records
+    grouped = _group_records(records)
+    for task in manifest.tasks:
+        references = grouped[(task.id, "playwright_reference")]
+        if len(references) != manifest.repetitions:
+            raise RepeatedReportError(
+                f"{task.id} requires {manifest.repetitions} reference trials; "
+                f"found {len(references)}"
+            )
+        reference_passes = sum(record.trial.outcome == "passed" for record in references)
+        expected_ai_trials = (
+            reference_passes
+            if manifest.skip_ai_on_reference_failure
+            else manifest.repetitions
+        )
+        for runner in manifest.ai_runners:
+            attempts = grouped[(task.id, runner)]
+            if len(attempts) != expected_ai_trials:
+                raise RepeatedReportError(
+                    f"{task.id}/{runner} requires {expected_ai_trials} trials under the "
+                    f"manifested reference policy; found {len(attempts)}"
+                )
+
+    return RepeatedEvidence(
+        manifest_path=manifest_path,
+        manifest=manifest,
+        records=tuple(records),
+    )
 
 
-def render_english_repeated_report(records: list[tuple[Path, str, TrialEvidence]]) -> str:
-    grouped: dict[tuple[str, RunnerName], list[TrialEvidence]] = defaultdict(list)
-    for _, _, trial in records:
-        grouped[(trial.task_id, trial.runner)].append(trial)
-    task_ids = [task_id for task_id in TASK_LABELS if task_id.endswith("-en")]
+def render_repeated_report(evidence: RepeatedEvidence) -> str:
+    manifest = evidence.manifest
+    grouped = _group_records(evidence.records)
+    runners: list[RunnerName] = ["playwright_reference", *manifest.ai_runners]
+    standard_count = sum(task.category == "standard" for task in manifest.tasks)
+    experimental_count = len(manifest.tasks) - standard_count
+    planned_slots = len(manifest.tasks) * manifest.repetitions * len(runners)
     lines = [
-        "# English-only repeated browser-agent evaluation",
+        "# Repeated browser-agent evaluation",
         "",
-        "This report contains three repetitions for each of seven English task contracts and "
-        "four runners. Spanish trials and prior invalidated diagnostics are excluded.",
+        f"This report covers one unified matrix of **{len(manifest.tasks)} tasks** "
+        f"({standard_count} standard and {experimental_count} experimental), "
+        f"{manifest.repetitions} repetitions and {len(runners)} runners. Experimental tasks "
+        "are labelled because their acceptance criteria are less mature, but they are planned "
+        "and reported exactly like the standard tasks.",
         "",
-        "## Per-task success",
+        "> A pass means that the configured end-state assertions succeeded. It does not prove "
+        "that every semantic detail of the natural-language task was independently verified.",
         "",
-        "| Task | Runner | Success | Median passing time (s) | All requests | All tokens | "
-        "All cost (USD) |",
-        "|---|---|---:|---:|---:|---:|---:|",
+        "## Run configuration",
+        "",
+        "| Property | Value |",
+        "|---|---|",
+        f"| Created | {manifest.created_at.isoformat()} |",
+        f"| Language | {manifest.task_language} |",
+        f"| Model | `{manifest.model}` |",
+        f"| Provider endpoint | `{manifest.provider_endpoint}` |",
+        f"| Rendering | `{manifest.rendering_profile}` |",
+        f"| Browser mode | {'headless' if manifest.headless else 'headed'} |",
+        "| Reference policy | "
+        f"{'skip AI on failure' if manifest.skip_ai_on_reference_failure else 'always run AI'} |",
+        f"| Rounds | {', '.join(map(str, manifest.round_indices))} |",
+        f"| Seeds | {', '.join(map(str, manifest.round_seeds))} |",
+        f"| Planned trial slots | {planned_slots} |",
+        "| Reference/MCP/restricted browser | "
+        f"{_text_or_unavailable(manifest.reference_browser_version)} |",
+        f"| browser-use browser | {_text_or_unavailable(manifest.browser_use_browser_version)} |",
+        "",
+        "## Task contracts",
+        "",
+        "| Task | Category | Assertions | Timeout | Action cap | Contract |",
+        "|---|---|---|---:|---:|---|",
     ]
-    by_runner: dict[RunnerName, list[TrialEvidence]] = defaultdict(list)
-    for task_id in task_ids:
-        for runner in RUNNER_ORDER:
-            trials = grouped[(task_id, runner)]
-            by_runner[runner].extend(trials)
-            passing = [trial for trial in trials if trial.outcome == "passed"]
-            passing_time = (
-                f"{median(trial.duration_ms for trial in passing) / 1_000:.3f}"
-                if passing
-                else "—"
-            )
-            tokens = sum(
-                (trial.usage.prompt_tokens or 0) + (trial.usage.completion_tokens or 0)
-                for trial in trials
-            )
-            cost = sum(trial.usage.cost_usd or 0 for trial in trials)
-            is_reference = runner == "playwright_reference"
-            unknown_costs = (
-                0 if is_reference else sum(trial.usage.cost_usd is None for trial in trials)
-            )
-            cost_display = "—" if is_reference else _cost_display(cost, unknown_costs)
-            token_display = "—" if is_reference else f"{tokens:,}"
-            request_count = sum(trial.usage.request_count for trial in trials)
-            lines.append(
-                f"| {TASK_LABELS[task_id]} | {RUNNER_LABELS[runner]} | "
-                f"{len(passing)}/{len(trials)} | {passing_time} | "
-                f"{request_count} | {token_display} | {cost_display} |"
-            )
+    for task in manifest.tasks:
+        lines.append(
+            f"| {_task_label(task)} | {task.category} | "
+            f"{', '.join(f'`{field}`' for field in task.acceptance_fields)} | "
+            f"{task.timeout_seconds}s | {task.max_actions} | "
+            f"`{task.source}` (`{task.contract_sha256[:12]}`) |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Per-task results",
+            "",
+            "Success uses valid trials as its denominator. `Invalid` identifies trials without "
+            "comparable cleanup evidence. `Ref-skipped` records planned AI trials that were not "
+            "started because the deterministic reference failed.",
+            "",
+            "| Task | Category | Runner | Success | Invalid | Ref-skipped | "
+            "Median passing time | Requests | Tokens | Cost (USD) |",
+            "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    by_runner: dict[RunnerName, list[EvidenceRecord]] = defaultdict(list)
+    skipped_by_runner: dict[RunnerName, int] = defaultdict(int)
+    for task in manifest.tasks:
+        for runner in runners:
+            records = grouped[(task.id, runner)]
+            by_runner[runner].extend(records)
+            skipped = 0 if runner == "playwright_reference" else manifest.repetitions - len(records)
+            skipped_by_runner[runner] += skipped
+            lines.append(_result_row(task, runner, records, skipped))
 
     lines.extend(
         [
             "",
             "## Runner aggregate",
             "",
-            "| Runner | Success | Median passing time (s) | All requests | All tokens | "
-            "All cost (USD) |",
-            "|---|---:|---:|---:|---:|---:|",
+            "| Runner | Success | Invalid | Ref-skipped | Median passing time | Requests | "
+            "Tokens | Cost (USD) |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|",
         ]
     )
-    for runner in RUNNER_ORDER:
-        trials = by_runner[runner]
-        passing = [trial for trial in trials if trial.outcome == "passed"]
-        median_time = (
-            f"{median(trial.duration_ms for trial in passing) / 1_000:.3f}" if passing else "—"
+    for runner in runners:
+        lines.append(
+            _aggregate_row(runner, by_runner[runner], skipped_by_runner[runner])
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Aggregate observations",
+            "",
+            *_aggregate_observations(manifest, grouped, by_runner),
+        ]
+    )
+
+    limits = manifest.limits
+    total_cost_limit = (
+        "not configured"
+        if limits.max_total_usd_per_round is None
+        else f"USD {limits.max_total_usd_per_round:.2f} per round"
+    )
+    trial_cost_limit = (
+        "not configured"
+        if limits.max_trial_usd is None
+        else f"USD {limits.max_trial_usd:.2f}"
+    )
+    token_limit = (
+        "not configured"
+        if limits.max_tokens_per_trial is None
+        else f"{limits.max_tokens_per_trial:,}"
+    )
+    lines.extend(
+        [
+            "",
+            "## Limits and interpretation warnings",
+            "",
+            f"- Cost limit: {total_cost_limit}; per-trial limit: {trial_cost_limit}.",
+            f"- Per-trial limits: {limits.max_requests_per_trial} model requests and "
+            f"{token_limit} cumulative tokens. Task-specific time and action limits appear "
+            "above.",
+            "- Failed and invalidated attempts remain in request, token and known-cost totals. "
+            "Missing tokens or cost are labelled unavailable rather than converted to zero.",
+            "- Reference failures are site-health signals. AI trials still run unless the "
+            "manifest explicitly enables reference-failure skipping; any skipped cells are not "
+            "AI successes or failures.",
+            "- Experimental tasks are mandatory members of this run, but their current assertions "
+            "do not independently verify every requested semantic detail.",
+            "- Action counts are omitted from the comparison because framework-native actions are "
+            "not equivalent across runners.",
+            "- Public websites, provider limits and framework startup can affect outcomes and "
+            "end-to-end duration. Repetitions reduce, but do not remove, those confounds.",
+            "",
+            "## Evidence manifest",
+            "",
+            f"Run manifest: `{evidence.manifest_path.name}`",
+            "",
+            "| Trial | Task | Runner | Outcome | Evidence | SHA-256 |",
+            "|---|---|---|---|---|---|",
+        ]
+    )
+    for record in sorted(evidence.records, key=lambda item: item.trial.trial_id):
+        trial = record.trial
+        lines.append(
+            f"| `{trial.trial_id}` | `{trial.task_id}` | {RUNNER_LABELS[trial.runner]} | "
+            f"{trial.outcome} | `{record.path.name}` | `{record.sha256}` |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
+def write_repeated_report(*, manifest_path: Path, output_path: Path) -> Path:
+    report = render_repeated_report(load_repeated_evidence(manifest_path))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(report, encoding="utf-8")
+    return output_path
+
+
+def _group_records(
+    records: list[EvidenceRecord] | tuple[EvidenceRecord, ...],
+) -> dict[tuple[str, RunnerName], list[EvidenceRecord]]:
+    grouped: dict[tuple[str, RunnerName], list[EvidenceRecord]] = defaultdict(list)
+    for record in records:
+        grouped[(record.trial.task_id, record.trial.runner)].append(record)
+    return grouped
+
+
+def _task_label(task: ManifestTask) -> str:
+    return TASK_LABELS.get(task.id, task.id)
+
+
+def _result_row(
+    task: ManifestTask,
+    runner: RunnerName,
+    records: list[EvidenceRecord],
+    skipped: int,
+) -> str:
+    trials = [record.trial for record in records]
+    valid = [trial for trial in trials if trial.outcome != "invalidated"]
+    passing = [trial for trial in valid if trial.outcome == "passed"]
+    invalid = len(trials) - len(valid)
+    return (
+        f"| {_task_label(task)} | {task.category} | {RUNNER_LABELS[runner]} | "
+        f"{len(passing)}/{len(valid)} | {invalid} | {skipped} | "
+        f"{_median_passing_time(passing)} | {sum(trial.usage.request_count for trial in trials)} | "
+        f"{_token_display(trials, is_reference=runner == 'playwright_reference')} | "
+        f"{_cost_display(trials, is_reference=runner == 'playwright_reference')} |"
+    )
+
+
+def _aggregate_row(runner: RunnerName, records: list[EvidenceRecord], skipped: int) -> str:
+    trials = [record.trial for record in records]
+    valid = [trial for trial in trials if trial.outcome != "invalidated"]
+    passing = [trial for trial in valid if trial.outcome == "passed"]
+    invalid = len(trials) - len(valid)
+    return (
+        f"| {RUNNER_LABELS[runner]} | {len(passing)}/{len(valid)} | {invalid} | {skipped} | "
+        f"{_median_passing_time(passing)} | {sum(trial.usage.request_count for trial in trials)} | "
+        f"{_token_display(trials, is_reference=runner == 'playwright_reference')} | "
+        f"{_cost_display(trials, is_reference=runner == 'playwright_reference')} |"
+    )
+
+
+def _aggregate_observations(
+    manifest: EvaluationManifest,
+    grouped: dict[tuple[str, RunnerName], list[EvidenceRecord]],
+    by_runner: dict[RunnerName, list[EvidenceRecord]],
+) -> list[str]:
+    ai_stats: list[tuple[RunnerName, int, int, float | None, int]] = []
+    for runner in manifest.ai_runners:
+        trials = [record.trial for record in by_runner[runner]]
+        valid = [trial for trial in trials if trial.outcome != "invalidated"]
+        passing = [trial for trial in valid if trial.outcome == "passed"]
+        passing_median = (
+            median(trial.duration_ms for trial in passing) / 1_000 if passing else None
         )
         tokens = sum(
             (trial.usage.prompt_tokens or 0) + (trial.usage.completion_tokens or 0)
             for trial in trials
         )
-        cost = sum(trial.usage.cost_usd or 0 for trial in trials)
-        is_reference = runner == "playwright_reference"
-        unknown_costs = 0 if is_reference else sum(trial.usage.cost_usd is None for trial in trials)
-        cost_display = "—" if is_reference else _cost_display(cost, unknown_costs)
-        token_display = "—" if is_reference else f"{tokens:,}"
-        request_count = sum(trial.usage.request_count for trial in trials)
+        ai_stats.append((runner, len(passing), len(valid), passing_median, tokens))
+
+    best_rate = max(passes / valid if valid else -1 for _, passes, valid, _, _ in ai_stats)
+    reliability_leaders = [
+        f"{RUNNER_LABELS[runner]} ({passes}/{valid})"
+        for runner, passes, valid, _, _ in ai_stats
+        if valid and passes / valid == best_rate
+    ]
+    timed = [item for item in ai_stats if item[3] is not None]
+    fastest = min(timed, key=lambda item: item[3] or float("inf"))
+    fastest_median = fastest[3]
+    assert fastest_median is not None
+    fewest_tokens = min(ai_stats, key=lambda item: item[4])
+    lines = [
+        f"- Highest observed AI success rate: {', '.join(reliability_leaders)}.",
+        f"- Lowest median duration among successful AI trials: {RUNNER_LABELS[fastest[0]]} "
+        f"({fastest_median:.3f}s). This is not a like-for-like speed ranking when runners fail "
+        "different task mixes.",
+        f"- Lowest reported AI token consumption: {RUNNER_LABELS[fewest_tokens[0]]} "
+        f"({fewest_tokens[4]:,} tokens across all its attempts).",
+    ]
+
+    unavailable_cost_runners = []
+    for runner in manifest.ai_runners:
+        trials = [record.trial for record in by_runner[runner]]
+        if any(trial.usage.cost_usd is None for trial in trials):
+            unavailable_cost_runners.append(RUNNER_LABELS[runner])
+    if unavailable_cost_runners:
         lines.append(
-            f"| {RUNNER_LABELS[runner]} | {len(passing)}/{len(trials)} | {median_time} | "
-            f"{request_count} | {token_display} | {cost_display} |"
+            "- A complete cost ranking is unavailable because cost was not reported for "
+            f"{', '.join(unavailable_cost_runners)}."
         )
 
-    known_ai_cost = sum(
-        trial.usage.cost_usd or 0
-        for _, _, trial in records
-        if trial.runner != "playwright_reference"
-    )
-    unknown_ai_costs = sum(
-        trial.runner != "playwright_reference" and trial.usage.cost_usd is None
-        for _, _, trial in records
-    )
-    lines.extend(
-        [
-            "",
-            "## Limits",
-            "",
-            "- This is an English-only, n=3-per-cell exploratory sample including standard and "
-            "open-ended tasks; it is not pooled with Spanish tasks and does not establish "
-            "general reliability.",
-            "- Every AI trial used a 300-second task timeout, 48 action cap, 24 request cap, "
-            "50,000 cumulative-token cap and USD 0.07 trial cap.",
-            "- browser-use uses its disclosed isolated Chromium 140 line; the other arms use "
-            "Chromium 151.",
-            "- Failed trials remain in success, token, request and known-cost totals. Each "
-            "response without provider cost is explicitly reserved at the USD 0.07 trial cap.",
-            f"- Known English-only provider spend: USD {known_ai_cost:.8f}; "
-            f"{unknown_ai_costs} unavailable-cost trial(s) reserve "
-            f"USD {unknown_ai_costs * 0.07:.2f}.",
-            "",
-            "## Evidence manifest",
-            "",
-            "| Trial | Evidence | SHA-256 |",
-            "|---|---|---|",
-        ]
-    )
-    for path, sha256, trial in sorted(records, key=lambda item: item[2].trial_id):
-        lines.append(f"| {trial.trial_id} | `{path.name}` | `{sha256}` |")
-    lines.append("")
-    return "\n".join(lines)
+    reference_failures: list[str] = []
+    for task in manifest.tasks:
+        trials = [record.trial for record in grouped[(task.id, "playwright_reference")]]
+        reference_failure_count = sum(trial.outcome != "passed" for trial in trials)
+        if reference_failure_count:
+            reference_failures.append(
+                f"{_task_label(task)} ({reference_failure_count}/{len(trials)})"
+            )
+    if reference_failures:
+        lines.append(
+            "- Deterministic-reference failures require separate inspection and are potential "
+            f"site or harness confounds: {', '.join(reference_failures)}."
+        )
+
+    for runner in manifest.ai_runners:
+        runner_failures: list[str] = []
+        for task in manifest.tasks:
+            trials = [record.trial for record in grouped[(task.id, runner)]]
+            failed = sum(
+                trial.outcome not in {"passed", "invalidated"} for trial in trials
+            )
+            if failed:
+                runner_failures.append(f"{_task_label(task)} ({failed}/{len(trials)})")
+        if runner_failures:
+            lines.append(
+                f"- Observed {RUNNER_LABELS[runner]} failures: "
+                f"{', '.join(runner_failures)}."
+            )
+    return lines
 
 
-def _cost_display(cost: float, unknown_costs: int) -> str:
-    return f"{cost:.8f}" if unknown_costs == 0 else f"{cost:.8f} + {unknown_costs} reserve"
+def _median_passing_time(trials: list[TrialEvidence]) -> str:
+    if not trials:
+        return "—"
+    return f"{median(trial.duration_ms for trial in trials) / 1_000:.3f}s"
+
+
+def _token_display(trials: list[TrialEvidence], *, is_reference: bool) -> str:
+    if is_reference:
+        return "—"
+    known = sum(
+        (trial.usage.prompt_tokens or 0) + (trial.usage.completion_tokens or 0)
+        for trial in trials
+    )
+    unavailable = sum(
+        trial.usage.prompt_tokens is None or trial.usage.completion_tokens is None
+        for trial in trials
+    )
+    return f"{known:,}" if unavailable == 0 else f"{known:,} + {unavailable} unavailable"
+
+
+def _cost_display(trials: list[TrialEvidence], *, is_reference: bool) -> str:
+    if is_reference:
+        return "—"
+    known = sum(trial.usage.cost_usd or 0 for trial in trials)
+    unavailable = sum(trial.usage.cost_usd is None for trial in trials)
+    if unavailable == len(trials):
+        return f"unavailable ({unavailable} trials)"
+    return f"{known:.8f}" if unavailable == 0 else f"{known:.8f} + {unavailable} unavailable"
+
+
+def _text_or_unavailable(value: str | None) -> str:
+    return value or "unavailable"
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Render an English-only repeated evaluation report"
-    )
-    parser.add_argument("evidence", nargs="+", type=Path)
+    parser = argparse.ArgumentParser(description="Render a manifested repeated evaluation report")
+    parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    report = render_english_repeated_report(load_english_repeated_evidence(args.evidence))
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(report, encoding="utf-8")
+    print(write_repeated_report(manifest_path=args.manifest, output_path=args.output))
 
 
 if __name__ == "__main__":

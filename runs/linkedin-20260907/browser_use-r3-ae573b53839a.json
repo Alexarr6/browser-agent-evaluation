@@ -1,0 +1,30 @@
+{
+  "action_count": 8,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 23579,
+  "ended_at": "2026-09-07T12:17:54.250764Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:17:30.670897Z",
+  "task_id": "selenium-key-events-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully sent Tab; the visible log includes the required \\\"change\\\" event, confirming the field change after focus moved out.\",\"memory\":\"Completed the exact key sequence on www.selenium.dev: clicked the field, entered A, d, a, pressed ArrowLeft, Backspace, and Tab. The visible event log confirms the change event.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed the requested browser task on www.selenium.dev. The visible log confirms the key sequence and includes the \\\"change\\\" event after Tab moved focus out of the field.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:a9ff600bd5275285f75f2e77c7188b8fba66ba716d59407b515f2d9c634651d6",
+  "trial_id": "browser_use-r3-ae573b53839a",
+  "usage": {
+    "completion_tokens": 1180,
+    "cost_usd": null,
+    "prompt_tokens": 61958,
+    "request_count": 8,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}

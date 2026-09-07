@@ -86,6 +86,7 @@ async def run_round(
     provider_endpoint: str,
     headless: bool = True,
     rendering_profile: str = "strict",
+    skip_ai_on_reference_failure: bool = False,
 ) -> list[Path]:
     """Run references and all AI arms once per task with one shared round budget."""
     if rendering_profile not in {"strict", "visual-parity"}:
@@ -119,7 +120,7 @@ async def run_round(
                 )
                 artifacts.append(reference)
                 _report_artifact(reference_progress, reference)
-                if not reference_passed:
+                if not reference_passed and skip_ai_on_reference_failure:
                     continue
                 for runner in planned.runners:
                     trial_id = f"{runner}-r{round_index}-{uuid.uuid4().hex[:12]}"

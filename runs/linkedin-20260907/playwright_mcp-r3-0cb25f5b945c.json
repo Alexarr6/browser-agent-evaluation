@@ -1,0 +1,31 @@
+{
+  "action_count": 2,
+  "assertion_results": {
+    "page_title": true,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 6938,
+  "ended_at": "2026-09-07T12:13:52.978291Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:13:46.039987Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "browser_click {\"element\": \"English language link\", \"target\": \"e13\"}\nbrowser_type {\"element\": \"Wikipedia search box\", \"submit\": true, \"target\": \"f1e23\", \"text\": \"Playwright\"}\nSearched for Playwright and opened the main Wikipedia article. The page heading is Playwright and the final page is the requested article.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:c5fa0bd472da64f048b23c646ef911523f5ce9b08694b863aec29fb33308d493",
+  "trial_id": "playwright_mcp-r3-0cb25f5b945c",
+  "usage": {
+    "completion_tokens": 101,
+    "cost_usd": 0.00286124,
+    "prompt_tokens": 17423,
+    "request_count": 3,
+    "unavailable_reason": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "action_count": 15,
+  "assertion_results": {
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 43885,
+  "ended_at": "2026-09-07T11:53:12.117167Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "failed",
+  "policy_events": [
+    "framework_or_acceptance_failed"
+  ],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T11:52:28.231942Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "browser_find {\"regex\": \"/cookie|cookies|aceptar|rechazar/i\"}\nbrowser_click {\"element\": \"Rechazar cookies\", \"target\": \"f2e29\"}\nbrowser_type {\"element\": \"Amazon search box\", \"submit\": true, \"target\": \"f2e120\", \"text\": \"coffee beans\"}\nbrowser_find {\"regex\": \"/caf\\u00e9|caf[e\\u00e9].*(grano|kg|g)|coffee.*(bean|kg|g)/i\"}\nbrowser_select_option {\"element\": \"Ordenar por\", \"target\": \"f4e270\", \"values\": [\"Precio: De menor a mayor\"]}\nbrowser_wait_for {\"time\": 3}\nbrowser_find {\"regex\": \"/ASIN|Precio|grano|kg|g\\\\b|A\\u00f1adir a la cesta/i\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=cafe+en+grano&s=price-asc-rank\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=cafe+en+grano+1kg&s=price-asc-rank\"}\nbrowser_wait_for {\"time\": 5}\nbrowser_navigate {\"url\": \"https://www.amazon.es/dp/B0DUMMY\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=cafe+en+grano+1kg&s=price-asc-rank\"}\nbrowser_find {\"text\": \"Amazon Basics\"}\nbrowser_press_key {\"key\": \"End\"}\nbrowser_navigate_back {}\nNo se pudo completar la tarea: Amazon.es no expuso los productos de la primera p\u00e1gina en el estado accesible del navegador, por lo que no fue posible verificar un producto elegible, a\u00f1adirlo al carrito ni devolver sus datos exactos.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:76d4c80d6839e6c9635c0f43e09741cb0e9cdd2a942c4a9db79fad7c5d0ff743",
+  "trial_id": "playwright_mcp-r1-c9dfc7262609",
+  "usage": {
+    "completion_tokens": 505,
+    "cost_usd": 0.0640906,
+    "prompt_tokens": 787666,
+    "request_count": 16,
+    "unavailable_reason": null
+  }
+}

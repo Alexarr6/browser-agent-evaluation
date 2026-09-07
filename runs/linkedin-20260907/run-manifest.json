@@ -1,0 +1,202 @@
+{
+  "ai_runners": [
+    "restricted",
+    "browser_use",
+    "playwright_mcp"
+  ],
+  "artifact_files": [
+    "reference-ae18a6f29175.json",
+    "playwright_mcp-r1-7e956c44971d.json",
+    "restricted-r1-cf403bdfb0c4.json",
+    "browser_use-r1-77e01bb01710.json",
+    "reference-ce4cc3a83d40.json",
+    "browser_use-r1-1a0bb209e807.json",
+    "restricted-r1-fcf64153bd3e.json",
+    "playwright_mcp-r1-b07cbe41bbe0.json",
+    "reference-5f0de08f2c57.json",
+    "restricted-r1-f69748782c18.json",
+    "playwright_mcp-r1-fbb108617c62.json",
+    "browser_use-r1-078b7abc5a95.json",
+    "reference-0fb317d66dff.json",
+    "browser_use-r1-218fe911d4b9.json",
+    "playwright_mcp-r1-c9dfc7262609.json",
+    "restricted-r1-f6f042e81e42.json",
+    "reference-74225dd0c0a7.json",
+    "restricted-r1-ebc0ac4e3bd6.json",
+    "browser_use-r1-27bc1c7cd688.json",
+    "playwright_mcp-r1-5bf0fe809661.json",
+    "reference-71b0b5276af5.json",
+    "restricted-r1-c29113609c81.json",
+    "playwright_mcp-r1-560b802c6087.json",
+    "browser_use-r1-6b6b3c04420a.json",
+    "reference-ba90bbf7d5fc.json",
+    "playwright_mcp-r1-1e5abc64cc91.json",
+    "restricted-r1-7823bc1c1c19.json",
+    "browser_use-r1-c6b520d6d3aa.json",
+    "reference-c83c659f58f1.json",
+    "browser_use-r2-ee6d637d4801.json",
+    "playwright_mcp-r2-2bc6a5acfe48.json",
+    "restricted-r2-8ebd90517bc5.json",
+    "reference-ad3d50298abd.json",
+    "restricted-r2-c6d075db5d51.json",
+    "playwright_mcp-r2-b228d45bd97d.json",
+    "browser_use-r2-2d79f375a024.json",
+    "reference-4268d5d60578.json",
+    "browser_use-r2-8d3966d5eb99.json",
+    "playwright_mcp-r2-4c65870bacb3.json",
+    "restricted-r2-6b1981af7264.json",
+    "reference-1a9b43988add.json",
+    "playwright_mcp-r2-5a1c54aed9f3.json",
+    "restricted-r2-b2996e5885b4.json",
+    "browser_use-r2-01c769d3969f.json",
+    "reference-a209617fd0bb.json",
+    "playwright_mcp-r2-22a7494352e4.json",
+    "browser_use-r2-48f7f3cc4ea3.json",
+    "restricted-r2-5ec89941bbec.json",
+    "reference-01db46de806c.json",
+    "playwright_mcp-r2-c6bd8bcbc4a8.json",
+    "restricted-r2-8983c3d0cbe0.json",
+    "browser_use-r2-4ed75b7f3d7f.json",
+    "reference-ba0e24e4dae4.json",
+    "browser_use-r2-b4546959c091.json",
+    "restricted-r2-64ccf7426205.json",
+    "playwright_mcp-r2-9c0666d3f55e.json",
+    "reference-a93943641eb2.json",
+    "browser_use-r3-5032c4e3cb19.json",
+    "playwright_mcp-r3-8bfd201f42c1.json",
+    "restricted-r3-24fedcb9ee33.json",
+    "reference-051f9f006d36.json",
+    "browser_use-r3-3f4d6d3d5561.json",
+    "playwright_mcp-r3-1c77636f743e.json",
+    "restricted-r3-8a2af8bcdaed.json",
+    "reference-65276d4eadf6.json",
+    "playwright_mcp-r3-b9b171ee6c45.json",
+    "restricted-r3-94a32137ab31.json",
+    "browser_use-r3-0737b61cc4d8.json",
+    "reference-66fcf507efcb.json",
+    "browser_use-r3-7c1953389a0c.json",
+    "playwright_mcp-r3-0cb25f5b945c.json",
+    "restricted-r3-7c109199931a.json",
+    "reference-39cb37f84838.json",
+    "browser_use-r3-1bba681fd92b.json",
+    "restricted-r3-2c27a593d47e.json",
+    "playwright_mcp-r3-df5fce850a8f.json",
+    "reference-f062b58e840b.json",
+    "browser_use-r3-ae573b53839a.json",
+    "playwright_mcp-r3-f0ab8aef440b.json",
+    "restricted-r3-f9549d324e01.json",
+    "reference-510d3bcf86c5.json",
+    "browser_use-r3-46143329cddf.json",
+    "playwright_mcp-r3-c664a0204409.json",
+    "restricted-r3-5bfd1c3d78a6.json"
+  ],
+  "browser_use_browser_version": "Chromium 140.0.7339.16",
+  "created_at": "2026-09-07T12:20:04.765549Z",
+  "headless": true,
+  "limits": {
+    "max_requests_per_trial": 48,
+    "max_tokens_per_trial": 1000000,
+    "max_total_usd_per_round": 2.0,
+    "max_trial_usd": 0.25
+  },
+  "model": "gpt-5.6-luna",
+  "provider_endpoint": "https://api.openai.com/v1",
+  "reference_browser_version": "Chromium 140.0.7339.16",
+  "rendering_profile": "visual-parity",
+  "repetitions": 3,
+  "round_indices": [
+    1,
+    2,
+    3
+  ],
+  "round_seeds": [
+    20260824,
+    20260825,
+    20260826
+  ],
+  "schema_version": 1,
+  "skip_ai_on_reference_failure": false,
+  "task_language": "en",
+  "tasks": [
+    {
+      "acceptance_fields": [
+        "page_title",
+        "url_contains"
+      ],
+      "category": "standard",
+      "contract_sha256": "7dc0d11b9912e02180efa35aa6acb3885596a6f304551fbd5fd2b3531bf946b3",
+      "id": "wikipedia-search-en",
+      "max_actions": 48,
+      "source": "wikipedia-search-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "url_contains",
+        "visible_text"
+      ],
+      "category": "standard",
+      "contract_sha256": "5b01320dec1cba2017d9c342e2d7436f98ef6fd620e1f198bfcfe278fbd4e86f",
+      "id": "mdn-reference-en",
+      "max_actions": 48,
+      "source": "mdn-reference-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "url_contains",
+        "visible_text"
+      ],
+      "category": "standard",
+      "contract_sha256": "1ea0332730195663638330b635e71e41667dd379df44ae3969b0e6469bae10ca",
+      "id": "selenium-web-form-en",
+      "max_actions": 48,
+      "source": "selenium-web-form-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "visible_text"
+      ],
+      "category": "standard",
+      "contract_sha256": "20d69ab69c50e933cc12b2e47a5246ddbee2be0e79426221ae7beff1ca4763ed",
+      "id": "selenium-ajax-labels-en",
+      "max_actions": 48,
+      "source": "selenium-ajax-labels-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "visible_text"
+      ],
+      "category": "standard",
+      "contract_sha256": "6396e6a6740bfb6cd91e2050d7591d0d3dfe7681181694fe9f53204ec0c02187",
+      "id": "selenium-key-events-en",
+      "max_actions": 48,
+      "source": "selenium-key-events-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "visible_text"
+      ],
+      "category": "experimental",
+      "contract_sha256": "97b0780359baaedb7bfaff98f94b0df850f304c957acfec0d7192c6152f9dd6b",
+      "id": "marca-real-madrid-open-en",
+      "max_actions": 48,
+      "source": "marca-real-madrid-open-en.yaml",
+      "timeout_seconds": 300
+    },
+    {
+      "acceptance_fields": [
+        "url_contains"
+      ],
+      "category": "experimental",
+      "contract_sha256": "18e5e01feb18e951ecf54a22ddb95606adb51d81943a249c29191ba8a3a054b5",
+      "id": "amazon-cheapest-coffee-beans-en",
+      "max_actions": 48,
+      "source": "amazon-cheapest-coffee-beans-en.yaml",
+      "timeout_seconds": 300
+    }
+  ]
+}

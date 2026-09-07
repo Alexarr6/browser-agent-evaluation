@@ -1,0 +1,31 @@
+{
+  "action_count": 7,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 12889,
+  "ended_at": "2026-09-07T12:09:18.306166Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T12:09:05.416441Z",
+  "task_id": "selenium-web-form-en",
+  "trace": "browser_type {\"element\": \"Text input\", \"target\": \"e11\", \"text\": \"Ada Lovelace\"}\nbrowser_type {\"element\": \"Textarea\", \"target\": \"e15\", \"text\": \"Synthetic test\"}\nbrowser_select_option {\"element\": \"Dropdown (select)\", \"target\": \"e24\", \"values\": [\"Two\"]}\nbrowser_type {\"element\": \"Dropdown (datalist)\", \"target\": \"e26\", \"text\": \"New York\"}\nbrowser_click {\"element\": \"Default checkbox\", \"target\": \"e33\"}\nbrowser_click {\"element\": \"Default radio\", \"target\": \"e39\"}\nbrowser_click {\"element\": \"Submit\", \"target\": \"e40\"}\nForm submitted successfully; the page shows \"Received!\"",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:56fd641e41e24e92c3b0246a712e3ce7eef2fbb63f73a850628752752495e861",
+  "trial_id": "playwright_mcp-r3-8bfd201f42c1",
+  "usage": {
+    "completion_tokens": 213,
+    "cost_usd": 0.004068920000000001,
+    "prompt_tokens": 33719,
+    "request_count": 8,
+    "unavailable_reason": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "action_count": 8,
+  "assertion_results": {
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 54654,
+  "ended_at": "2026-09-07T11:52:28.229532Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "failed",
+  "policy_events": [
+    "framework_or_acceptance_failed"
+  ],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T11:51:33.574823Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "{\"evaluation_previous_goal\":\"\u00c9xito: se a\u00f1adi\u00f3 exactamente una unidad y la p\u00e1gina de la cesta confirma \u00abSe ha a\u00f1adido a la cesta\u00bb, \u00ab1 art\u00edculo\u00bb y el producto seleccionado.\",\"memory\":\"Cookies no esenciales rechazadas; b\u00fasqueda realizada en la primera p\u00e1gina de Amazon.es sin iniciar sesi\u00f3n. El producto seleccionado aparece en la cesta con subtotal de 10,56 \u20ac y 1 producto. Datos verificados: t\u00edtulo \u00abby Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\u00bb, ASIN B0F1NG6ZNX, peso 1 kg, precio 10,56 \u20ac, vendedor Amazon y c\u00e1lculo 10,56 \u20ac/kg.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"La cesta an\u00f3nima confirma exactamente un producto: \u00abby Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\u00bb. ASIN: B0F1NG6ZNX. Peso: 1 kg. Precio \u00fanico mostrado: 10,56 \u20ac. Vendedor: Amazon. Precio calculado: 10,56 \u20ac/kg. La cesta muestra \u00ab1 art\u00edculo\u00bb y subtotal de 10,56 \u20ac. La URL exacta de la p\u00e1gina del producto no est\u00e1 visible en el estado final de la cesta; solo se verific\u00f3 que conten\u00eda el ASIN B0F1NG6ZNX. URL final observada: https://www.amazon.es/cart/smart-wagon?newItems=daba47f5-69ed-4...bb32bca\",\"success\":false,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:825ebcdd074fa878878528ee2492729bb2892790c42b5d77196e0e3d42295b06",
+  "trial_id": "browser_use-r1-218fe911d4b9",
+  "usage": {
+    "completion_tokens": 2495,
+    "cost_usd": null,
+    "prompt_tokens": 99819,
+    "request_count": 9,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  }
+}
