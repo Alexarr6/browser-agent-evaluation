@@ -1,15 +1,136 @@
 # Browser-Agent Evaluation Laboratory
 
-A controlled, reproducible harness for comparing browser-agent strategies on public,
-non-authenticated tasks. It evaluates a project-owned restricted agent, `browser-use`,
-Playwright MCP, and a deterministic Playwright reference under the same task contracts.
+A controlled, evidence-first laboratory for comparing how different browser-agent
+architectures solve the same public, non-authenticated tasks.
 
-This repository is an experiment, not production application code. It must not be
-imported by the LinkedIn presence application.
+The project focuses on the trade-offs that a simple pass/fail leaderboard hides:
+reliability, end-to-end latency, model usage, operational cost, browser actions, safety
+boundaries, and failure modes. It compares a project-owned restricted agent,
+[`browser-use`](https://github.com/browser-use/browser-use), Playwright MCP, and a
+deterministic Playwright reference under shared task contracts.
 
-> **License status:** This repository is published without an open-source license.
-> All rights reserved. The third-party packages used by the experiment retain their
-> own licenses.
+> **Research status:** this is an exploratory evaluation harness, not a production
+> benchmark or a claim that one framework is universally better. A recorded pass means
+> that the configured end-state assertions passed; it does not necessarily prove that
+> every semantic detail in the natural-language task was completed correctly. See
+> [Evaluation criteria and warnings](#evaluation-criteria-and-warnings) before
+> interpreting results.
+
+## What this project explores
+
+- How reliably each agent reaches a verifiable browser state.
+- How much time, how many model requests, and how many tokens it uses.
+- How agent architecture and observation mode affect efficiency and failure recovery.
+- How much control can be retained through domain allowlists, bounded actions, fresh
+  profiles, explicit budgets, and sanitized evidence.
+- Which failures belong to the agent, the provider, the website, or the evaluation
+  harness itself.
+
+## Compared approaches
+
+| Runner | Role | Browser interaction |
+|---|---|---|
+| Deterministic Playwright reference | Site-health and task-contract baseline; no model | Project-owned Playwright recipe |
+| Restricted agent | Project-owned agent with a deliberately small action DSL | Semantic actions over an accessibility-oriented DOM |
+| `browser-use` | Third-party autonomous browser-agent framework | Framework-owned browser and observations |
+| Playwright MCP | Model-driven agent using Playwright's MCP tools | Accessibility snapshots and bounded MCP tools |
+
+The deterministic reference is not an AI competitor or a performance target. It checks
+that the site is reachable and that the minimum acceptance state can be produced before
+the AI runners are attempted. Stagehand is available only as a preflight adapter and is
+not part of the comparable live matrix.
+
+## How an evaluation works
+
+Each task is a versioned YAML contract containing:
+
+- a start URL and natural-language instruction;
+- allowed domains and submission policy;
+- action and time limits;
+- one or more machine-checkable acceptance assertions.
+
+For every repetition, the harness uses a seeded random order for tasks and runners:
+
+```text
+task YAML + experiment.yaml + local .env
+                    |
+                    v
+        deterministic reference trial
+                    |
+          pass -----+----- fail
+            |                 |
+            v                 v
+   randomized AI runners   skip AI trials
+            |
+            v
+ independent assertions + usage/cleanup evidence
+            |
+            v
+       one sanitized JSON artifact per trial
+```
+
+Every trial gets a fresh browser profile. A shared round budget limits provider spend,
+requests, and optionally tokens. Failed trials remain in the evidence and their known
+resource consumption is included in aggregate usage. The implementation lives in
+[`src/browser_agent_evaluation/evaluation/rounds.py`](src/browser_agent_evaluation/evaluation/rounds.py).
+
+## Evaluation criteria and warnings
+
+### What is measured
+
+| Dimension | Definition | How to interpret it |
+|---|---|---|
+| Success | The runner reports completion and every configured acceptance assertion matches the final observable state | Primary correctness signal, bounded by assertion coverage |
+| Reliability | Successful valid trials divided by attempted valid trials | Requires repeated runs; an `n=1` result is only exploratory |
+| Duration | End-to-end wall-clock time recorded by the runner trial | Operational latency, not isolated model-reasoning time |
+| Model usage | Provider-reported prompt tokens, completion tokens, and request count | Includes failed attempts when aggregated |
+| Cost | Provider-reported cost, or a documented model-price estimate where supported; otherwise marked unavailable or reserved by the report | Never interpret missing cost as zero |
+| Actions | Framework-native browser action count | Diagnostic only; action semantics differ between runners |
+| Validity | Cleanup succeeded and evidence satisfies the comparison contract | Invalidated trials are reported separately from ordinary failures |
+
+Acceptance assertions currently support final-page title, URL substring, visible-text
+substring, and input-value checks. They are evaluated independently of the model's
+natural-language answer. A pass is therefore an **end-state verification**, not a full
+trajectory proof or an LLM-as-judge score.
+
+### Important warnings
+
+1. **Assertion coverage is intentionally narrow.** Some task instructions are richer
+   than their current assertions. For example, the AJAX task checks the final
+   `Lovelace` text but not the complete two-label history, and the keyboard task checks
+   for a visible `change` event but not every key in the sequence.
+
+2. **The experimental tasks must not be treated as strong correctness benchmarks.**
+   The Marca acceptance currently checks only that `Real Madrid` is visible. The Amazon
+   acceptance currently checks only that the final URL is on `amazon.es`; it does not
+   independently verify the cheapest-per-kilogram calculation, seller, product details,
+   or cart contents. Their results are useful for exploratory behavior and stress
+   testing, not product-selection accuracy.
+
+3. **Public websites are moving targets.** Consent dialogs, localization, content,
+   anti-bot behavior, network conditions, and DOM structure can change between runs.
+   A failure can originate in the site, provider, browser, policy, harness, or agent.
+   Inspect the evidence before attributing it to planning quality.
+
+4. **The runtime environments are not perfectly identical.** `browser-use` 0.13.8
+   uses its compatible Chromium 140 line on ARM64, while the reference, restricted, and
+   MCP arms use Chromium 151. Trial duration also includes runner-specific startup and
+   teardown, so it measures operational latency rather than a pure model-speed contest.
+
+5. **Equal models do not mean equal model inputs.** All AI runners can use the same
+   provider and model, but prompts, tool schemas, context growth, observation formats,
+   and framework-owned retries differ by design. Token counts are meaningful system
+   costs, but not a direct measure of model intelligence.
+
+6. **Small samples do not establish general reliability.** Use multiple repetitions,
+   disclose the exact task set and limits, and report dispersion as well as aggregate
+   success. Do not generalize these tasks to authenticated, high-risk, or arbitrary web
+   automation.
+
+7. **Reference gating can remove a task from the AI matrix.** If the deterministic
+   reference fails, the AI runners are skipped for that task. This protects the budget
+   from known site or contract failures, but the skipped cell must not be counted as an
+   AI failure or success.
 
 ## Quick start
 
@@ -39,9 +160,9 @@ uv run mypy src
 These commands do not launch a browser, contact a model provider, or visit a public
 site.
 
-## Run an evaluation
+## Run a live evaluation
 
-Copy the local runtime template and fill in browser paths and the approved provider
+Copy the local runtime template and provide browser paths and approved provider
 credentials. Never commit `.env`:
 
 ```bash
@@ -49,32 +170,22 @@ cp runtime.env.example .env
 ```
 
 The two browser paths are required because `browser-use` 0.13.8 uses a separate
-Chromium compatibility line. On macOS, Playwright stores binaries under
+Chromium compatibility line. On macOS, Playwright normally stores binaries under
 `~/Library/Caches/ms-playwright/.../chrome-mac/Chromium.app/Contents/MacOS/Chromium`;
-on Linux, paths normally use `~/.cache/ms-playwright/.../chrome-linux/chrome`. Install
-the matching browser revisions before setting the variables.
+on Linux, paths normally use
+`~/.cache/ms-playwright/.../chrome-linux/chrome`.
 
-### Provider boundary
-
-The harness is provider-neutral at its configuration boundary. `experiment.yaml`
-currently selects OpenAI directly through `https://api.openai.com/v1` and
-`OPENAI_API_KEY`; every AI runner receives the same configured endpoint and model.
-Runner, task, policy and evidence contracts contain no gateway-specific behavior. The current transport contract is the Chat Completions API.
-
-Use `--model` to override the common model for all AI runners. The older
-`--browser-use-model` spelling remains temporarily as a command-line alias only.
-
-The default English matrix contains seven tasks:
+The default English matrix contains five standard tasks and two experimental tasks:
 
 - Wikipedia search
 - MDN CSS reference
 - Selenium web form
 - Selenium AJAX labels
 - Selenium keyboard events
-- Marca Real Madrid article search
-- Amazon cheapest coffee-beans task
+- Experimental: Marca Real Madrid article search
+- Experimental: Amazon cheapest coffee-beans task
 
-A one-repetition visual-parity run for all three AI arms is:
+Run one visual-parity repetition for all three AI runners:
 
 ```bash
 DISPLAY=:99 UV_CACHE_DIR=/tmp/uv-cache \
@@ -89,79 +200,99 @@ uv run browser-eval repeat \
   --output-dir runs/example-visual-parity
 ```
 
-Use a new output directory for every run. Raw run artifacts are intentionally ignored
-by Git. The harness prints per-round, per-runner progress and writes sanitized trial
-evidence locally. Browser executable paths are read from `.env`, so the same checkout
-works on Linux and macOS without relying on another machine's cache path.
+Use a new output directory for every run. The CLI prints per-round progress and writes
+one sanitized evidence artifact per attempted trial. Raw run directories are ignored
+by Git.
 
-Live runs require explicit operator approval. They can spend money, consume provider
+Live runs require explicit operator approval. They spend money, consume provider
 quota, and interact with public websites. The Amazon task permits only an anonymous
-cart addition; it prohibits login, checkout, payment, ordering, and personal data.
+cart addition and explicitly prohibits login, checkout, payment, ordering, addresses,
+and personal data.
 
-## Browser visibility
+### Provider boundary
 
-For headed runs on the local evaluation host:
+The harness is provider-neutral at its configuration boundary. `experiment.yaml`
+currently selects an OpenAI-compatible endpoint, credential environment variable, and
+one common model for every AI runner. Runner, task, policy, and evidence contracts do
+not contain gateway-specific behavior. The current transport contract is the Chat
+Completions API.
 
-```bash
-DISPLAY=:99
-```
+Use `--model` to override the common model for all AI runners. The older
+`--browser-use-model` spelling remains temporarily as a command-line alias.
 
-The project does not manage a VNC server. If the host provides one, connect to its
-configured forwarded port. Do not use a personal browser profile.
+### Rendering profiles
 
-## Safety and comparability boundaries
+- `strict` blocks cross-origin assets where supported and preserves the most
+  restrictive network behavior.
+- `visual-parity` permits passive CSS, image, font, and script resources needed for
+  realistic rendering while keeping navigation and tool capabilities bounded.
+
+For a headed run on a host with an X display, set `DISPLAY` (for example,
+`DISPLAY=:99`). The project does not manage a VNC server. Do not use a personal browser
+profile.
+
+## Safety boundaries
 
 - Every trial uses an isolated, fresh browser profile.
 - Navigation is restricted to task allowlists.
 - Credentials, arbitrary JavaScript, file access, uploads, downloads, and checkout
   actions are disabled or rejected.
-- The default task timeout is capped at 300 seconds.
-- MCP has stricter per-operation limits: 60 seconds for actions and 90 seconds for
-  navigation.
-- `strict` preserves restrictive network behavior; `visual-parity` permits passive
-  CSS, image, font, and script resources needed for realistic rendering while keeping
-  navigation and tool capabilities bounded.
-- `browser-use` uses its documented Chromium 140 compatibility line on ARM64;
-  reference, restricted, and MCP use Chromium 151. This is a known comparability
-  limitation and must be reported with results.
-- Stagehand is present only as a preflight adapter and is not part of the comparable
-  live pilot.
-- Experimental Amazon acceptance is intentionally exploratory and should not be
-  treated as a fully independent product/cost correctness assertion until its
-  acceptance contract is strengthened.
+- Task execution is capped at 300 seconds and 48 actions by the current task contracts.
+- MCP additionally caps individual actions at 60 seconds and navigation at 90 seconds.
+- Budgets can cap total spend, per-trial spend, requests, and cumulative tokens.
+- Traces are redacted and bounded before evidence is written.
+
+These controls reduce risk; they do not turn the harness into a sandbox suitable for
+untrusted tasks or high-impact browser automation.
+
+## Results and evidence
+
+Selected, sanitized historical reports live under [`docs/results/`](docs/results/).
+Each report should be read with its own date, model, task matrix, runtime limits, browser
+versions, and known confounds. Historical results are not guarantees about the current
+code or live websites.
+
+Raw traces, screenshots, provider responses, and generated run directories remain
+local. A comparable report should:
+
+- include passed and failed valid trials;
+- distinguish failed, invalidated, timed-out, and policy-denied outcomes;
+- include failed-run time, tokens, requests, and known cost in consumption totals;
+- label missing usage or cost rather than converting it to zero;
+- disclose task selection, repetitions, model, browser versions, budgets, and rendering
+  profile;
+- preserve enough sanitized evidence to audit the conclusion.
 
 ## Repository layout
 
 ```text
-src/browser_agent_evaluation/  Layered Python package
-tests/                         Offline unit and contract tests
-tasks/                         Public task contracts and workflows
-evidence/                      Ignored generated runtime evidence
-docs/architecture/             Current package and boundary design
-docs/compatibility/            Browser and framework compatibility notes
-docs/results/                  Selected, sanitized Markdown reports
-docs/archive/                  Historical preflight and diagnostic notes
-experiment.yaml                Local experiment configuration
-runtime.env.example            Safe environment template
-pyproject.toml / uv.lock       Python project and dependency lock
-package.json / package-lock.json  Node adapter dependencies and lock
+src/browser_agent_evaluation/     Python package and CLI
+  cli/                            Command parsing and dispatch
+  evaluation/                     Trials, task loading, and randomized rounds
+  agents/                         Runner-specific planning and execution
+  browser/                        Browser isolation and Playwright primitives
+  core/                           Task, policy, assertion, budget, and evidence models
+  reporting/                      Sanitized evidence and Markdown reports
+tasks/                            Standard and experimental task contracts
+tests/                            Offline unit and contract tests
+docs/architecture/                Package boundaries and design notes
+docs/compatibility/               Framework and browser compatibility decisions
+docs/results/                     Selected sanitized historical reports
+experiment.yaml                  Default local experiment configuration
+runtime.env.example              Safe environment template
+pyproject.toml / uv.lock         Python dependencies and tooling
+package.json / package-lock.json Pinned Node adapters
 ```
 
-Local-only material is deliberately excluded from version control:
+The public entry point is `browser-eval`, defined in `pyproject.toml` and dispatched by
+[`src/browser_agent_evaluation/cli/main.py`](src/browser_agent_evaluation/cli/main.py).
+The package architecture and dependency direction are documented in
+[`docs/architecture/package-structure.md`](docs/architecture/package-structure.md), and
+[`docs/README.md`](docs/README.md) is the complete documentation index.
 
-- `runs/` raw trial output and traces
-- `.env` and other local environment files
-- `.venv/`, `node_modules/`, caches, build products, and logs
-- generated JSON evidence and screenshots
-- Pi/editor/runtime state
+## Development
 
-The package boundaries and dependency direction are documented in
-[`docs/architecture/package-structure.md`](docs/architecture/package-structure.md).
-See [`docs/README.md`](docs/README.md) for the complete documentation index.
-
-## Development practices
-
-Keep changes small and testable. For code changes, run the complete offline suite:
+For code changes, run the complete offline suite:
 
 ```bash
 uv run pytest
@@ -172,21 +303,24 @@ uv run mypy src
 Do not add live model or public-site execution to CI. Live evaluations belong to an
 explicitly approved local run and must use a fresh output directory.
 
-Dependency changes must update the relevant lockfile:
+Dependency changes must update and review the relevant lockfile:
 
 ```bash
 uv lock
 npm install --package-lock-only
 ```
 
-Review the generated lockfile before committing it.
+Generated evidence policy:
 
-## Evidence policy
+- Commit only selected Markdown reports useful for understanding the experiment.
+- Do not commit raw traces, screenshots, provider responses, credentials, browser
+  profiles, or large generated result directories.
+- Reports must state their date, task matrix, model, browser versions, limits, and known
+  confounds.
+- Historical preflight and diagnostic notes under `docs/archive/` are not current
+  runtime guarantees.
 
-Commit only selected Markdown reports that are useful for understanding the experiment.
-Do not commit raw traces, screenshots, provider responses, credentials, browser
-profiles, or large generated result directories. Reports must be sanitized and should
-state their date, task matrix, model, browser versions, limits, and known confounds.
+## License
 
-Historical preflight and diagnostic notes live under `docs/archive/`; they describe
-past states and are not current runtime guarantees.
+This repository is published without an open-source license. All rights reserved. The
+third-party packages used by the experiment retain their own licenses.
