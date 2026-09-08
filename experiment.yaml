@@ -1,8 +1,8 @@
 schema_version: 1
 browser:
-  # Chromium 151 for reference and Playwright MCP.
+  # Browser path used by reference, restricted agent and Playwright MCP.
   executable_path_env: BROWSER_EVAL_CHROMIUM
-  # Chromium 140 required by browser-use 0.13.8 on ARM64.
+  # Browser path compatible with the installed browser-use version.
   browser_use_executable_path_env: BROWSER_EVAL_BROWSER_USE_CHROMIUM
   headless: false
   fresh_profile: true

@@ -2,7 +2,7 @@
 
 Cuando un agente falla en el navegador, es tentador culpar al modelo. Sin embargo, el modelo es sólo una parte del sistema. La forma de observar la página, decidir acciones, conservar contexto, recuperarse de errores y verificar el resultado puede cambiar por completo el comportamiento.
 
-Para medir ese efecto comparé tres métodos de agente con el mismo modelo, las mismas tareas, el mismo navegador y los mismos límites:
+Para medir ese efecto comparé tres métodos de agente con el mismo modelo, las mismas tareas, el mismo navegador y los mismos límites externos:
 
 - un agente propio con acciones restringidas;
 - Browser Use;

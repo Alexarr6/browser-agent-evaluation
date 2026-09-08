@@ -2,8 +2,8 @@
 
 The current English evaluation uses one canonical seven-task matrix: five standard tasks
 and two experimental tasks. Both categories are required in every complete run. The
-experimental label discloses weaker acceptance coverage; it does not make those tasks
-optional. Reachability-only outcomes remain in reporting and resource totals but are
+experimental label identifies site-dependent task contracts; it does not make those
+tasks optional. Reachability-only outcomes remain in reporting and resource totals but are
 excluded from verified task-completion rates.
 
 The published result is the

@@ -103,13 +103,13 @@ trajectory proof or an LLM-as-judge score.
    `Lovelace` text but not the complete two-label history, and the keyboard task checks
    for a visible `change` event but not every key in the sequence.
 
-2. **Read experimental results against their recorded contract version.**
-   The published run used broad URL/text probes, whose positive outcomes remain
-   `unverified`. New runs verify Marca's visible headline and final article URL;
-   Amazon now requires a coffee-bean product with a displayed unit price strictly below
-   14 EUR/kg and matching name, URL and price in the response. All four runners use the
-   same independent checks. The two tasks remain mandatory. Details and the selective
-   rerun command are documented in
+2. **Experimental tasks use task-completion contracts.** The current report verifies
+   Marca's visible headline and final article URL. Amazon requires a coffee-bean product
+   with a displayed unit price strictly below 14 EUR/kg and matching name, URL and price
+   in the response. All AI runners use the same independent checks, and these outcomes
+   count as completed or failed. `unverified` applies only to a task explicitly
+   configured as a reachability-only probe. The two tasks remain mandatory. Details are
+   documented in
    [`docs/architecture/open-task-verification.md`](docs/architecture/open-task-verification.md).
 
 3. **Public websites are moving targets.** Consent dialogs, localization, content,
@@ -266,15 +266,15 @@ tasks with three repetitions per runner in headless, visual-parity mode using
 
 | AI runner | Verified success | Unverified probes | Median verified time | Requests | Tokens | Known cost |
 |---|---:|---:|---:|---:|---:|---:|
-| `browser-use` | 15/15 | 5 | 23.579s | 152 | 1,659,451 | Unavailable for all trials |
-| Playwright MCP | 15/15 | 3 | 12.889s | 142 | 2,224,404 | $0.23690940 |
-| Restricted agent | 14/15 | 0 | 21.343s | 120 | 273,315 | $0.10838136 |
+| `browser-use` | 21/21 | 0 | 25.264s | 136 | 1,237,552 | Unavailable for all trials |
+| Playwright MCP | 18/21 | 0 | 13.159s | 133 | 1,623,505 | $0.19642336 |
+| Restricted agent | 17/21 | 0 | 21.185s | 115 | 263,325 | $0.10167696 |
 
 These are observed system-level outcomes, not a universal ranking. The deterministic
-reference verified 15/15 standard trials and reached both experimental sites 6/6 times;
-those probes are not task successes. The report also discloses the reference-only
-Wikipedia locale repair and the retrospective reclassification of weak experimental
-passes. Read its per-task table, execution notes and warnings before sharing the figures.
+reference completed 14/15 standard control trials and 6/6 verifier-backed open-task
+controls; those controls are not agent task successes. The report records the one
+reference-only Wikipedia failure alongside every AI trial. Read its per-task table,
+execution notes and warnings before sharing the figures.
 
 After a completed run, render its manifested report with:
 

@@ -1,8 +1,8 @@
 # Verification of real-world tasks
 
-All seven tasks are mandatory. The current Marca and Amazon contracts use
-`task_completion` and controller-owned DOM evidence. The older published run retains
-its original broad assertions and `unverified` experimental outcomes until refreshed.
+All seven tasks are mandatory. Marca and Amazon use `task_completion` contracts and
+controller-owned DOM evidence in the current published run. Their outcomes are
+independently verified as passed or failed.
 
 ## Current acceptance criteria
 
@@ -58,8 +58,8 @@ skips the AI agent attempts, even when reference-failure skipping is enabled for
 A single pilot repetition checks integration; it does not establish a reliable ranking of agents.
 
 The initial `open-tasks-check-20260907` pilot predates these adapter and URL changes.
-Its artifacts retain their original outcomes. New runs are needed for a comparison
-under the revised contract; do not silently relabel the old results.
+Its artifacts retain their original outcomes. The completed repeated run provides the
+comparison under the revised contract; do not silently relabel the old results.
 
 ## Selective rerun
 
