@@ -8,6 +8,7 @@ from browser_agent_evaluation.evaluation.rounds import (
     ENGLISH_TASK_PATHS,
     STANDARD_ENGLISH_TASK_PATHS,
     TASK_PATHS,
+    _should_skip_ai_after_reference,
     build_round_plan,
 )
 from browser_agent_evaluation.evaluation.tasks import load_task
@@ -58,6 +59,23 @@ def test_mcp_allowed_origins_include_every_task_domain() -> None:
 
     assert task_origins(mdn) == "https://developer.mozilla.org"
     assert task_origins(wikipedia) == "https://www.wikipedia.org;https://en.wikipedia.org"
+
+
+def test_open_control_failure_never_skips_ai_agents() -> None:
+    root = Path(__file__).parents[1]
+    standard = load_task(root / "tasks/en/mdn-reference-en.yaml")
+    open_task = load_task(root / "tasks/experimental/marca-real-madrid-open-en.yaml")
+
+    assert _should_skip_ai_after_reference(
+        task=standard,
+        reference_passed=False,
+        skip_ai_on_reference_failure=True,
+    )
+    assert not _should_skip_ai_after_reference(
+        task=open_task,
+        reference_passed=False,
+        skip_ai_on_reference_failure=True,
+    )
 
 
 def test_round_plan_changes_order_with_a_different_seed() -> None:

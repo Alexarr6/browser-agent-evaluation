@@ -35,10 +35,12 @@ deterministic Playwright reference under shared task contracts.
 | `browser-use` | Third-party autonomous browser-agent framework | Framework-owned browser and observations |
 | Playwright MCP | Model-driven agent using Playwright's MCP tools | Accessibility snapshots and bounded MCP tools |
 
-The deterministic reference is not an AI competitor or a performance target. It checks
-that the site is reachable and that the minimum acceptance state can be produced before
-the AI runners are attempted. Stagehand is available only as a preflight adapter and is
-not part of the comparable live matrix.
+The deterministic reference is not an AI competitor or a performance target. On standard
+tasks it is a scripted correctness control. On verifier-backed open tasks it uses privileged,
+site-specific discovery logic only to check current site and verifier feasibility; those
+outcomes are excluded from solution denominators and agent rankings. AI runners still execute
+when the manifested reference policy says `always run AI`. Stagehand is available only as a
+preflight adapter and is not part of the comparable live matrix.
 
 ## How an evaluation works
 

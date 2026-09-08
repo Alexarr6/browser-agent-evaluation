@@ -99,7 +99,7 @@ def load_repeated_evidence(manifest_path: Path) -> RepeatedEvidence:
         )
         expected_ai_trials = (
             reference_passes
-            if manifest.skip_ai_on_reference_failure
+            if manifest.skip_ai_on_reference_failure and task.verifier is None
             else manifest.repetitions
         )
         for runner in manifest.ai_runners:
@@ -135,6 +135,10 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
         "",
         "> `passed` is reserved for task-completion contracts. A successful "
         "reachability-only check is `unverified`, never a completed task.",
+        "",
+        "> Open-task deterministic references are control checks, not solution claims. "
+        "They validate current site and verifier feasibility but are excluded from "
+        "solution denominators.",
         "",
         "## Run configuration",
         "",
@@ -186,8 +190,10 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "",
             "## Per-task results",
             "",
-            "`Verified success` is available only for task-completion contracts. `Unverified` "
-            "means that a reachability probe succeeded without proving the task instruction. "
+            "`Verified success` is available only for task-completion contracts. Open-task "
+            "deterministic references are shown as `N/A (control x/y)` because their "
+            "site-specific recipes are controls, not general solutions. `Unverified` means "
+            "that a reachability probe succeeded without proving the task instruction. "
             "`Invalid` identifies trials without comparable cleanup evidence. `Ref-skipped` "
             "records planned AI trials that were not started because the deterministic "
             "reference failed.",
@@ -212,8 +218,10 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "",
             "## Runner aggregate",
             "",
-            "Verified-success denominators contain only task-completion contracts. Consumption "
-            "totals contain every attempted task, including reachability-only tasks and failures.",
+            "Verified-success denominators contain only task-completion contracts. The "
+            "deterministic reference denominator excludes verifier-backed open tasks because "
+            "those recipes are controls rather than general solutions. Consumption totals "
+            "contain every attempted task, including reachability-only tasks and failures.",
             "",
             "| Runner | Verified success | Unverified | Invalid | Ref-skipped | "
             "Median verified time | Requests | Tokens | Cost (USD) |",
@@ -225,6 +233,7 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             record
             for task in manifest.tasks
             if task.verification_mode == "task_completion"
+            and not _is_open_reference_control(task, runner)
             for record in grouped[(task.id, runner)]
         ]
         lines.append(
@@ -272,6 +281,8 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "above.",
             "- Failed and invalidated attempts remain in request, token and known-cost totals. "
             "Missing tokens or cost are labelled unavailable rather than converted to zero.",
+            "- Verifier-backed open-task references are site and verifier controls. Their "
+            "site-specific recipes are excluded from solution claims and method rankings.",
             "- Reference failures are site-health signals. AI trials still run unless the "
             "manifest explicitly enables reference-failure skipping; any skipped cells are not "
             "AI successes or failures.",
@@ -333,11 +344,12 @@ def _result_row(
     passing = [trial for trial in valid if trial.outcome == "passed"]
     unverified = [trial for trial in valid if trial.outcome == "unverified"]
     invalid = sum(trial.outcome == "invalidated" for trial in trials)
-    success = (
-        f"{len(passing)}/{len(valid)}"
-        if task.verification_mode == "task_completion"
-        else "N/A"
-    )
+    if _is_open_reference_control(task, runner):
+        success = f"N/A (control {len(passing)}/{len(valid)})"
+    elif task.verification_mode == "task_completion":
+        success = f"{len(passing)}/{len(valid)}"
+    else:
+        success = "N/A"
     return (
         f"| {_task_label(task)} | {task.category} | {RUNNER_LABELS[runner]} | "
         f"{success} | {len(unverified)} | {invalid} | {skipped} | "
@@ -345,6 +357,14 @@ def _result_row(
         f"{sum(trial.usage.request_count for trial in trials)} | "
         f"{_token_display(trials, is_reference=runner == 'playwright_reference')} | "
         f"{_cost_display(trials, is_reference=runner == 'playwright_reference')} |"
+    )
+
+
+def _is_open_reference_control(task: ManifestTask, runner: RunnerName) -> bool:
+    return (
+        runner == "playwright_reference"
+        and task.category == "experimental"
+        and task.verifier is not None
     )
 
 

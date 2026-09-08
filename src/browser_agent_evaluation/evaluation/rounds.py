@@ -120,7 +120,11 @@ async def run_round(
                 )
                 artifacts.append(reference)
                 _report_artifact(reference_progress, reference)
-                if not reference_passed and skip_ai_on_reference_failure:
+                if _should_skip_ai_after_reference(
+                    task=planned.task,
+                    reference_passed=reference_passed,
+                    skip_ai_on_reference_failure=skip_ai_on_reference_failure,
+                ):
                     continue
                 for runner in planned.runners:
                     trial_id = f"{runner}-r{round_index}-{uuid.uuid4().hex[:12]}"
@@ -177,6 +181,17 @@ async def run_round(
         finally:
             await browser.close()
     return artifacts
+
+
+def _should_skip_ai_after_reference(
+    *, task: TaskSpec, reference_passed: bool, skip_ai_on_reference_failure: bool
+) -> bool:
+    """Never let a privileged open-task control gate a general agent attempt."""
+    return (
+        skip_ai_on_reference_failure
+        and not reference_passed
+        and task.acceptance.verifier is None
+    )
 
 
 def _progress_reporter(*, round_index: int, runner: str, task_id: str) -> Callable[[str], None]:

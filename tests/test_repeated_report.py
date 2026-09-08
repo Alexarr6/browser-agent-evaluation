@@ -113,6 +113,37 @@ def test_report_rejects_forged_open_task_success(tmp_path: Path) -> None:
         load_repeated_evidence(manifest_path)
 
 
+def test_open_reference_is_reported_as_control_not_solution(tmp_path: Path) -> None:
+    manifest_path = _write_matrix(tmp_path, skip_ai_on_reference_failure=False)
+    manifest = EvaluationManifest.model_validate_json(manifest_path.read_bytes())
+    task = next(task for task in manifest.tasks if task.id.startswith("marca-"))
+    task.verification_mode = "task_completion"
+    task.verifier = "marca_article"
+    heading = "Real Madrid current article"
+    url = "https://www.marca.com/futbol/real-madrid/2026/09/07/current-article.html"
+    answer = json.dumps({"name": heading, "url": url})
+    for name in manifest.artifact_files:
+        path = tmp_path / name
+        payload = json.loads(path.read_text())
+        if payload["task_id"] == task.id:
+            payload["outcome"] = "passed"
+            payload["verification_evidence"] = {
+                "answer": answer,
+                "heading": heading,
+                "url": url,
+            }
+            path.write_text(json.dumps(payload))
+    write_evaluation_manifest(manifest, output_dir=tmp_path)
+
+    report = render_repeated_report(load_repeated_evidence(manifest_path))
+
+    assert (
+        "| Marca Real Madrid (English) | experimental | Deterministic reference | "
+        "N/A (control 3/3) |" in report
+    )
+    assert "Open-task deterministic references are control checks, not solution claims." in report
+
+
 def test_manifested_report_keeps_all_seven_tasks_and_reference_skips(tmp_path: Path) -> None:
     manifest_path = _write_matrix(tmp_path)
 

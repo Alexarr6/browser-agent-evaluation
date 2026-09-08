@@ -49,9 +49,13 @@ The Amazon policy explicitly permits Enter on the named Amazon search field whil
 keeping general form submission disabled. Restricted and MCP normalize the case of
 named keys such as Enter, Home and End without changing typed characters. No tools,
 navigation retries or action/time budgets were added to resolve poor agent choices.
-The deterministic reference uses site-specific recipes and is a health/control
-baseline, not a measure of general intelligence. A single pilot repetition checks
-integration; it does not establish a reliable ranking of agents.
+The deterministic reference uses privileged, site-specific recipes and is a
+site/verifier control, not a general solution to an open instruction. Its Marca and Amazon
+outcomes must be reported as control checks and excluded from solution denominators and agent
+rankings. A changing news section or product layout can invalidate that recipe even when another
+strategy remains viable. For that reason, failure of a verifier-backed open-task control never
+skips the AI agent attempts, even when reference-failure skipping is enabled for standard tasks.
+A single pilot repetition checks integration; it does not establish a reliable ranking of agents.
 
 The initial `open-tasks-check-20260907` pilot predates these adapter and URL changes.
 Its artifacts retain their original outcomes. New runs are needed for a comparison

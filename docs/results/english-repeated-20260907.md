@@ -4,6 +4,8 @@ This report covers one unified matrix of **7 tasks** (5 standard and 2 experimen
 
 > `passed` is reserved for task-completion contracts. A successful reachability-only check is `unverified`, never a completed task.
 
+> Open-task deterministic references are control checks, not solution claims. They validate current site and verifier feasibility but are excluded from solution denominators.
+
 ## Run configuration
 
 | Property | Value |
@@ -35,7 +37,7 @@ This report covers one unified matrix of **7 tasks** (5 standard and 2 experimen
 
 ## Per-task results
 
-`Verified success` is available only for task-completion contracts. `Unverified` means that a reachability probe succeeded without proving the task instruction. `Invalid` identifies trials without comparable cleanup evidence. `Ref-skipped` records planned AI trials that were not started because the deterministic reference failed.
+`Verified success` is available only for task-completion contracts. Open-task deterministic references are shown as `N/A (control x/y)` because their site-specific recipes are controls, not general solutions. `Unverified` means that a reachability probe succeeded without proving the task instruction. `Invalid` identifies trials without comparable cleanup evidence. `Ref-skipped` records planned AI trials that were not started because the deterministic reference failed.
 
 | Task | Category | Runner | Verified success | Unverified | Invalid | Ref-skipped | Median accepted time | Requests | Tokens | Cost (USD) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -59,22 +61,22 @@ This report covers one unified matrix of **7 tasks** (5 standard and 2 experimen
 | Selenium key events (English) | standard | Restricted agent | 3/3 | 0 | 0 | 0 | 21.185s | 24 | 31,920 | 0.01167656 |
 | Selenium key events (English) | standard | browser-use | 3/3 | 0 | 0 | 0 | 20.276s | 24 | 188,921 | unavailable (3 trials) |
 | Selenium key events (English) | standard | Playwright MCP | 3/3 | 0 | 0 | 0 | 12.005s | 24 | 42,418 | 0.00467148 |
-| Marca Real Madrid (English) | experimental | Deterministic reference | 3/3 | 0 | 0 | 0 | 2.325s | 0 | — | — |
+| Marca Real Madrid (English) | experimental | Deterministic reference | N/A (control 3/3) | 0 | 0 | 0 | 2.325s | 0 | — | — |
 | Marca Real Madrid (English) | experimental | Restricted agent | 3/3 | 0 | 0 | 0 | 9.365s | 7 | 25,765 | 0.01220160 |
 | Marca Real Madrid (English) | experimental | browser-use | 3/3 | 0 | 0 | 0 | 25.264s | 13 | 134,456 | unavailable (3 trials) |
 | Marca Real Madrid (English) | experimental | Playwright MCP | 3/3 | 0 | 0 | 0 | 69.314s | 9 | 121,094 | 0.02675364 |
-| Amazon coffee beans below 14 EUR/kg (English) | experimental | Deterministic reference | 3/3 | 0 | 0 | 0 | 8.575s | 0 | — | — |
+| Amazon coffee beans below 14 EUR/kg (English) | experimental | Deterministic reference | N/A (control 3/3) | 0 | 0 | 0 | 8.575s | 0 | — | — |
 | Amazon coffee beans below 14 EUR/kg (English) | experimental | Restricted agent | 2/3 | 0 | 0 | 0 | 17.791s | 14 | 48,203 | 0.02029032 |
 | Amazon coffee beans below 14 EUR/kg (English) | experimental | browser-use | 3/3 | 0 | 0 | 0 | 33.749s | 22 | 251,891 | unavailable (3 trials) |
 | Amazon coffee beans below 14 EUR/kg (English) | experimental | Playwright MCP | 0/3 | 0 | 0 | 0 | — | 31 | 1,094,571 | 0.10930504 |
 
 ## Runner aggregate
 
-Verified-success denominators contain only task-completion contracts. Consumption totals contain every attempted task, including reachability-only tasks and failures.
+Verified-success denominators contain only task-completion contracts. The deterministic reference denominator excludes verifier-backed open tasks because those recipes are controls rather than general solutions. Consumption totals contain every attempted task, including reachability-only tasks and failures.
 
 | Runner | Verified success | Unverified | Invalid | Ref-skipped | Median verified time | Requests | Tokens | Cost (USD) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Deterministic reference | 20/21 | 0 | 0 | 0 | 2.582s | 0 | — | — |
+| Deterministic reference | 14/15 | 0 | 0 | 0 | 1.341s | 0 | — | — |
 | Restricted agent | 17/21 | 0 | 0 | 0 | 21.185s | 115 | 263,325 | 0.10167696 |
 | browser-use | 21/21 | 0 | 0 | 0 | 25.264s | 136 | 1,237,552 | unavailable (21 trials) |
 | Playwright MCP | 18/21 | 0 | 0 | 0 | 13.159s | 133 | 1,623,505 | 0.19642336 |
@@ -94,6 +96,7 @@ Verified-success denominators contain only task-completion contracts. Consumptio
 - Cost limit: USD 2.00 per round; per-trial limit: USD 0.25.
 - Per-trial limits: 48 model requests and 1,000,000 cumulative tokens. Task-specific time and action limits appear above.
 - Failed and invalidated attempts remain in request, token and known-cost totals. Missing tokens or cost are labelled unavailable rather than converted to zero.
+- Verifier-backed open-task references are site and verifier controls. Their site-specific recipes are excluded from solution claims and method rankings.
 - Reference failures are site-health signals. AI trials still run unless the manifest explicitly enables reference-failure skipping; any skipped cells are not AI successes or failures.
 - Reachability-only tasks are mandatory members of this run, but successful probes are unverified and excluded from task-completion success rates.
 - Action counts are omitted from the comparison because framework-native actions are not equivalent across runners.
