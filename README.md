@@ -10,9 +10,9 @@ boundaries, and failure modes. It compares a project-owned restricted agent,
 deterministic Playwright reference under shared task contracts.
 
 > **Research status:** this is an exploratory evaluation harness, not a production
-> benchmark or a claim that one framework is universally better. A recorded pass means
-> that the configured end-state assertions passed; it does not necessarily prove that
-> every semantic detail in the natural-language task was completed correctly. See
+> benchmark or a claim that one framework is universally better. `passed` is reserved
+> for contracts whose configured checks verify task completion. A successful
+> reachability-only probe is recorded as `unverified`, never as a completed task. See
 > [Evaluation criteria and warnings](#evaluation-criteria-and-warnings) before
 > interpreting results.
 
@@ -80,7 +80,8 @@ resource consumption is included in aggregate usage. The implementation lives in
 
 | Dimension | Definition | How to interpret it |
 |---|---|---|
-| Success | The runner reports completion and every configured acceptance assertion matches the final observable state | Primary correctness signal, bounded by assertion coverage |
+| Verified success | The runner reports completion and every assertion in a task-completion contract matches | Primary correctness signal, bounded by assertion coverage |
+| Unverified | A reachability-only probe succeeds but cannot prove the full instruction | Never count as a completed task |
 | Reliability | Successful valid trials divided by attempted valid trials | Requires repeated runs; an `n=1` result is only exploratory |
 | Duration | End-to-end wall-clock time recorded by the runner trial | Operational latency, not isolated model-reasoning time |
 | Model usage | Provider-reported prompt tokens, completion tokens, and request count | Includes failed attempts when aggregated |
@@ -100,12 +101,14 @@ trajectory proof or an LLM-as-judge score.
    `Lovelace` text but not the complete two-label history, and the keyboard task checks
    for a visible `change` event but not every key in the sequence.
 
-2. **The experimental tasks must not be treated as strong correctness benchmarks.**
-   The Marca acceptance currently checks only that `Real Madrid` is visible. The Amazon
-   acceptance currently checks only that the final URL is on `amazon.es`; it does not
-   independently verify the cheapest-per-kilogram calculation, seller, product details,
-   or cart contents. Their results are useful for exploratory behavior and stress
-   testing, not product-selection accuracy.
+2. **Read experimental results against their recorded contract version.**
+   The published run used broad URL/text probes, whose positive outcomes remain
+   `unverified`. New runs verify Marca's visible headline and final article URL;
+   Amazon now requires a coffee-bean product with a displayed unit price strictly below
+   14 EUR/kg and matching name, URL and price in the response. All four runners use the
+   same independent checks. The two tasks remain mandatory. Details and the selective
+   rerun command are documented in
+   [`docs/architecture/open-task-verification.md`](docs/architecture/open-task-verification.md).
 
 3. **Public websites are moving targets.** Consent dialogs, localization, content,
    anti-bot behavior, network conditions, and DOM structure can change between runs.
@@ -185,7 +188,7 @@ The default English matrix contains five standard tasks and two experimental tas
 - Selenium AJAX labels
 - Selenium keyboard events
 - Experimental: Marca Real Madrid article search
-- Experimental: Amazon cheapest coffee-beans task
+- Experimental: Amazon coffee beans below 14 EUR/kg
 
 Run one visual-parity repetition for all three AI runners:
 
@@ -207,9 +210,9 @@ one sanitized evidence artifact per attempted trial. Raw run directories are ign
 by Git.
 
 Live runs require explicit operator approval. They spend money, consume provider
-quota, and interact with public websites. The Amazon task permits only an anonymous
-cart addition and explicitly prohibits login, checkout, payment, ordering, addresses,
-and personal data.
+quota, and interact with public websites. The Amazon task is now read-only: search,
+open a product and report its name and unit price. Cart additions, login, checkout,
+payment, ordering and personal data are prohibited.
 
 ### Provider boundary
 
@@ -259,19 +262,17 @@ The [7 September 2026 report](docs/results/english-repeated-20260907.md) covers 
 tasks with three repetitions per runner in headless, visual-parity mode using
 `gpt-5.6-luna`.
 
-| AI runner | Success | Median passing time | Requests | Tokens | Known cost |
-|---|---:|---:|---:|---:|---:|
-| `browser-use` | 20/21 | 23.828s | 152 | 1,659,451 | Unavailable for all trials |
-| Playwright MCP | 18/21 | 13.987s | 142 | 2,224,404 | $0.23690940 |
-| Restricted agent | 14/21 | 21.343s | 120 | 273,315 | $0.10838136 |
+| AI runner | Verified success | Unverified probes | Median verified time | Requests | Tokens | Known cost |
+|---|---:|---:|---:|---:|---:|---:|
+| `browser-use` | 15/15 | 5 | 23.579s | 152 | 1,659,451 | Unavailable for all trials |
+| Playwright MCP | 15/15 | 3 | 12.889s | 142 | 2,224,404 | $0.23690940 |
+| Restricted agent | 14/15 | 0 | 21.343s | 120 | 273,315 | $0.10838136 |
 
-These are observed system-level outcomes, not a universal ranking. In particular, the
-deterministic Wikipedia reference hit a harness/domain-policy failure in all three
-repetitions even though every AI runner passed that task. The experimental Marca and
-Amazon assertions also provide weaker semantic coverage. Playwright MCP's three Amazon
-attempts failed without hitting the configured request or token ceiling, while
-`browser-use` passed two of three. Read the report's per-task table and warnings before
-sharing the aggregate figures.
+These are observed system-level outcomes, not a universal ranking. The deterministic
+reference verified 15/15 standard trials and reached both experimental sites 6/6 times;
+those probes are not task successes. The report also discloses the reference-only
+Wikipedia locale repair and the retrospective reclassification of weak experimental
+passes. Read its per-task table, execution notes and warnings before sharing the figures.
 
 After a completed run, render its manifested report with:
 
@@ -284,8 +285,8 @@ uv run browser-eval report \
 Raw traces, screenshots, provider responses, and generated run directories remain
 local. A comparable report should:
 
-- include passed and failed valid trials;
-- distinguish failed, invalidated, timed-out, and policy-denied outcomes;
+- include passed, unverified and failed valid trials;
+- distinguish unverified, failed, invalidated, timed-out, and policy-denied outcomes;
 - include failed-run time, tokens, requests, and known cost in consumption totals;
 - label missing usage or cost rather than converting it to zero;
 - disclose task selection, repetitions, model, browser versions, budgets, and rendering

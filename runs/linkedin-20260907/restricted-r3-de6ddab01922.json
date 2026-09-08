@@ -1,0 +1,32 @@
+{
+  "action_count": 3,
+  "assertion_results": {
+    "page_title": true,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 13124,
+  "ended_at": "2026-09-07T18:08:03.785801Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:07:50.661101Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Playwright\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Playwright\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Enter\"},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Search results for Playwright or the Playwright article page\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"navigate\",\"value\":\"https://en.wikipedia.org/wiki/Special:Search?search=Playwright\"},\"expected_state\":{\"kind\":\"url_contains\",\"value\":\"en.wikipedia.org/wiki/Special:Search\"}}\n{\"result\":\"{\\\"status\\\":\\\"complete\\\",\\\"article\\\":\\\"Playwright\\\",\\\"url\\\":\\\"https://en.wikipedia.org/wiki/Playwright\\\",\\\"title\\\":\\\"Playwright\\\"}\",\"step_index\":4,\"step_status\":\"complete\"}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:c16b633e9cae331618097108c75160e0b7248fae0196fc05f4d8292dce036014",
+  "trial_id": "restricted-r3-de6ddab01922",
+  "usage": {
+    "completion_tokens": 531,
+    "cost_usd": 0.0038386400000000004,
+    "prompt_tokens": 13769,
+    "request_count": 4,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

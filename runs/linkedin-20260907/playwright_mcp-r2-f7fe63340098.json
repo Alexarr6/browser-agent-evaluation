@@ -1,0 +1,33 @@
+{
+  "action_count": 7,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 14101,
+  "ended_at": "2026-09-07T17:58:47.307657Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:58:33.205999Z",
+  "task_id": "selenium-key-events-en",
+  "trace": "browser_click {\"element\": \"single text field\", \"target\": \"e7\"}\nbrowser_press_key {\"key\": \"A\"}\nbrowser_press_key {\"key\": \"d\"}\nbrowser_press_key {\"key\": \"a\"}\nbrowser_press_key {\"key\": \"ArrowLeft\"}\nbrowser_press_key {\"key\": \"Backspace\"}\nbrowser_press_key {\"key\": \"Tab\"}\nterminal response: {\"done\":true,\"success\":true,\"summary\":\"The key sequence was completed: A, d, a, ArrowLeft, Backspace, then Tab. The field value is \\\"Aa\\\", and the visible log includes the \\\"change\\\" event.\"}\nThe key sequence was completed: A, d, a, ArrowLeft, Backspace, then Tab. The field value is \"Aa\", and the visible log includes the \"change\" event.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:ee6cf81695cd49d2faa619c4fbda4e9fca288ca7967341572de612520899a752",
+  "trial_id": "playwright_mcp-r2-f7fe63340098",
+  "usage": {
+    "completion_tokens": 188,
+    "cost_usd": 0.0017103200000000002,
+    "prompt_tokens": 14030,
+    "request_count": 8,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "The key sequence was completed: A, d, a, ArrowLeft, Backspace, then Tab. The field value is \"Aa\", and the visible log includes the \"change\" event."
+  }
+}

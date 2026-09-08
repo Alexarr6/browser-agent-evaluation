@@ -1,0 +1,39 @@
+{
+  "action_count": 1,
+  "assertion_results": {
+    "answer_name_matches": true,
+    "answer_url_matches": true,
+    "article_url": true,
+    "observed_heading": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 9365,
+  "ended_at": "2026-09-07T18:08:40.745197Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:08:31.380130Z",
+  "task_id": "marca-real-madrid-open-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"link\",\"name\":\"Mbapp\u00e9, tajante sobre las dos Champions del PSG tras su salida: \\\"Hablar de m\u00ed vende mucho\\\"\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Marca Real Madrid article page\"}}\n{\"result\":\"{\\\"name\\\":\\\"Mbapp\u00e9, tajante sobre las dos Champions del PSG tras su salida: \\\\\\\"Hablar de m\u00ed vende mucho\\\\\\\"\\\",\\\"url\\\":\\\"https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-tajante-sobre-dos-champions-psg-salida-hablar-mi-ven-video.html\\\"}\",\"step_index\":1,\"step_status\":\"complete\"}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:a886a31aab75f5531e2fc25dd5aecaf2404bf96cd7e89633a857ed76f1f29308",
+  "trial_id": "restricted-r3-2aa119f3eade",
+  "usage": {
+    "completion_tokens": 408,
+    "cost_usd": 0.0034888000000000002,
+    "prompt_tokens": 6886,
+    "request_count": 2,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "{\"name\":\"Mbapp\u00e9, tajante sobre las dos Champions del PSG tras su salida: \\\"Hablar de m\u00ed vende mucho\\\"\",\"url\":\"https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-tajante-sobre-dos-champions-psg-salida-hablar-mi-ven-video.html\"}",
+    "heading": "Mbapp\u00e9, tajante sobre las dos Champions del PSG tras su salida: \"Hablar de m\u00ed vende mucho\"",
+    "price_text": "",
+    "url": "https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-tajante-sobre-dos-champions-psg-salida-hablar-mi-ven-video.html"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "action_count": 2,
+  "assertion_results": {
+    "answer_name_matches": true,
+    "answer_url_matches": true,
+    "article_url": true,
+    "observed_heading": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 2838,
+  "ended_at": "2026-09-07T17:45:34.487407Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "reference",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_reference",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:45:31.648486Z",
+  "task_id": "marca-real-madrid-open-en",
+  "trace": "accepted",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:070c160a6299c5438070b1aa737b14fc2992ed49579c14264884886a5876f971",
+  "trial_id": "reference-e896d5145974",
+  "usage": {
+    "completion_tokens": null,
+    "cost_usd": null,
+    "prompt_tokens": null,
+    "request_count": 0,
+    "unavailable_reason": "reference run uses no model"
+  },
+  "verification_evidence": {
+    "answer": "{\"name\": \"Real Madrid - Racing Club: horario y d\u00f3nde ver hoy en TV el partido del Mundial de Clubes Juvenil\", \"url\": \"https://www.marca.com/futbol/real-madrid/2026/09/07/real-madrid-racing-club-horario-ver-hoy-tv-partido-mundial-clubes-juvenil.html\"}",
+    "heading": "Real Madrid - Racing Club: horario y d\u00f3nde ver hoy en TV el partido del Mundial de Clubes Juvenil",
+    "price_text": "",
+    "url": "https://www.marca.com/futbol/real-madrid/2026/09/07/real-madrid-racing-club-horario-ver-hoy-tv-partido-mundial-clubes-juvenil.html"
+  }
+}

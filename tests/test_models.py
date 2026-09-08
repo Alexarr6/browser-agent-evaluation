@@ -10,6 +10,7 @@ from browser_agent_evaluation.core.models import (
     RestrictedBrowserAction,
     TaskPolicy,
     TaskSpec,
+    acceptance_outcome,
     create_runner_input,
     render_runner_instruction,
 )
@@ -77,3 +78,11 @@ def test_action_requires_semantic_target_and_known_type() -> None:
         ActionTarget()
     with pytest.raises(ValidationError, match="Input should be"):
         RestrictedBrowserAction(type="evaluate", target=ActionTarget(text="x"))
+
+
+def test_reachability_acceptance_cannot_become_a_pass() -> None:
+    reachability_task = task_spec().model_copy(update={"verification_mode": "reachability"})
+
+    assert acceptance_outcome(reachability_task, accepted=True) == "unverified"
+    assert acceptance_outcome(task_spec(), accepted=True) == "passed"
+    assert acceptance_outcome(reachability_task, accepted=False) == "failed"

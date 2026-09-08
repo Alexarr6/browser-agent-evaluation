@@ -1,0 +1,32 @@
+{
+  "action_count": 5,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 22045,
+  "ended_at": "2026-09-07T18:05:47.130629Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:05:25.085574Z",
+  "task_id": "mdn-reference-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully opened the matching MDN CSS reference page for the :has() selector.\",\"memory\":\"The browser is on developer.mozilla.org/es/docs/Web/CSS/Reference/Selectors/:has. The page visibly shows the title ':has' and CSS ':has()' selector content, confirming the requested reference page.\",\"next_goal\":\"Finish because the requested reference page is open and verified.\",\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed the task. The MDN CSS reference page for the ':has()' selector is open at developer.mozilla.org/es/docs/Web/CSS/Reference/Selectors/:has, and the page visibly shows ':has' and ':has()'.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:7b922d1acc08a28285acf5c281ecebed032f34a60b4c325f45f1b5f1841205a7",
+  "trial_id": "browser_use-r3-14f4a20502ff",
+  "usage": {
+    "completion_tokens": 710,
+    "cost_usd": null,
+    "prompt_tokens": 47367,
+    "request_count": 5,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  },
+  "verification_evidence": {}
+}

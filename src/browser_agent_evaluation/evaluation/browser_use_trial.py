@@ -8,7 +8,12 @@ from browser_agent_evaluation.agents.browser_use.runner import (
     run_browser_use_task,
 )
 from browser_agent_evaluation.core.budget import ModelBudget
-from browser_agent_evaluation.core.models import TaskSpec, TrialEvidence, now_utc
+from browser_agent_evaluation.core.models import (
+    TaskSpec,
+    TrialEvidence,
+    acceptance_outcome,
+    now_utc,
+)
 from browser_agent_evaluation.reporting.evidence import write_trial_evidence
 
 
@@ -81,11 +86,12 @@ async def run_browser_use_trial(
         started_at=started,
         ended_at=ended,
         duration_ms=_duration_ms(started, ended),
-        outcome="passed" if passed else "failed",
+        outcome=acceptance_outcome(task, accepted=passed),
         action_count=result.action_count,
         retry_count=0,
         cleanup_verified=True,
         assertion_results=result.assertion_results,
+        verification_evidence=result.verification_evidence or {},
         policy_events=[] if passed else ["framework_or_acceptance_failed"],
         observation_mode="framework_owned",
         usage=result.usage,

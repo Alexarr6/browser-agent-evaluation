@@ -1,0 +1,31 @@
+{
+  "action_count": 7,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 19202,
+  "ended_at": "2026-09-07T18:10:43.499553Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:10:24.296776Z",
+  "task_id": "selenium-key-events-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"textbox\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"textbox focused\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"A\"},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Visible log updates with the keydown/input event for \\\"A\\\"\"}}\n{\"step_index\":3,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"d\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"focus keydown keypress keyup\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"a\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Ada\"}}\n{\"step_index\":5,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"ArrowLeft\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"focus keydown keypress keyup keydown keypress keyup keydown keypress keyup keydown keypress keyup\"}}\n{\"step_index\":6,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"Backspace\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"focus keydown keypress keyup keydown keypress keyup keydown keypress keyup keydown keyup\"}}\n{\"step_index\":7,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"textbox\"},\"value\":\"Tab\"},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"change\"}}\n{\"result\":\"{\\\"status\\\":\\\"completed\\\",\\\"message\\\":\\\"The key sequence was completed and the visible log includes the change event.\\\"}\",\"step_index\":8,\"step_status\":\"complete\",\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"change\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:5a305ea56a52ae23260df8370999cce8be815f9cf5d70b25b6f2f8c37cb987df",
+  "trial_id": "restricted-r3-9c455b49bcb5",
+  "usage": {
+    "completion_tokens": 1060,
+    "cost_usd": 0.00321496,
+    "prompt_tokens": 9589,
+    "request_count": 8,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

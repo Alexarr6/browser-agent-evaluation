@@ -61,6 +61,18 @@ def test_english_reference_recipes_match_spanish_action_shapes() -> None:
         ]
 
 
+def test_wikipedia_reference_selects_the_contract_language() -> None:
+    task_root = Path(__file__).parents[1] / "tasks"
+
+    spanish = reference_actions(load_task(task_root / "wikipedia-search.yaml"))
+    english = reference_actions(load_task(task_root / "en/wikipedia-search-en.yaml"))
+
+    assert spanish[1].type == "select"
+    assert spanish[1].value == "Español"
+    assert english[1].type == "select"
+    assert english[1].value == "English"
+
+
 @pytest.mark.parametrize(
     "filename",
     [
@@ -68,11 +80,10 @@ def test_english_reference_recipes_match_spanish_action_shapes() -> None:
         "amazon-cheapest-coffee-beans-en.yaml",
     ],
 )
-def test_open_ended_references_only_check_landing_page_reachability(filename: str) -> None:
+def test_open_references_cannot_use_a_landing_page_recipe(filename: str) -> None:
     path = Path(__file__).parents[1] / "tasks/experimental" / filename
-    actions = reference_actions(load_task(path))
-
-    assert [action.type for action in actions] == ["navigate"]
+    with pytest.raises(ValueError, match="dynamic reference recipe"):
+        reference_actions(load_task(path))
 
 
 def test_selenium_reference_recipes_have_bounded_multi_action_shape() -> None:

@@ -1,0 +1,44 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "answer_name_matches": true,
+    "answer_price_matches": true,
+    "answer_url_matches": true,
+    "below_14_eur_kg": true,
+    "coffee_beans": true,
+    "not_accessory_or_ground": true,
+    "observed_heading": true,
+    "product_url": true,
+    "unit_price_observed": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 8575,
+  "ended_at": "2026-09-07T17:56:48.338951Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "reference",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_reference",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:56:39.763024Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "accepted",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:070c160a6299c5438070b1aa737b14fc2992ed49579c14264884886a5876f971",
+  "trial_id": "reference-869890725b74",
+  "usage": {
+    "completion_tokens": null,
+    "cost_usd": null,
+    "prompt_tokens": null,
+    "request_count": 0,
+    "unavailable_reason": "reference run uses no model"
+  },
+  "verification_evidence": {
+    "answer": "{\"name\": \"by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\", \"url\": \"https://www.amazon.es/Amazon-Fuerte-Grano-Tueste-Natural/dp/B0F1NG6ZNX/ref=sr_1_2?dib=eyJ2IjoiMSJ9.K5wLwJO2RmfK7BsrOc_uS51dqVgdtkZYTXkpYspBnM5NKwpN2A_OL9VqARK1Cb9XsJBYhGQQu9f8XFEgpr-2JbvwAN6wBOoia-d4fy-SIjPP6I5_sp1JaMiFCSwWj0nYhHsNnXa7_YT0ejsf7qqbtwFR1GfMWSnzYbPYBh5hyV7tGn4oD3MRl4i_j0tXTqJsn7Nf_CpEqr-Y88NrbaIu459dkYaP_RFanksrkgXjKnWeMBkNnBaWgiR3-z7HvcUBKwheYaI91tKPryK4Dek2p_EPwTHp_p1Vs0rvHahfutU.PmasOP9HS6tdi5RI9Tw_qvu3kmUjDli_ShEabYlwdUM&dib_tag=se&keywords=cafe%2Ben%2Bgrano&qid=1788803802&sr=8-2&th=1\", \"eur_per_kg\": \"10.56\"}",
+    "heading": "by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg",
+    "price_text": "10,56\u00a0\u20ac con un ahorro del 9\u00a0%\n-9\u00a0% \n10\n,\n56\u20ac \n10,56&nbsp;&euro; por kg\n(\n10,56\u20ac\n10,56\u20ac / kg)\nPrecio mediano: 11,55\u00a0\u20ac\nPrecio mediano: \n11,55\u20ac\n11,55\u20ac",
+    "url": "https://www.amazon.es/Amazon-Fuerte-Grano-Tueste-Natural/dp/B0F1NG6ZNX/ref=sr_1_2?dib=eyJ2IjoiMSJ9.K5wLwJO2RmfK7BsrOc_uS51dqVgdtkZYTXkpYspBnM5NKwpN2A_OL9VqARK1Cb9XsJBYhGQQu9f8XFEgpr-2JbvwAN6wBOoia-d4fy-SIjPP6I5_sp1JaMiFCSwWj0nYhHsNnXa7_YT0ejsf7qqbtwFR1GfMWSnzYbPYBh5hyV7tGn4oD3MRl4i_j0tXTqJsn7Nf_CpEqr-Y88NrbaIu459dkYaP_RFanksrkgXjKnWeMBkNnBaWgiR3-z7HvcUBKwheYaI91tKPryK4Dek2p_EPwTHp_p1Vs0rvHahfutU.PmasOP9HS6tdi5RI9Tw_qvu3kmUjDli_ShEabYlwdUM&dib_tag=se&keywords=cafe%2Ben%2Bgrano&qid=1788803802&sr=8-2&th=1"
+  }
+}

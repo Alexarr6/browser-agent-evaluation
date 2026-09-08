@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
@@ -7,7 +8,13 @@ from pathlib import Path
 from browser_agent_evaluation.agents.reference import PlaywrightReferenceRunner
 from browser_agent_evaluation.browser.playwright import LiveReferenceExecutor
 from browser_agent_evaluation.browser.session import new_controller
-from browser_agent_evaluation.core.models import TaskSpec, TrialEvidence, UsageEvidence
+from browser_agent_evaluation.core.models import (
+    TaskSpec,
+    TrialEvidence,
+    UsageEvidence,
+    acceptance_outcome,
+)
+from browser_agent_evaluation.evaluation.open_reference import run_open_reference
 from browser_agent_evaluation.evaluation.tasks import reference_actions
 from browser_agent_evaluation.reporting.evidence import write_trial_evidence
 
@@ -26,9 +33,15 @@ async def run_reference_trial(
     )
     result = None
     failure: Exception | None = None
+    verification_evidence: dict[str, str] = {}
     try:
         runner = PlaywrightReferenceRunner(LiveReferenceExecutor(controller))
-        result = await runner.run(task, reference_actions(task))
+        if task.acceptance.verifier:
+            result, verification_evidence = await asyncio.wait_for(
+                run_open_reference(controller, task), timeout=task.timeout_seconds,
+            )
+        else:
+            result = await runner.run(task, reference_actions(task))
     except Exception as error:
         failure = error
     finally:
@@ -42,11 +55,12 @@ async def run_reference_trial(
         started_at=started,
         ended_at=ended,
         duration_ms=_duration_ms(started, ended),
-        outcome="passed" if passed else "failed",
+        outcome=acceptance_outcome(task, accepted=passed),
         action_count=result.action_count if result else 0,
         retry_count=0,
         cleanup_verified=True,
         assertion_results=result.assertions if result else {},
+        verification_evidence=verification_evidence,
         policy_events=[] if passed else [type(failure).__name__ if failure else "reference_failed"],
         observation_mode="reference",
         usage=UsageEvidence(

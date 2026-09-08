@@ -1,0 +1,46 @@
+{
+  "action_count": 9,
+  "assertion_results": {
+    "answer_name_matches": false,
+    "answer_price_matches": false,
+    "answer_url_matches": false,
+    "below_14_eur_kg": false,
+    "coffee_beans": true,
+    "not_accessory_or_ground": true,
+    "observed_heading": true,
+    "product_url": false,
+    "unit_price_observed": false
+  },
+  "cleanup_verified": true,
+  "duration_ms": 27824,
+  "ended_at": "2026-09-07T17:57:36.401589Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "failed",
+  "policy_events": [
+    "framework_or_acceptance_failed"
+  ],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:57:08.577419Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "browser_navigate {\"url\": \"https://www.amazon.es/\"}\nbrowser_click {\"element\": \"Rechazar cookies\", \"target\": \"f4e29\"}\nbrowser_type {\"element\": \"Buscar en Amazon.es\", \"submit\": true, \"target\": \"f4e120\", \"text\": \"cafe en grano\"}\nbrowser_select_option {\"element\": \"Ordenar por\", \"target\": \"f6e270\", \"values\": [\"Precio: De menor a mayor\"]}\nbrowser_wait_for {\"time\": 3}\nbrowser_find {\"regex\": \"/kg|\\u20ac/kg|EUR\\\\/kg|kg/i\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/dp/B0C7V9NQ4M\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=cafe+en+grano\"}\nbrowser_select_option {\"element\": \"Ordenar por\", \"target\": \"f10e270\", \"values\": [\"Precio: De menor a mayor\"]}\nterminal response: {\"done\":true,\"success\":false,\"summary\":\"Unable to complete: Amazon\u2019s search results did not expose product listings or unit prices in the accessible page snapshot, so no qualifying product page could be verified.\"}\nUnable to complete: Amazon\u2019s search results did not expose product listings or unit prices in the accessible page snapshot, so no qualifying product page could be verified.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:cc7165c6a220f9020b897f44b755918338a48230b0a527122891c3cf19fa6c5a",
+  "trial_id": "playwright_mcp-r2-496537ec71ca",
+  "usage": {
+    "completion_tokens": 320,
+    "cost_usd": 0.03218168,
+    "prompt_tokens": 302153,
+    "request_count": 10,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "Unable to complete: Amazon\u2019s search results did not expose product listings or unit prices in the accessible page snapshot, so no qualifying product page could be verified.",
+    "heading": "1-48 de 985 resultados para \"cafe en grano\"\nOrdenar por:\nDestacados\nPrecio: De menor a mayor\nPrecio: De mayor a menor\nPromedio Opiniones de clientes\nLanzamientos recientes\nLos m\u00e1s vendidos\nOrdenar por:Precio: De menor a mayor",
+    "price_text": "",
+    "url": "https://www.amazon.es/s?k=cafe+en+grano&s=price-asc-rank&qid=1788803849&ref=sr_st_price-asc-rank&ds=v1%3ANMui4tjF5UImjOIeE670AJnVVSuM1upGS%2B%2F4AvmUz2g"
+  }
+}

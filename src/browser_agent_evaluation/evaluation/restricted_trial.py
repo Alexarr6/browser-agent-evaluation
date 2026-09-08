@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import json
 import uuid
 from collections.abc import Callable
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -11,7 +13,12 @@ from browser_agent_evaluation.agents.restricted.agent import AgentOutcome, Restr
 from browser_agent_evaluation.browser.session import new_controller
 from browser_agent_evaluation.core.assertions import evaluate_acceptance
 from browser_agent_evaluation.core.budget import ModelBudget
-from browser_agent_evaluation.core.models import TaskSpec, TrialEvidence, UsageEvidence
+from browser_agent_evaluation.core.models import (
+    TaskSpec,
+    TrialEvidence,
+    UsageEvidence,
+    acceptance_outcome,
+)
 from browser_agent_evaluation.providers.chat_completions import (
     DEFAULT_MODEL,
     ChatCompletionsPlanner,
@@ -46,6 +53,7 @@ async def run_restricted_trial(
     outcome: AgentOutcome | None = None
     assertions: dict[str, bool] = {}
     failure: Exception | None = None
+    verification_evidence: dict[str, str] = {}
     try:
         await controller.navigate(task.start_url)
         async with httpx.AsyncClient() as client:
@@ -58,7 +66,13 @@ async def run_restricted_trial(
                 endpoint=provider_endpoint,
             )
             outcome = await RestrictedBrowserAgent(planner).run(task, controller, progress=progress)
-        assertions = evaluate_acceptance(task.acceptance, await controller.page_state())
+        state = await controller.page_state()
+        if task.acceptance.verifier:
+            answer = json.loads(outcome.proposal_history[-1]).get("result", "")
+            facts = await controller.verification_facts()
+            state = replace(state, facts=facts, answer=answer)
+            verification_evidence = {**facts, "answer": answer}
+        assertions = evaluate_acceptance(task.acceptance, state)
     except Exception as error:
         failure = error
     finally:
@@ -74,11 +88,12 @@ async def run_restricted_trial(
         started_at=started,
         ended_at=ended,
         duration_ms=_duration_ms(started, ended),
-        outcome="passed" if passed else "failed",
+        outcome=acceptance_outcome(task, accepted=passed),
         action_count=outcome.action_count if outcome else 0,
         retry_count=0,
         cleanup_verified=True,
         assertion_results=assertions,
+        verification_evidence=verification_evidence,
         policy_events=[]
         if passed
         else [outcome.terminal_reason if outcome else type(failure).__name__],

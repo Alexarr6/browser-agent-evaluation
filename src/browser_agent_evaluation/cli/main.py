@@ -3,9 +3,10 @@ from __future__ import annotations
 import sys
 from collections.abc import Callable, Sequence
 
-from browser_agent_evaluation.cli import micro, repeat, report, smoke
+from browser_agent_evaluation.cli import micro, refresh, repeat, report, smoke
 
 _COMMANDS: dict[str, Callable[[Sequence[str] | None], None]] = {
+    "refresh": refresh.main,
     "micro": micro.main,
     "repeat": repeat.main,
     "report": report.main,
@@ -16,7 +17,7 @@ _COMMANDS: dict[str, Callable[[Sequence[str] | None], None]] = {
 def main(argv: Sequence[str] | None = None) -> None:
     arguments = list(sys.argv[1:] if argv is None else argv)
     if not arguments or arguments[0] in {"-h", "--help"}:
-        print("Usage: browser-eval {repeat|report|smoke|micro} [options]")
+        print("Usage: browser-eval {repeat|refresh|report|smoke|micro} [options]")
         return
     command = arguments.pop(0)
     handler = _COMMANDS.get(command)

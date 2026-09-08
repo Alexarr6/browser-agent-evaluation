@@ -17,5 +17,6 @@ policy:
   allow_form_submit: false
 max_actions: 48
 timeout_seconds: 300
+verification_mode: task_completion
 acceptance:
   visible_text: change

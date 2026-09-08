@@ -1,0 +1,32 @@
+{
+  "action_count": 5,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 30814,
+  "ended_at": "2026-09-07T17:47:43.079601Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:47:12.265463Z",
+  "task_id": "mdn-reference-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"button\",\"name\":\"Search the site\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Search interface opens\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"combobox\",\"name\":\"Search\"},\"value\":\":has()\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Search results\"}}\n{\"step_index\":3,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"link\",\"name\":\"Site search for :has()\"}},\"expected_state\":{\"kind\":\"url_contains\",\"value\":\"/search?q=%3Ahas%28%29\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"wait\",\"value\":\"1000\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\":has()\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"link\",\"name\":\":has\"}},\"expected_state\":{\"kind\":\"url_contains\",\"value\":\"/es/docs/Web/CSS/Reference/Selectors/:has\"}}\n{\"result\":\"{\\\"status\\\":\\\"complete\\\",\\\"message\\\":\\\"The CSS reference page for the :has() selector is open and verified.\\\"}\",\"step_index\":6,\"step_status\":\"complete\",\"expected_state\":{\"kind\":\"text_visible\",\"value\":\":has\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:f58e108f5d312dde7f61e477568a3dd6a223a7375c64b9d35695a80d4fec1716",
+  "trial_id": "restricted-r1-48b5c60916c9",
+  "usage": {
+    "completion_tokens": 761,
+    "cost_usd": 0.0086446,
+    "prompt_tokens": 18187,
+    "request_count": 6,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

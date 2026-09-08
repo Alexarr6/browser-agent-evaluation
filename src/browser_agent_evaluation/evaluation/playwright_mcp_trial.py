@@ -20,7 +20,13 @@ from browser_agent_evaluation.browser.binaries import (
 from browser_agent_evaluation.configuration.paths import NODE_MODULES_ROOT, PROJECT_ROOT
 from browser_agent_evaluation.core.assertions import PageState, evaluate_acceptance
 from browser_agent_evaluation.core.budget import ModelBudget
-from browser_agent_evaluation.core.models import TaskSpec, TrialEvidence, UsageEvidence, now_utc
+from browser_agent_evaluation.core.models import (
+    TaskSpec,
+    TrialEvidence,
+    UsageEvidence,
+    acceptance_outcome,
+    now_utc,
+)
 from browser_agent_evaluation.reporting.evidence import write_trial_evidence
 
 
@@ -163,6 +169,8 @@ async def run_playwright_mcp_trial(
             title=result.final_title,
             visible_text=result.visible_text,
             input_values={},
+            facts=result.verification_evidence or {},
+            answer=(result.verification_evidence or {}).get("answer", ""),
         ),
     )
     passed = result.done and result.successful and all(assertions.values())
@@ -173,11 +181,12 @@ async def run_playwright_mcp_trial(
         started_at=started,
         ended_at=ended,
         duration_ms=_duration_ms(started, ended),
-        outcome="passed" if passed else "failed",
+        outcome=acceptance_outcome(task, accepted=passed),
         action_count=result.action_count,
         retry_count=0,
         cleanup_verified=True,
         assertion_results=assertions,
+        verification_evidence=result.verification_evidence or {},
         policy_events=[] if passed else ["framework_or_acceptance_failed"],
         observation_mode="mcp_accessibility",
         usage=result.usage,

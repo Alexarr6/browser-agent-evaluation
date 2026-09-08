@@ -1,0 +1,34 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 13259,
+  "ended_at": "2026-09-07T17:47:56.342317Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:47:43.083064Z",
+  "task_id": "mdn-reference-en",
+  "trace": "browser_click {\"element\": \"Search the site button\", \"target\": \"e54\"}\nbrowser_type {\"element\": \"Search field\", \"submit\": true, \"target\": \"e318\", \"text\": \":has()\"}\nbrowser_click {\"element\": \"English (US) link\", \"target\": \"f1e109\"}\nbrowser_navigate {\"url\": \"https://developer.mozilla.org/en-US/docs/Web/CSS/:has\"}\nterminal response: {\"done\":true,\"success\":true,\"summary\":\"Opened the MDN CSS reference page for :has(). The page title is \u201c:has() CSS pseudo-class - CSS | MDN\u201d and it visibly shows the :has() selector.\"}\nOpened the MDN CSS reference page for :has(). The page title is \u201c:has() CSS pseudo-class - CSS | MDN\u201d and it visibly shows the :has() selector.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:07ee674daaa6f6b7229956911ab2db343b4ff59a97040be3395d3a706ebe43e3",
+  "trial_id": "playwright_mcp-r1-65b05d98c23e",
+  "usage": {
+    "completion_tokens": 169,
+    "cost_usd": 0.009563680000000001,
+    "prompt_tokens": 56158,
+    "request_count": 5,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "Opened the MDN CSS reference page for :has(). The page title is \u201c:has() CSS pseudo-class - CSS | MDN\u201d and it visibly shows the :has() selector."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "action_count": 5,
+  "assertion_results": {
+    "page_title": true,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 19993,
+  "ended_at": "2026-09-07T17:51:38.255394Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:51:18.261702Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Playwright\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Playwright\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Enter\"},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Search results or the Playwright article appears\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"navigate\",\"value\":\"https://en.wikipedia.org\"},\"expected_state\":{\"kind\":\"url_contains\",\"value\":\"en.wikipedia.org\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Playwright\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Playwright\"}}\n{\"step_index\":5,\"step_status\":\"in_progress\",\"action\":{\"type\":\"press\",\"target\":{\"role\":\"searchbox\",\"name\":\"Search Wikipedia\"},\"value\":\"Enter\"},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Search results for Playwright\"}}\n{\"result\":\"{\\\"status\\\":\\\"complete\\\",\\\"article\\\":\\\"Playwright\\\",\\\"title\\\":\\\"Playwright\\\"}\",\"step_index\":4,\"step_status\":\"complete\"}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:5f5bf8499eb59e9f6cdea2db2a05698d7c080ee829e3b3cc049bb91a15029d3b",
+  "trial_id": "restricted-r1-95d06bb39c35",
+  "usage": {
+    "completion_tokens": 786,
+    "cost_usd": 0.0093876,
+    "prompt_tokens": 19932,
+    "request_count": 6,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

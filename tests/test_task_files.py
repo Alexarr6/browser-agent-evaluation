@@ -57,6 +57,8 @@ def test_experimental_open_ended_tasks_are_valid_and_safe(
     assert task.policy.allowed_domains == allowed_domains
     assert task.policy.risk == "read_only"
     assert task.policy.allow_form_submit is False
+    assert task.verification_mode == "task_completion"
+    assert task.acceptance.verifier is not None
     assert "exact" in task.completion
 
 
@@ -94,3 +96,12 @@ def test_pending_public_tasks_are_valid_and_safe() -> None:
         "selenium-key-events": 7,
         "selenium-web-form": 7,
     }
+
+
+def test_every_atomic_task_file_declares_its_verification_mode_explicitly() -> None:
+    for path in sorted(TASKS_ROOT.rglob("*.yaml")):
+        payload = yaml.safe_load(path.read_text("utf-8"))
+        if "instruction" not in payload:
+            continue
+
+        assert payload["verification_mode"] in {"task_completion", "reachability"}, path

@@ -1,0 +1,34 @@
+{
+  "action_count": 2,
+  "assertion_results": {
+    "page_title": true,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 12780,
+  "ended_at": "2026-09-07T17:52:06.416679Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:51:53.635911Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "browser_click {\"element\": \"English language link\", \"target\": \"e13\"}\nbrowser_type {\"element\": \"Search Wikipedia\", \"submit\": true, \"target\": \"f1e23\", \"text\": \"Playwright\"}\nterminal response: {\"done\":true,\"success\":true,\"summary\":\"Opened the main Wikipedia article at https://en.wikipedia.org/wiki/Playwright. The page heading is \u201cPlaywright\u201d and the page title is \u201cPlaywright - Wikipedia\u201d.\"}\nOpened the main Wikipedia article at https://en.wikipedia.org/wiki/Playwright. The page heading is \u201cPlaywright\u201d and the page title is \u201cPlaywright - Wikipedia\u201d.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:097f83c15fd13431eb1ee0c28ab051ba6f0867441141ec863efae4edf7ac93e8",
+  "trial_id": "playwright_mcp-r1-e0d03c204385",
+  "usage": {
+    "completion_tokens": 109,
+    "cost_usd": 0.0040594,
+    "prompt_tokens": 17632,
+    "request_count": 3,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "Opened the main Wikipedia article at https://en.wikipedia.org/wiki/Playwright. The page heading is \u201cPlaywright\u201d and the page title is \u201cPlaywright - Wikipedia\u201d."
+  }
+}

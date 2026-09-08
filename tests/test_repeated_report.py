@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -31,14 +32,95 @@ TASK_IDS = (
 AI_RUNNERS = ("restricted", "browser_use", "playwright_mcp")
 
 
+def test_selective_refresh_keeps_standard_evidence_and_backups(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from browser_agent_evaluation.cli import refresh, repeat
+
+    original_path = _write_matrix(tmp_path, skip_ai_on_reference_failure=False)
+    original_bytes = original_path.read_bytes()
+    before = load_repeated_evidence(original_path)
+    standard = {
+        record.path.name: record.path.read_bytes()
+        for record in before.records
+        if not record.trial.task_id.startswith(("marca-", "amazon-"))
+    }
+    monkeypatch.setattr(refresh, "load_local_runtime_environment", lambda _: None)
+    monkeypatch.setattr(
+        refresh,
+        "load_experiment_configuration",
+        lambda _: SimpleNamespace(
+            provider=SimpleNamespace(endpoint=before.manifest.provider_endpoint)
+        ),
+    )
+
+    def fake_repeat(argv: list[str]) -> None:
+        directory = Path(argv[argv.index("--output-dir") + 1])
+        path = _write_matrix(directory, skip_ai_on_reference_failure=False)
+        generated = load_repeated_evidence(path)
+        filenames = []
+        for record in generated.records:
+            if record.trial.task_id.startswith(("marca-", "amazon-")):
+                name = "replacement-" + record.path.name
+                (directory / name).write_bytes(record.path.read_bytes())
+                filenames.append(name)
+        manifest = generated.manifest.model_copy(
+            update={
+                "tasks": [
+                    task
+                    for task in generated.manifest.tasks
+                    if task.id.startswith(("marca-", "amazon-"))
+                ],
+                "artifact_files": filenames,
+            }
+        )
+        write_evaluation_manifest(manifest, output_dir=directory)
+
+    monkeypatch.setattr(repeat, "main", fake_repeat)
+    task_root = Path(__file__).parents[1] / "tasks/experimental"
+    refresh.main(
+        [
+            "--manifest",
+            str(original_path),
+            "--task-path",
+            str(task_root / "marca-real-madrid-open-en.yaml"),
+            str(task_root / "amazon-cheapest-coffee-beans-en.yaml"),
+        ]
+    )
+    after = load_repeated_evidence(original_path)
+    assert len(after.records) == 84
+    assert sum(record.path.name.startswith("replacement-") for record in after.records) == 24
+    for name, raw in standard.items():
+        assert (tmp_path / name).read_bytes() == raw
+    assert next(tmp_path.glob("refresh-*/previous-manifest.json")).read_bytes() == original_bytes
+
+
+def test_report_rejects_forged_open_task_success(tmp_path: Path) -> None:
+    manifest_path = _write_matrix(tmp_path, skip_ai_on_reference_failure=False)
+    manifest = EvaluationManifest.model_validate_json(manifest_path.read_bytes())
+    task = next(task for task in manifest.tasks if task.id.startswith("marca-"))
+    task.verification_mode = "task_completion"
+    task.verifier = "marca_article"
+    for name in manifest.artifact_files:
+        path = tmp_path / name
+        payload = json.loads(path.read_text())
+        if payload["task_id"] == task.id:
+            payload["outcome"] = "passed"
+            path.write_text(json.dumps(payload))
+    write_evaluation_manifest(manifest, output_dir=tmp_path)
+    with pytest.raises(RepeatedReportError, match="independent verification"):
+        load_repeated_evidence(manifest_path)
+
+
 def test_manifested_report_keeps_all_seven_tasks_and_reference_skips(tmp_path: Path) -> None:
     manifest_path = _write_matrix(tmp_path)
 
     report = render_repeated_report(load_repeated_evidence(manifest_path))
 
     assert "**7 tasks** (5 standard and 2 experimental)" in report
-    assert "| Deterministic reference | 20/21 | 0 | 0 |" in report
-    assert "| browser-use | 20/20 | 0 | 1 |" in report
+    assert "| Deterministic reference | 14/15 | 6 | 0 | 0 |" in report
+    assert "| browser-use | 14/14 | 6 | 0 | 1 |" in report
     assert "0.01900000 + 1 unavailable" in report
     assert "48 model requests and 1,000,000 cumulative tokens" in report
     assert "| Marca Real Madrid (English) | experimental |" in report
@@ -49,15 +131,11 @@ def test_manifested_report_rejects_missing_attempt_after_reference_pass(tmp_path
     manifest_path = _write_matrix(tmp_path)
     manifest = EvaluationManifest.model_validate_json(manifest_path.read_bytes())
     omitted = next(
-        name
-        for name in manifest.artifact_files
-        if name.startswith("restricted-mdn-reference-en")
+        name for name in manifest.artifact_files if name.startswith("restricted-mdn-reference-en")
     )
     manifest_path.write_text(
         manifest.model_copy(
-            update={
-                "artifact_files": [name for name in manifest.artifact_files if name != omitted]
-            }
+            update={"artifact_files": [name for name in manifest.artifact_files if name != omitted]}
         ).model_dump_json(),
         encoding="utf-8",
     )
@@ -76,11 +154,25 @@ def test_default_reference_policy_keeps_every_task_in_ai_matrix(tmp_path: Path) 
     report = render_repeated_report(load_repeated_evidence(manifest_path))
 
     assert "| Reference policy | always run AI |" in report
-    assert "| browser-use | 21/21 | 0 | 0 |" in report
+    assert "| browser-use | 15/15 | 6 | 0 | 0 |" in report
     assert "unavailable (21 trials)" in report
     assert "## Aggregate observations" in report
-    assert "Highest observed AI success rate: Restricted agent (21/21)" in report
+    assert "Highest observed AI success rate: Restricted agent (15/15)" in report
     assert "A complete cost ranking is unavailable" in report
+
+
+def test_report_discloses_execution_notes(tmp_path: Path) -> None:
+    manifest_path = _write_matrix(tmp_path)
+    manifest = EvaluationManifest.model_validate_json(manifest_path.read_bytes())
+    write_evaluation_manifest(
+        manifest.model_copy(update={"execution_notes": ["Reference-only repair."]}),
+        output_dir=tmp_path,
+    )
+
+    report = render_repeated_report(load_repeated_evidence(manifest_path))
+
+    assert "### Execution notes" in report
+    assert "- Reference-only repair." in report
 
 
 def _write_matrix(
@@ -120,10 +212,7 @@ def _write_matrix(
                             runner == "browser_use"
                             and (
                                 all_browser_use_costs_unknown
-                                or (
-                                    task_id == "mdn-reference-en"
-                                    and repetition == 0
-                                )
+                                or (task_id == "mdn-reference-en" and repetition == 0)
                             )
                         ),
                     )
@@ -136,15 +225,18 @@ def _write_matrix(
             ManifestTask(
                 id=task_id,
                 category=(
-                    "experimental"
-                    if task_id.startswith(("marca-", "amazon-"))
-                    else "standard"
+                    "experimental" if task_id.startswith(("marca-", "amazon-")) else "standard"
                 ),
                 source=f"{task_id}.yaml",
                 contract_sha256="a" * 64,
                 max_actions=48,
                 timeout_seconds=300,
                 acceptance_fields=["visible_text"],
+                verification_mode=(
+                    "reachability"
+                    if task_id.startswith(("marca-", "amazon-"))
+                    else "task_completion"
+                ),
             )
             for task_id in TASK_IDS
         ],
@@ -189,7 +281,13 @@ def _write_trial(
         started_at=started,
         ended_at=started + timedelta(seconds=repetition + 1),
         duration_ms=(repetition + 1) * 1_000,
-        outcome="passed" if passed else "failed",
+        outcome=(
+            "unverified"
+            if passed and task_id.startswith(("marca-", "amazon-"))
+            else "passed"
+            if passed
+            else "failed"
+        ),
         action_count=0 if is_reference else 2,
         retry_count=0,
         cleanup_verified=True,
@@ -204,7 +302,9 @@ def _write_trial(
             unavailable_reason=(
                 "reference run uses no model"
                 if is_reference
-                else "provider cost unavailable" if unknown_cost else None
+                else "provider cost unavailable"
+                if unknown_cost
+                else None
             ),
         ),
     )

@@ -1,0 +1,46 @@
+{
+  "action_count": 12,
+  "assertion_results": {
+    "answer_name_matches": false,
+    "answer_price_matches": false,
+    "answer_url_matches": false,
+    "below_14_eur_kg": false,
+    "coffee_beans": false,
+    "not_accessory_or_ground": true,
+    "observed_heading": true,
+    "product_url": false,
+    "unit_price_observed": false
+  },
+  "cleanup_verified": true,
+  "duration_ms": 95796,
+  "ended_at": "2026-09-07T17:51:05.306939Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "failed",
+  "policy_events": [
+    "framework_or_acceptance_failed"
+  ],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:49:29.510434Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "browser_click {\"element\": \"Rechazar cookies\", \"target\": \"f2e29\"}\nbrowser_type {\"element\": \"Buscar en Amazon.es\", \"submit\": true, \"target\": \"f2e120\", \"text\": \"cafe en grano\"}\nbrowser_find {\"regex\": \"/[0-9]+[,.][0-9]+\\\\s*\\u20ac/i\"}\nbrowser_find {\"regex\": \"/Cafe|caf\\u00e9|Caf\\u00e9/i\"}\nbrowser_select_option {\"element\": \"Ordenar por precio menor\", \"target\": \"f4e270\", \"values\": [\"Precio: De menor a mayor\"]}\nbrowser_press_key {\"key\": \"End\"}\nbrowser_press_key {\"key\": \"Home\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/dp/B0C5QJ1M7R\"}\nbrowser_navigate {\"url\": \"https://www.amazon.es/s?k=cafe+en+grano&s=price-asc-rank\"}\nbrowser_find {\"text\": \"EUR/kg\"}\nbrowser_click failed: ### Error\nTimeoutError: browserBackend.callTool: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('aria-ref=f8e9')\u001b[22m\n\u001b[2m    - locator resolved to <a tabindex=\"-1\" aria-label=\"Resultados\" href=\".s-asin a:has(h2)\" data-behavior=\"navigate\" data-selector-prereq=\".s-asin\" id=\"nav-assist-skip-to-results\" data-target=\".s-asin a:has(h2)\" data-nav-assist-menu-item-index=\"1\" aria-describedby=\"nav-assist-shortcut-help\" data-scrolltarget=\"#s-skipLinkTargetForMainSearchResults\" class=\"nav-\nbrowser_navigate {\"url\": \"https://www.amazon.es/gp/bestsellers/grocery/6198059031\"}\nterminal response: {\"done\":true,\"success\":false,\"summary\":\"No pude completar la tarea: los resultados de Amazon.es no expusieron productos ni precios unitarios accesibles para verificar un producto de caf\u00e9 en grano por debajo de 14 EUR/kg.\"}\nNo pude completar la tarea: los resultados de Amazon.es no expusieron productos ni precios unitarios accesibles para verificar un producto de caf\u00e9 en grano por debajo de 14 EUR/kg.",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:4e4bb5d5df41ca17659b4492671b7c58f7e6a23ad1253d1ad43ac35f7253771a",
+  "trial_id": "playwright_mcp-r1-3abfdb43af1e",
+  "usage": {
+    "completion_tokens": 402,
+    "cost_usd": 0.05403948,
+    "prompt_tokens": 599604,
+    "request_count": 13,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "No pude completar la tarea: los resultados de Amazon.es no expusieron productos ni precios unitarios accesibles para verificar un producto de caf\u00e9 en grano por debajo de 14 EUR/kg.",
+    "heading": "Los m\u00e1s vendidos de Amazon",
+    "price_text": "",
+    "url": "https://www.amazon.es/gp/bestsellers/grocery/6198059031"
+  }
+}

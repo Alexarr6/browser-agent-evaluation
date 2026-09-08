@@ -1,0 +1,34 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "page_title": false,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 2184,
+  "ended_at": "2026-09-07T17:51:18.259689Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "reference",
+  "outcome": "failed",
+  "policy_events": [
+    "reference_failed"
+  ],
+  "retry_count": 0,
+  "runner": "playwright_reference",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:51:16.074879Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "acceptance_failed",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:98fe62f67aa8c5e012e407d19bc9be57d5ff8e37aad53471c22dbe09949349db",
+  "trial_id": "reference-6dc15cc89ca9",
+  "usage": {
+    "completion_tokens": null,
+    "cost_usd": null,
+    "prompt_tokens": null,
+    "request_count": 0,
+    "unavailable_reason": "reference run uses no model"
+  },
+  "verification_evidence": {}
+}

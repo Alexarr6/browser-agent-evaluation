@@ -9,12 +9,14 @@ from typing import Literal
 from pydantic import Field, model_validator
 
 from browser_agent_evaluation.core.models import BrowserEvalModel
+from browser_agent_evaluation.reporting.evidence import _atomic_write
 
 AiRunnerName = Literal["restricted", "browser_use", "playwright_mcp"]
 TaskCategory = Literal["standard", "experimental"]
 
 
 class ManifestTask(BrowserEvalModel):
+    verifier: Literal["marca_article", "amazon_coffee_under_14"] | None = None
     id: str = Field(min_length=1, max_length=100)
     category: TaskCategory
     source: str = Field(min_length=1, max_length=500)
@@ -22,6 +24,7 @@ class ManifestTask(BrowserEvalModel):
     max_actions: int = Field(ge=1)
     timeout_seconds: int = Field(ge=1)
     acceptance_fields: list[str] = Field(min_length=1)
+    verification_mode: Literal["task_completion", "reachability"] = "task_completion"
 
 
 class ManifestLimits(BrowserEvalModel):
@@ -55,6 +58,7 @@ class EvaluationManifest(BrowserEvalModel):
     skip_ai_on_reference_failure: bool
     limits: ManifestLimits
     artifact_files: list[str] = Field(min_length=1)
+    execution_notes: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_complete_manifest(self) -> EvaluationManifest:
@@ -87,6 +91,8 @@ def manifest_task(
     max_actions: int,
     timeout_seconds: int,
     acceptance_fields: list[str],
+    verification_mode: Literal["task_completion", "reachability"],
+    verifier: Literal["marca_article", "amazon_coffee_under_14"] | None = None,
 ) -> ManifestTask:
     return ManifestTask(
         id=task_id,
@@ -96,15 +102,17 @@ def manifest_task(
         max_actions=max_actions,
         timeout_seconds=timeout_seconds,
         acceptance_fields=acceptance_fields,
+        verification_mode=verification_mode,
+        verifier=verifier,
     )
 
 
 def write_evaluation_manifest(manifest: EvaluationManifest, *, output_dir: Path) -> Path:
     path = output_dir / "run-manifest.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
+    _atomic_write(
+        path,
         json.dumps(manifest.model_dump(mode="json"), indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
     return path
 

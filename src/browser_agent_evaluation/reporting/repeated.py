@@ -9,6 +9,7 @@ from pathlib import Path
 from statistics import median
 
 from browser_agent_evaluation.core.models import RunnerName, TrialEvidence
+from browser_agent_evaluation.core.open_verification import verify_open
 from browser_agent_evaluation.reporting.comparison import RUNNER_LABELS, TASK_LABELS
 from browser_agent_evaluation.reporting.manifest import (
     EvaluationManifest,
@@ -40,6 +41,7 @@ def load_repeated_evidence(manifest_path: Path) -> RepeatedEvidence:
     records: list[EvidenceRecord] = []
     trial_ids: set[str] = set()
     task_ids = {task.id for task in manifest.tasks}
+    task_by_id = {task.id: task for task in manifest.tasks}
     runner_ids = {"playwright_reference", *manifest.ai_runners}
 
     for filename in manifest.artifact_files:
@@ -65,6 +67,20 @@ def load_repeated_evidence(manifest_path: Path) -> RepeatedEvidence:
             not trial.assertion_results or not all(trial.assertion_results.values())
         ):
             raise RepeatedReportError(f"passing trial lacks successful assertions: {path}")
+        verification_mode = task_by_id[trial.task_id].verification_mode
+        verifier = task_by_id[trial.task_id].verifier
+        if verifier and trial.outcome == "passed":
+            facts = trial.verification_evidence
+            if not all(verify_open(verifier, facts, facts.get("answer", "")).values()):
+                raise RepeatedReportError(f"passing trial fails independent verification: {path}")
+        if verification_mode == "reachability" and trial.outcome == "passed":
+            raise RepeatedReportError(
+                f"reachability-only trial cannot claim task completion: {path}"
+            )
+        if verification_mode == "task_completion" and trial.outcome == "unverified":
+            raise RepeatedReportError(
+                f"task-completion trial cannot be marked unverified: {path}"
+            )
         trial_ids.add(trial.trial_id)
         records.append(
             EvidenceRecord(path=path, sha256=hashlib.sha256(raw).hexdigest(), trial=trial)
@@ -78,7 +94,9 @@ def load_repeated_evidence(manifest_path: Path) -> RepeatedEvidence:
                 f"{task.id} requires {manifest.repetitions} reference trials; "
                 f"found {len(references)}"
             )
-        reference_passes = sum(record.trial.outcome == "passed" for record in references)
+        reference_passes = sum(
+            record.trial.outcome in {"passed", "unverified"} for record in references
+        )
         expected_ai_trials = (
             reference_passes
             if manifest.skip_ai_on_reference_failure
@@ -111,12 +129,12 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
         "",
         f"This report covers one unified matrix of **{len(manifest.tasks)} tasks** "
         f"({standard_count} standard and {experimental_count} experimental), "
-        f"{manifest.repetitions} repetitions and {len(runners)} runners. Experimental tasks "
-        "are labelled because their acceptance criteria are less mature, but they are planned "
-        "and reported exactly like the standard tasks.",
+        f"{manifest.repetitions} repetitions and {len(runners)} runners. Every task is mandatory "
+        "in the execution matrix. Tasks with reachability-only checks are reported as "
+        "unverified and never counted as completed.",
         "",
-        "> A pass means that the configured end-state assertions succeeded. It does not prove "
-        "that every semantic detail of the natural-language task was independently verified.",
+        "> `passed` is reserved for task-completion contracts. A successful "
+        "reachability-only check is `unverified`, never a completed task.",
         "",
         "## Run configuration",
         "",
@@ -136,15 +154,28 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
         "| Reference/MCP/restricted browser | "
         f"{_text_or_unavailable(manifest.reference_browser_version)} |",
         f"| browser-use browser | {_text_or_unavailable(manifest.browser_use_browser_version)} |",
-        "",
-        "## Task contracts",
-        "",
-        "| Task | Category | Assertions | Timeout | Action cap | Contract |",
-        "|---|---|---|---:|---:|---|",
     ]
+    if manifest.execution_notes:
+        lines.extend(
+            [
+                "",
+                "### Execution notes",
+                "",
+                *(f"- {note}" for note in manifest.execution_notes),
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "## Task contracts",
+            "",
+            "| Task | Category | Verification | Assertions | Timeout | Action cap | Contract |",
+            "|---|---|---|---|---:|---:|---|",
+        ]
+    )
     for task in manifest.tasks:
         lines.append(
-            f"| {_task_label(task)} | {task.category} | "
+            f"| {_task_label(task)} | {task.category} | `{task.verification_mode}` | "
             f"{', '.join(f'`{field}`' for field in task.acceptance_fields)} | "
             f"{task.timeout_seconds}s | {task.max_actions} | "
             f"`{task.source}` (`{task.contract_sha256[:12]}`) |"
@@ -155,13 +186,15 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "",
             "## Per-task results",
             "",
-            "Success uses valid trials as its denominator. `Invalid` identifies trials without "
-            "comparable cleanup evidence. `Ref-skipped` records planned AI trials that were not "
-            "started because the deterministic reference failed.",
+            "`Verified success` is available only for task-completion contracts. `Unverified` "
+            "means that a reachability probe succeeded without proving the task instruction. "
+            "`Invalid` identifies trials without comparable cleanup evidence. `Ref-skipped` "
+            "records planned AI trials that were not started because the deterministic "
+            "reference failed.",
             "",
-            "| Task | Category | Runner | Success | Invalid | Ref-skipped | "
-            "Median passing time | Requests | Tokens | Cost (USD) |",
-            "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
+            "| Task | Category | Runner | Verified success | Unverified | Invalid | Ref-skipped | "
+            "Median accepted time | Requests | Tokens | Cost (USD) |",
+            "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
         ]
     )
     by_runner: dict[RunnerName, list[EvidenceRecord]] = defaultdict(list)
@@ -179,14 +212,28 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "",
             "## Runner aggregate",
             "",
-            "| Runner | Success | Invalid | Ref-skipped | Median passing time | Requests | "
-            "Tokens | Cost (USD) |",
-            "|---|---:|---:|---:|---:|---:|---:|---:|",
+            "Verified-success denominators contain only task-completion contracts. Consumption "
+            "totals contain every attempted task, including reachability-only tasks and failures.",
+            "",
+            "| Runner | Verified success | Unverified | Invalid | Ref-skipped | "
+            "Median verified time | Requests | Tokens | Cost (USD) |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
         ]
     )
     for runner in runners:
+        verified_records = [
+            record
+            for task in manifest.tasks
+            if task.verification_mode == "task_completion"
+            for record in grouped[(task.id, runner)]
+        ]
         lines.append(
-            _aggregate_row(runner, by_runner[runner], skipped_by_runner[runner])
+            _aggregate_row(
+                runner,
+                by_runner[runner],
+                verified_records,
+                skipped_by_runner[runner],
+            )
         )
 
     lines.extend(
@@ -228,8 +275,8 @@ def render_repeated_report(evidence: RepeatedEvidence) -> str:
             "- Reference failures are site-health signals. AI trials still run unless the "
             "manifest explicitly enables reference-failure skipping; any skipped cells are not "
             "AI successes or failures.",
-            "- Experimental tasks are mandatory members of this run, but their current assertions "
-            "do not independently verify every requested semantic detail.",
+            "- Reachability-only tasks are mandatory members of this run, but successful probes "
+            "are unverified and excluded from task-completion success rates.",
             "- Action counts are omitted from the comparison because framework-native actions are "
             "not equivalent across runners.",
             "- Public websites, provider limits and framework startup can affect outcomes and "
@@ -270,6 +317,8 @@ def _group_records(
 
 
 def _task_label(task: ManifestTask) -> str:
+    if task.verifier == "amazon_coffee_under_14":
+        return "Amazon coffee beans below 14 EUR/kg (English)"
     return TASK_LABELS.get(task.id, task.id)
 
 
@@ -282,23 +331,38 @@ def _result_row(
     trials = [record.trial for record in records]
     valid = [trial for trial in trials if trial.outcome != "invalidated"]
     passing = [trial for trial in valid if trial.outcome == "passed"]
-    invalid = len(trials) - len(valid)
+    unverified = [trial for trial in valid if trial.outcome == "unverified"]
+    invalid = sum(trial.outcome == "invalidated" for trial in trials)
+    success = (
+        f"{len(passing)}/{len(valid)}"
+        if task.verification_mode == "task_completion"
+        else "N/A"
+    )
     return (
         f"| {_task_label(task)} | {task.category} | {RUNNER_LABELS[runner]} | "
-        f"{len(passing)}/{len(valid)} | {invalid} | {skipped} | "
-        f"{_median_passing_time(passing)} | {sum(trial.usage.request_count for trial in trials)} | "
+        f"{success} | {len(unverified)} | {invalid} | {skipped} | "
+        f"{_median_passing_time([*passing, *unverified])} | "
+        f"{sum(trial.usage.request_count for trial in trials)} | "
         f"{_token_display(trials, is_reference=runner == 'playwright_reference')} | "
         f"{_cost_display(trials, is_reference=runner == 'playwright_reference')} |"
     )
 
 
-def _aggregate_row(runner: RunnerName, records: list[EvidenceRecord], skipped: int) -> str:
+def _aggregate_row(
+    runner: RunnerName,
+    records: list[EvidenceRecord],
+    verified_records: list[EvidenceRecord],
+    skipped: int,
+) -> str:
     trials = [record.trial for record in records]
-    valid = [trial for trial in trials if trial.outcome != "invalidated"]
-    passing = [trial for trial in valid if trial.outcome == "passed"]
-    invalid = len(trials) - len(valid)
+    verified_trials = [record.trial for record in verified_records]
+    valid_verified = [trial for trial in verified_trials if trial.outcome != "invalidated"]
+    passing = [trial for trial in valid_verified if trial.outcome == "passed"]
+    unverified = sum(trial.outcome == "unverified" for trial in trials)
+    invalid = sum(trial.outcome == "invalidated" for trial in trials)
     return (
-        f"| {RUNNER_LABELS[runner]} | {len(passing)}/{len(valid)} | {invalid} | {skipped} | "
+        f"| {RUNNER_LABELS[runner]} | {len(passing)}/{len(valid_verified)} | "
+        f"{unverified} | {invalid} | {skipped} | "
         f"{_median_passing_time(passing)} | {sum(trial.usage.request_count for trial in trials)} | "
         f"{_token_display(trials, is_reference=runner == 'playwright_reference')} | "
         f"{_cost_display(trials, is_reference=runner == 'playwright_reference')} |"
@@ -311,8 +375,12 @@ def _aggregate_observations(
     by_runner: dict[RunnerName, list[EvidenceRecord]],
 ) -> list[str]:
     ai_stats: list[tuple[RunnerName, int, int, float | None, int]] = []
+    verified_task_ids = {
+        task.id for task in manifest.tasks if task.verification_mode == "task_completion"
+    }
     for runner in manifest.ai_runners:
-        trials = [record.trial for record in by_runner[runner]]
+        all_trials = [record.trial for record in by_runner[runner]]
+        trials = [trial for trial in all_trials if trial.task_id in verified_task_ids]
         valid = [trial for trial in trials if trial.outcome != "invalidated"]
         passing = [trial for trial in valid if trial.outcome == "passed"]
         passing_median = (
@@ -320,7 +388,7 @@ def _aggregate_observations(
         )
         tokens = sum(
             (trial.usage.prompt_tokens or 0) + (trial.usage.completion_tokens or 0)
-            for trial in trials
+            for trial in all_trials
         )
         ai_stats.append((runner, len(passing), len(valid), passing_median, tokens))
 
@@ -331,15 +399,18 @@ def _aggregate_observations(
         if valid and passes / valid == best_rate
     ]
     timed = [item for item in ai_stats if item[3] is not None]
-    fastest = min(timed, key=lambda item: item[3] or float("inf"))
-    fastest_median = fastest[3]
-    assert fastest_median is not None
+    fastest = min(timed, key=lambda item: item[3] or float("inf")) if timed else None
+    timing_note = "- No successful verified AI trials; passing-time comparison is unavailable."
+    if fastest is not None:
+        timing_note = (
+            f"- Lowest median duration among successful AI trials: {RUNNER_LABELS[fastest[0]]} "
+            f"({fastest[3]:.3f}s). This is not a like-for-like speed ranking when runners fail "
+            "different task mixes."
+        )
     fewest_tokens = min(ai_stats, key=lambda item: item[4])
     lines = [
         f"- Highest observed AI success rate: {', '.join(reliability_leaders)}.",
-        f"- Lowest median duration among successful AI trials: {RUNNER_LABELS[fastest[0]]} "
-        f"({fastest_median:.3f}s). This is not a like-for-like speed ranking when runners fail "
-        "different task mixes.",
+        timing_note,
         f"- Lowest reported AI token consumption: {RUNNER_LABELS[fewest_tokens[0]]} "
         f"({fewest_tokens[4]:,} tokens across all its attempts).",
     ]
@@ -358,7 +429,9 @@ def _aggregate_observations(
     reference_failures: list[str] = []
     for task in manifest.tasks:
         trials = [record.trial for record in grouped[(task.id, "playwright_reference")]]
-        reference_failure_count = sum(trial.outcome != "passed" for trial in trials)
+        reference_failure_count = sum(
+            trial.outcome not in {"passed", "unverified"} for trial in trials
+        )
         if reference_failure_count:
             reference_failures.append(
                 f"{_task_label(task)} ({reference_failure_count}/{len(trials)})"
@@ -374,7 +447,8 @@ def _aggregate_observations(
         for task in manifest.tasks:
             trials = [record.trial for record in grouped[(task.id, runner)]]
             failed = sum(
-                trial.outcome not in {"passed", "invalidated"} for trial in trials
+                trial.outcome not in {"passed", "unverified", "invalidated"}
+                for trial in trials
             )
             if failed:
                 runner_failures.append(f"{_task_label(task)} ({failed}/{len(trials)})")

@@ -16,5 +16,6 @@ policy:
   allow_form_submit: true
 max_actions: 24
 timeout_seconds: 90
+verification_mode: task_completion
 acceptance:
   visible_text: Lovelace

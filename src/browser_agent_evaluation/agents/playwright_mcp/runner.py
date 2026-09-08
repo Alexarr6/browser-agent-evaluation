@@ -26,6 +26,7 @@ from browser_agent_evaluation.agents.playwright_mcp.tools import (
     tool_text,
     validate_tool_call,
 )
+from browser_agent_evaluation.browser.verification import COLLECT_FACTS
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec, UsageEvidence
 from browser_agent_evaluation.providers.chat_completions import DEFAULT_MODEL
@@ -41,6 +42,7 @@ class McpPilotResult:
     visible_text: str
     usage: UsageEvidence
     trace: str
+    verification_evidence: dict[str, str] | None = None
 
 
 @dataclass
@@ -95,7 +97,11 @@ class PlaywrightMcpPilot:
                     "JavaScript, files, downloads, credentials, or domains outside the task "
                     "allowlist. When the task is "
                     "complete, return exactly "
-                    '{"done":true,"success":true,"summary":"..."} with no tool call.'
+                    '{"done":true,"success":true,"summary":"..."} with no tool call. '
+                    "For tasks requesting JSON, put the answer object inside summary, e.g. "
+                    '{"done":true,"success":true,"summary":{"name":"observed title",'
+                    '"url":"observed URL"}}. Include eur_per_kg for the coffee task. '
+                    "Use success:false when unable to complete the task."
                 ),
             },
             {"role": "user", "content": task_prompt(task)},
@@ -105,6 +111,8 @@ class PlaywrightMcpPilot:
         tool_recoveries = 0
         done = False
         successful = False
+        answer = ""
+        terminal_repair_used = False
 
         for request_index in range(self.max_model_requests):
             self._emit(f"model request {request_index + 1}/{self.max_model_requests}")
@@ -176,9 +184,29 @@ class PlaywrightMcpPilot:
                 self.trace_lines.append(f"{name} {json.dumps(arguments, sort_keys=True)}")
                 continue
             content = message.get("content")
-            terminal = terminal_output(content)
+            self.trace_lines.append("terminal response: " + str(content)[:4_000])
+            try:
+                terminal = terminal_output(content)
+            except McpPilotError:
+                if terminal_repair_used:
+                    raise
+                terminal_repair_used = True
+                messages.append(message)
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": (
+                            "Your terminal response has an invalid envelope. Return exactly "
+                            "done (true), success (boolean), and summary (your answer string or "
+                            "JSON object). Put all task answer fields inside summary. This "
+                            "format correction uses the remaining request budget."
+                        ),
+                    }
+                )
+                continue
             done = terminal["done"]
             successful = terminal["success"]
+            answer = terminal["summary"]
             self.trace_lines.append(str(terminal["summary"])[:500])
             break
 
@@ -186,6 +214,22 @@ class PlaywrightMcpPilot:
         url, title = parse_mcp_snapshot(snapshot)
         if urlparse(url).hostname not in task.policy.allowed_domains:
             raise McpPilotError("final browser state is outside the task allowlist")
+        facts = {}
+        if task.acceptance.verifier:
+            collected = await session.call_tool("browser_evaluate", {"function": COLLECT_FACTS})
+            if not collected.isError:
+                raw = tool_text(collected)
+                # MCP wraps evaluation output under a Result heading.
+                for line in raw.splitlines():
+                    try:
+                        value = json.loads(line)
+                        if isinstance(value, str):
+                            value = json.loads(value)
+                        if isinstance(value, dict) and "url" in value:
+                            facts = value
+                            break
+                    except ValueError:
+                        continue
         return McpPilotResult(
             done=done,
             successful=successful,
@@ -195,6 +239,7 @@ class PlaywrightMcpPilot:
             visible_text=snapshot,
             usage=self.usage,
             trace="\n".join(self.trace_lines),
+            verification_evidence={**facts, "answer": answer},
         )
 
     async def _request(

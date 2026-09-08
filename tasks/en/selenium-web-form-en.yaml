@@ -17,6 +17,7 @@ policy:
   allow_form_submit: true
 max_actions: 48
 timeout_seconds: 300
+verification_mode: task_completion
 acceptance:
   url_contains: /selenium/web/submitted-form.html
   visible_text: Received!

@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from browser_agent_evaluation.core.models import ActionTarget, RestrictedBrowserAction, TaskSpec
 from browser_agent_evaluation.core.policy import validate_action
+from browser_agent_evaluation.evaluation.tasks import load_task
 
 
 def task() -> TaskSpec:
@@ -33,8 +36,21 @@ def test_policy_allows_safe_semantic_click() -> None:
     assert decision.allowed is True
 
 
+def test_real_amazon_search_is_authorized_but_other_submits_are_not() -> None:
+    amazon = load_task(
+        Path(__file__).parents[1] / "tasks/experimental/amazon-cheapest-coffee-beans-en.yaml"
+    )
+    for label, allowed in [("Buscar Amazon.es", True), ("Password", False), ("Comprar", False)]:
+        action = RestrictedBrowserAction(
+            type="press", target=ActionTarget(role="textbox", placeholder=label), value="ENTER"
+        )
+        assert validate_action(amazon, action).allowed is allowed
+
+
 def test_policy_denies_navigation_outside_task_allowlist() -> None:
-    decision = validate_action(task(), RestrictedBrowserAction(type="navigate", value="https://example.com"))
+    decision = validate_action(
+        task(), RestrictedBrowserAction(type="navigate", value="https://example.com")
+    )
 
     assert decision.allowed is False
     assert decision.reason == "domain_not_allowed"
@@ -79,9 +95,7 @@ def test_policy_allows_explicit_read_only_search_submit() -> None:
 
     decision = validate_action(
         wikipedia_task,
-        RestrictedBrowserAction(
-            type="press", target={"label": "Search Wikipedia"}, value="Enter"
-        ),
+        RestrictedBrowserAction(type="press", target={"label": "Search Wikipedia"}, value="Enter"),
     )
 
     assert decision.allowed

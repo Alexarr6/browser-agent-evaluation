@@ -11,7 +11,7 @@ def test_root_cli_prints_bounded_command_help(capsys: pytest.CaptureFixture[str]
 
     assert (
         capsys.readouterr().out
-        == "Usage: browser-eval {repeat|report|smoke|micro} [options]\n"
+        == "Usage: browser-eval {repeat|refresh|report|smoke|micro} [options]\n"
     )
 
 

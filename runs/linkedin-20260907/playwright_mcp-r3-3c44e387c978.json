@@ -1,0 +1,34 @@
+{
+  "action_count": 7,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 12860,
+  "ended_at": "2026-09-07T18:05:01.903475Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "mcp_accessibility",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "playwright_mcp",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:04:49.042584Z",
+  "task_id": "selenium-web-form-en",
+  "trace": "browser_type {\"element\": \"Text input\", \"target\": \"e11\", \"text\": \"Ada Lovelace\"}\nbrowser_type {\"element\": \"Textarea\", \"target\": \"e15\", \"text\": \"Synthetic test\"}\nbrowser_select_option {\"element\": \"Dropdown (select)\", \"target\": \"e24\", \"values\": [\"Two\"]}\nbrowser_type {\"element\": \"Dropdown (datalist)\", \"target\": \"e26\", \"text\": \"New York\"}\nbrowser_click {\"element\": \"Default checkbox\", \"target\": \"e33\"}\nbrowser_click {\"element\": \"Default radio\", \"target\": \"e39\"}\nbrowser_click {\"element\": \"Submit\", \"target\": \"e40\"}\nterminal response: {\"done\":true,\"success\":true,\"summary\":\"Form submitted successfully; the page confirms \\\"Received!\\\"\"}\nForm submitted successfully; the page confirms \"Received!\"",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:e12207db7b099c0d20430d9f6addd3a1f4ebaa76d4d9086fb5a5e33dc9b2fa44",
+  "trial_id": "playwright_mcp-r3-3c44e387c978",
+  "usage": {
+    "completion_tokens": 213,
+    "cost_usd": 0.00410648,
+    "prompt_tokens": 34136,
+    "request_count": 8,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "Form submitted successfully; the page confirms \"Received!\""
+  }
+}

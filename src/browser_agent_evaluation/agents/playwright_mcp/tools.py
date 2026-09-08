@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 from mcp import ClientSession
 from mcp.types import Tool
 
+from browser_agent_evaluation.browser.keys import normalize_key
 from browser_agent_evaluation.core.models import TaskSpec
 from browser_agent_evaluation.core.pricing import provider_cost_or_model_estimate
 
@@ -108,6 +109,8 @@ def normalize_tool_arguments(*, name: str, arguments: dict[str, Any]) -> dict[st
     """Normalize known model spellings to the Playwright MCP tool contract."""
     target = arguments.get("target")
     normalized = arguments
+    if name == "browser_press_key" and isinstance(arguments.get("key"), str):
+        normalized = {**normalized, "key": normalize_key(arguments["key"])}
     if name in ALLOWED_MCP_TOOLS and isinstance(target, str):
         match = re.fullmatch(r"ref=(e[1-9][0-9]*)", target)
         if match:
@@ -158,6 +161,8 @@ def terminal_output(content: object) -> TerminalOutput:
         raise McpPilotError("terminal output has unexpected fields")
     if value["done"] is not True or not isinstance(value["success"], bool):
         raise McpPilotError("terminal status is invalid")
+    if isinstance(value["summary"], dict):
+        value["summary"] = json.dumps(value["summary"], ensure_ascii=False)
     if not isinstance(value["summary"], str):
         raise McpPilotError("terminal summary is invalid")
     return TerminalOutput(done=True, success=value["success"], summary=value["summary"])

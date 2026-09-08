@@ -14,6 +14,7 @@ from browser_agent_evaluation.agents.playwright_mcp.tools import (
     chat_completion_tools,
     normalize_tool_arguments,
     parse_mcp_snapshot,
+    terminal_output,
     validate_tool_call,
 )
 from browser_agent_evaluation.core.budget import ModelBudget
@@ -68,7 +69,10 @@ def test_tool_projection_exposes_only_bounded_browser_tools() -> None:
     assert len(projected_names) == 10
 
 
-def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
+@pytest.mark.parametrize("malformed_terminal", [False, True])
+def test_controller_supplies_snapshots_without_exposing_snapshot_tool(
+    malformed_terminal: bool,
+) -> None:
     async def run() -> None:
         requests: list[dict[str, object]] = []
         responses = [
@@ -105,6 +109,15 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
                 "usage": {"prompt_tokens": 11, "completion_tokens": 3, "cost": 0.001},
             },
         ]
+
+        if malformed_terminal:
+            responses.insert(
+                1,
+                {
+                    "choices": [{"message": {"role": "assistant", "content": '{"name":"title"}'}}],
+                    "usage": {"prompt_tokens": 7, "completion_tokens": 2, "cost": 0.001},
+                },
+            )
 
         async def responder(request: httpx.Request) -> httpx.Response:
             requests.append(json.loads(request.content))
@@ -160,6 +173,7 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
             )
 
         assert result.done is True
+        assert result.usage.request_count == (3 if malformed_terminal else 2)
         assert result.action_count == 1
         assert session.calls == [
             "browser_navigate",
@@ -174,6 +188,15 @@ def test_controller_supplies_snapshots_without_exposing_snapshot_tool() -> None:
         assert "browser_snapshot" not in exposed
 
     asyncio.run(run())
+
+
+def test_terminal_object_preserves_claim_and_explicit_failure() -> None:
+    answer = {"name": "observed title", "url": "https://www.marca.com/"}
+    terminal = terminal_output(json.dumps({"done": True, "success": False, "summary": answer}))
+    assert terminal["success"] is False
+    assert json.loads(terminal["summary"]) == answer
+    with pytest.raises(McpPilotError):
+        terminal_output(json.dumps(answer))
 
 
 def test_mcp_normalizes_only_exact_alpha_accessibility_refs() -> None:

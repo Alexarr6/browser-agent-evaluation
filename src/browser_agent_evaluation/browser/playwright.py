@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from typing import Any, cast
 from urllib.parse import urlparse
 
@@ -7,6 +8,8 @@ from playwright.async_api import Error as PlaywrightError
 from playwright.async_api import Locator, Page, Route
 
 from browser_agent_evaluation.browser.executor import execute_action
+from browser_agent_evaluation.browser.keys import normalize_key
+from browser_agent_evaluation.browser.verification import COLLECT_FACTS
 from browser_agent_evaluation.core.assertions import PageState
 from browser_agent_evaluation.core.models import ActionTarget, RestrictedBrowserAction
 
@@ -16,6 +19,9 @@ class LiveBrowserPolicyError(RuntimeError):
 
 
 class LivePlaywrightController:
+    async def verification_facts(self) -> dict[str, str]:
+        return json.loads(await self._page.evaluate(COLLECT_FACTS))
+
     def __init__(self, page: Page, *, allowed_domains: list[str]) -> None:
         self._page = page
         self._allowed_domains = frozenset(allowed_domains)
@@ -63,7 +69,7 @@ class LivePlaywrightController:
         await (await self._locator(target)).check()
 
     async def press(self, target: ActionTarget, value: str) -> None:
-        await (await self._locator(target, role_hint="textbox")).press(value)
+        await (await self._locator(target, role_hint="textbox")).press(normalize_key(value))
         self._ensure_current_domain()
 
     async def wait(self) -> None:

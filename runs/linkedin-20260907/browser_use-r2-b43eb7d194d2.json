@@ -1,0 +1,31 @@
+{
+  "action_count": 8,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 30699,
+  "ended_at": "2026-09-07T17:55:48.411193Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:55:17.711675Z",
+  "task_id": "selenium-ajax-labels-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully waited for the second asynchronous cycle; the page shows \\\"Done!\\\", \\\"Ada\\\", and \\\"Lovelace\\\", and the form is enabled again.\",\"memory\":\"Completed both requested asynchronous label cycles on www.selenium.dev. Verified that the page displays the synthetic labels \\\"Ada\\\" and \\\"Lovelace\\\" and shows \\\"Done!\\\" with the form enabled.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed the browser task successfully. Entered \\\"Ada\\\" and submitted it, waited for \\\"Done!\\\" and the form to re-enable, then entered \\\"Lovelace\\\" and submitted it, waited again, and verified that the page shows both \\\"Ada\\\" and \\\"Lovelace\\\" labels with \\\"Done!\\\" displayed.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:1ad88d9a5073c250c9bdd8dd6d97aa7c97475e7ca4d0b53ab1a68f409f18eca2",
+  "trial_id": "browser_use-r2-b43eb7d194d2",
+  "usage": {
+    "completion_tokens": 1140,
+    "cost_usd": null,
+    "prompt_tokens": 62343,
+    "request_count": 8,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  },
+  "verification_evidence": {}
+}

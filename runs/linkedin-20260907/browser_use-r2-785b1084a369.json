@@ -1,0 +1,32 @@
+{
+  "action_count": 5,
+  "assertion_results": {
+    "url_contains": true,
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 16890,
+  "ended_at": "2026-09-07T18:01:25.087067Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:01:08.197009Z",
+  "task_id": "mdn-reference-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully opened the MDN CSS :has reference page and verified that the page visibly shows the :has() selector and its CSS reference content.\",\"memory\":\"The browser remains on developer.mozilla.org/es/docs/Web/CSS/Reference/Selectors/:has. The page heading is :has, and the content includes the CSS :has() pseudo-class, syntax :has(selector_list), examples, specifications, and browser compatibility.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed. The final page is the MDN CSS reference for the \\\":has()\\\" selector at https://developer.mozilla.org/es/docs/Web/CSS/Reference/Selectors/:has, and the page visibly shows \\\":has\\\" and \\\":has()\\\" selector content.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:a688e83b492b0addd36ede8dc52b175a04aedb9821e11866f85d07a3765bd64a",
+  "trial_id": "browser_use-r2-785b1084a369",
+  "usage": {
+    "completion_tokens": 772,
+    "cost_usd": null,
+    "prompt_tokens": 47433,
+    "request_count": 5,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  },
+  "verification_evidence": {}
+}

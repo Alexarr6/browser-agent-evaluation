@@ -1,0 +1,31 @@
+{
+  "action_count": 0,
+  "assertion_results": {},
+  "cleanup_verified": true,
+  "duration_ms": 10763,
+  "ended_at": "2026-09-07T17:51:16.072137Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "failed",
+  "policy_events": [
+    "ProviderContractError"
+  ],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:51:05.309093Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "provider planner response violates action schema",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:39cde794b2827777f8dc7f91b17c5d45d76486d79d03e5b2b4f46c11bd0c5c7e",
+  "trial_id": "restricted-r1-79835ac6dd8c",
+  "usage": {
+    "completion_tokens": 391,
+    "cost_usd": 0.00511184,
+    "prompt_tokens": 12110,
+    "request_count": 4,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

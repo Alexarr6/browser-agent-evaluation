@@ -1,0 +1,39 @@
+{
+  "action_count": 2,
+  "assertion_results": {
+    "answer_name_matches": true,
+    "answer_url_matches": true,
+    "article_url": true,
+    "observed_heading": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 44704,
+  "ended_at": "2026-09-07T17:46:32.256345Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:45:47.552012Z",
+  "task_id": "marca-real-madrid-open-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"Real Madrid\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Real Madrid section page loads\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"Mbapp\u00e9 desvela cu\u00e1l ser\u00eda su voto para el Bal\u00f3n de Oro\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Open the selected Marca Real Madrid article\"}}\n{\"result\":\"{\\\"name\\\":\\\"Mbapp\u00e9 se postula para el Bal\u00f3n de Oro: \\\\\\\"\u00bfPor qui\u00e9n voto? Por m\u00ed\\\\\\\"\\\",\\\"url\\\":\\\"https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-postula-balon-oro-voto-mi.html\\\"}\",\"step_index\":4,\"step_status\":\"complete\"}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:0a7cc0ded5da7a8645482532cfd0e078c17ef5c923c840a82035b1b0ccfd4055",
+  "trial_id": "restricted-r1-956a413cff8a",
+  "usage": {
+    "completion_tokens": 677,
+    "cost_usd": 0.005477,
+    "prompt_tokens": 10646,
+    "request_count": 3,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "{\"name\":\"Mbapp\u00e9 se postula para el Bal\u00f3n de Oro: \\\"\u00bfPor qui\u00e9n voto? Por m\u00ed\\\"\",\"url\":\"https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-postula-balon-oro-voto-mi.html\"}",
+    "heading": "Mbapp\u00e9 se postula para el Bal\u00f3n de Oro: \"\u00bfPor qui\u00e9n voto? Por m\u00ed\"",
+    "price_text": "",
+    "url": "https://www.marca.com/futbol/real-madrid/2026/09/07/mbappe-postula-balon-oro-voto-mi.html"
+  }
+}

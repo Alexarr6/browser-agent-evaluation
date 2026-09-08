@@ -1,0 +1,31 @@
+{
+  "action_count": 6,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 29289,
+  "ended_at": "2026-09-07T17:54:33.525135Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:54:04.235766Z",
+  "task_id": "selenium-ajax-labels-en",
+  "trace": "{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"textbox\"},\"value\":\"Ada\"},\"expected_state\":{\"kind\":\"value_equals\",\"value\":\"Ada\"}}\n{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"button\",\"name\":\"Add Label\"}},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Done!\"}}\n{\"step_index\":3,\"step_status\":\"in_progress\",\"action\":{\"type\":\"wait\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Done!\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"fill\",\"target\":{\"role\":\"textbox\"},\"value\":\"Lovelace\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Done!\"}}\n{\"step_index\":5,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"role\":\"button\",\"name\":\"Add Label\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"Done!\"}}\n{\"step_index\":6,\"step_status\":\"in_progress\",\"action\":{\"type\":\"wait\"},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Done!\"}}\n{\"result\":\"{\\\"completion\\\":\\\"The page shows both synthetic labels after two asynchronous cycles.\\\"}\",\"step_index\":7,\"step_status\":\"complete\",\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Ada Lovelace\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:0637010dee23ca5280e0831f4727b9d7c73885b02a98264bb786262dbc8e2ec1",
+  "trial_id": "restricted-r1-72e8c321d047",
+  "usage": {
+    "completion_tokens": 847,
+    "cost_usd": 0.0049378,
+    "prompt_tokens": 8533,
+    "request_count": 7,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {}
+}

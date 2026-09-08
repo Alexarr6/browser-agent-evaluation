@@ -1,0 +1,1782 @@
+- generic [ref=e2]:
+  - dialog [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Cookies y opciones de publicidad" [level=4] [ref=e5]
+      - paragraph [ref=e6]:
+        - text: Si das tu consentimiento, podemos utilizar tu información personal de cualquiera de estos
+        - link "Servicios de Amazon" [ref=e7] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=T1fdzp9ecINEaVWTyY
+        - text: para personalizar los anuncios que te mostramos en otros servicios y en sitios web externos. Por ejemplo, podemos usar tu historial de reproducciones de Prime Video para personalizar los anuncios que te mostramos en nuestras tiendas o en Fire TV. También podemos usar la información personal que recibimos de terceros.
+      - paragraph [ref=e8]:
+        - text: Además, si das tu consentimiento, también utilizaremos cookies para complementar tu experiencia de compra en las tiendas de Amazon, tal y como se describe en nuestro
+        - link "Aviso de cookies" [ref=e9] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=201890250
+        - text: . Tu elección se aplica al uso de cookies de publicidad propias y de terceros en este servicio. Las cookies almacenan o acceden a información estándar del dispositivo, como un identificador exclusivo. Los
+        - link "129 terceros" [ref=e10] [cursor=pointer]:
+          - /url: /privacyprefs/retail/partners
+        - text: que utilizan cookies en este servicio lo hacen con el fin de mostrar y medir anuncios personalizados, generar información sobre el público, y desarrollar y mejorar productos.
+      - paragraph [ref=e11]:
+        - text: Utilizamos cookies y herramientas similares necesarias que te permiten comprar y mejorar tus experiencias de compra, y nos permiten proporcionarte nuestros servicios, como se detalla en nuestro
+        - link "Aviso de cookies" [ref=e12] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=201890250
+        - text: . También utilizamos estas cookies para comprender cómo utilizan los clientes nuestros servicios (por ejemplo, midiendo las visitas al sitio web) con el fin de poder realizar mejoras. Haz clic en «Rechazar» para rechazar o en «Personalizar» para elegir anuncios más detallados u obtener más información. Puedes cambiar de opinión cuando quieras. Para ello, ve a
+        - link "Cookies y opciones de publicidad" [ref=e13] [cursor=pointer]:
+          - /url: /privacyprefs/customize?oCT=ads&ref_=portal_banner_cpp
+        - text: . Para obtener más información sobre cómo y con qué fines utiliza Amazon la información personal (como el historial de pedidos de la tienda o el historial de reproducciones de Prime Video) y las cookies o anuncios personalizados, consulta nuestro
+        - link "Aviso de privacidad" [ref=e14] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=201909010
+        - text: ", nuestro"
+        - link "Aviso de cookies" [ref=e15] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=201890250
+        - text: y nuestro
+        - link "Aviso sobre publicidad basada en los intereses del usuario" [ref=e16] [cursor=pointer]:
+          - /url: /gp/help/customer/display.html?nodeId=G64JFZVFDY66XG9K&ref_=footer_Interest_Based_Ads_Notice&language=en
+        - text: .
+      - paragraph [ref=e17]:
+        - text: Como no has iniciado sesión, tu elección solo se aplicará a este dispositivo o este navegador. Cuando inicies sesión, recordaremos tus preferencias en todos tus dispositivos y navegadores y, si se detecta un conflicto entre las preferencias de tu cuenta y las elecciones que hiciste mientras navegabas sin haber iniciado sesión, se aplicarán las preferencias de tu cuenta. Puedes actualizar tus preferencias cuando quieras desde
+        - link "Cookies y opciones de publicidad" [ref=e18] [cursor=pointer]:
+          - /url: /privacyprefs/customize?oCT=ads&ref_=portal_banner_cpp
+        - text: .
+    - generic [ref=e20]:
+      - generic [ref=e23] [cursor=pointer]:
+        - button "Aceptar" [ref=e24]
+        - generic [ref=e25]: Aceptar
+      - generic [ref=e28] [cursor=pointer]:
+        - button "Rechazar" [ref=e29]
+        - generic [ref=e30]: Rechazar
+      - link "Personalizar" [ref=e32] [cursor=pointer]:
+        - /url: /privacyprefs/customize?oCT=ads&ref_=portal_banner_cpp
+  - navigation "Menú de métodos abreviados" [ref=e33]:
+    - heading "Saltar a" [level=2] [ref=e34]
+    - list "Saltar a" [ref=e35]:
+      - listitem [ref=e36]:
+        - link "Contenido principal" [ref=e37] [cursor=pointer]:
+          - /url: "#skippedLink"
+      - listitem [ref=e38]:
+        - link "Saltar a las opciones de compra" [ref=e39] [cursor=pointer]:
+          - /url: "#buybox"
+          - text: Opciones de compra
+      - listitem [ref=e40]:
+        - link "Opiniones" [ref=e41] [cursor=pointer]:
+          - /url: "#customerReviews"
+    - separator [ref=e42]
+    - heading "Métodos abreviados de teclado" [level=2] [ref=e43]
+    - list "Métodos abreviados de teclado" [ref=e44]:
+      - listitem [ref=e45]:
+        - link "Buscar, opción, barra diagonal" [ref=e46] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - generic [ref=e47]:
+            - generic [ref=e48]: Buscar
+            - generic [ref=e49]:
+              - generic [ref=e50]: opt
+              - generic [ref=e51]: +
+              - generic [ref=e52]: /
+      - listitem [ref=e53]:
+        - link "Cesta, Mayús, opción, c" [ref=e54] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - generic [ref=e55]:
+            - generic [ref=e56]: Cesta
+            - generic [ref=e57]:
+              - generic [ref=e58]: mayús
+              - generic [ref=e59]: +
+              - generic [ref=e60]: opt
+              - generic [ref=e61]: +
+              - generic [ref=e62]: C
+      - listitem [ref=e63]:
+        - link "Inicio, Mayús, opción, h" [ref=e64] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - generic [ref=e65]:
+            - generic [ref=e66]: Inicio
+            - generic [ref=e67]:
+              - generic [ref=e68]: mayús
+              - generic [ref=e69]: +
+              - generic [ref=e70]: opt
+              - generic [ref=e71]: +
+              - generic [ref=e72]: H
+      - listitem [ref=e73]:
+        - link "Tus pedidos, Mayús, opción, o" [ref=e74] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - generic [ref=e75]:
+            - generic [ref=e76]: Pedidos
+            - generic [ref=e77]:
+              - generic [ref=e78]: mayús
+              - generic [ref=e79]: +
+              - generic [ref=e80]: opt
+              - generic [ref=e81]: +
+              - generic [ref=e82]: O
+      - listitem [ref=e83]:
+        - button "Añadir a la cesta, mayús, opción, K" [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: Añadir a la cesta
+            - generic [ref=e87]:
+              - generic [ref=e88]: mayús
+              - generic [ref=e89]: +
+              - generic [ref=e90]: opt
+              - generic [ref=e91]: +
+              - generic [ref=e92]: K
+      - listitem [ref=e93]:
+        - button "Resumen del producto, Mayús, opción, d" [ref=e94] [cursor=pointer]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: Resumen del producto
+            - generic [ref=e97]:
+              - generic [ref=e98]: mayús
+              - generic [ref=e99]: +
+              - generic [ref=e100]: opt
+              - generic [ref=e101]: +
+              - generic [ref=e102]: D
+      - listitem [ref=e103]:
+        - button "Mostrar/ocultar los atajos, Mayús, opción, z" [ref=e104] [cursor=pointer]:
+          - generic [ref=e105]:
+            - generic [ref=e106]: Mostrar/ocultar métodos abreviados
+            - generic [ref=e107]:
+              - generic [ref=e108]: mayús
+              - generic [ref=e109]: +
+              - generic [ref=e110]: opt
+              - generic [ref=e111]: +
+              - generic [ref=e112]: Z
+    - generic [ref=e115]:
+      - generic [ref=e116] [cursor=pointer]
+      - generic [ref=e118]: Para moverte entre los productos, usa las flechas arriba o abajo del teclado.
+  - banner [ref=e119]:
+    - navigation "Principal" [ref=e120]:
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - link "Amazon.es" [ref=e124] [cursor=pointer]:
+            - /url: /ref=nav_logo
+            - generic: .es
+          - button "Entrega en Lugo 27004 Actualizar ubicación" [ref=e127] [cursor=pointer]:
+            - generic [ref=e129]:
+              - generic [ref=e130]: Entrega en Lugo 27004
+              - generic [ref=e131]: Actualizar ubicación
+        - search [ref=e134]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: Alimentación y bebidas
+            - combobox "Selecciona el departamento que quieras buscar" [ref=e141] [cursor=pointer]:
+              - option "Todos los departamentos"
+              - option "Alexa Skills"
+              - option "Alimentación y bebidas" [selected]
+              - option "Amazon Global Store"
+              - option "Amazon Haul"
+              - option "Amazon Segunda mano"
+              - option "Aplicaciones y juegos"
+              - option "Audible audiolibros y podcasts exclusivos"
+              - option "Bebé"
+              - option "Belleza"
+              - option "Bricolaje y herramientas"
+              - option "Cheques regalo"
+              - option "Coche y Moto - Piezas y accesorios"
+              - option "Deportes y aire libre"
+              - option "Dispositivos de Amazon"
+              - option "Electrónica"
+              - option "Equipaje y accesorios de viaje"
+              - option "Grandes electrodomésticos"
+              - option "Handmade"
+              - option "Hogar y cocina"
+              - option "Iluminación"
+              - option "Industria y ciencia"
+              - option "Informática"
+              - option "Instrumentos musicales"
+              - option "Jardín"
+              - option "Juguetes y juegos"
+              - option "Libros"
+              - option "Luxury Stores"
+              - option "Menos de 10€"
+              - option "Moda"
+              - option "Ropa, zapatos y joyería para mujer"
+              - option "Ropa, zapatos y joyería para hombre"
+              - option "Ropa, zapatos y joyería para chicas"
+              - option "Ropa, zapatos y joyería para chicos"
+              - option "Ropa, zapatos y joyería de bebé"
+              - option "Música Digital"
+              - 'option "Música: CDs y vinilos"'
+              - option "Oficina y papelería"
+              - option "Películas y TV"
+              - option "Prime Video"
+              - option "Productos para mascotas"
+              - option "Salud y cuidado personal"
+              - option "Software"
+              - option "Suscríbete y Ahorra"
+              - option "Tienda Kindle"
+              - option "Videojuegos"
+          - searchbox "Buscar en Amazon.es" [ref=e144]
+          - generic "Ir" [ref=e147] [cursor=pointer]:
+            - button "Ir" [ref=e148]
+        - generic [ref=e150]:
+          - generic [ref=e151]:
+            - link "Elige un idioma para comprar en Amazon España. La selección actual es Castellano (ES)." [ref=e152] [cursor=pointer]:
+              - /url: /customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=topnav_lang
+              - generic [ref=e155]:
+                - img "España" [ref=e156]
+                - generic [ref=e157]: ES
+            - button "Expandir para cambiar idioma o país" [ref=e158] [cursor=pointer]
+          - generic [ref=e159]:
+            - link "Hola, identifícate Cuenta y listas" [ref=e160] [cursor=pointer]:
+              - /url: https://www.amazon.es/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.es%2Fdp%2FB0F1NG6ZNX%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=esflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0
+              - generic [ref=e161]: Hola, identifícate
+              - generic [ref=e163]: Cuenta y listas
+            - button "Amplía la cuenta y las listas" [ref=e164] [cursor=pointer]
+          - link "Pedidos" [ref=e165] [cursor=pointer]:
+            - /url: /gp/css/order-history?ref_=nav_orders_first
+          - link "0 artículos en la cesta" [ref=e168] [cursor=pointer]:
+            - /url: /gp/cart/view.html?ref_=nav_cart
+            - generic [ref=e169]: "0"
+            - generic [ref=e172]: Cesta
+      - generic [ref=e174]:
+        - button "Abrir el menú de todas las categorías" [ref=e176] [cursor=pointer]:
+          - generic [ref=e178]: Todo
+        - list [ref=e182]:
+          - listitem [ref=e183]:
+            - link "Amazon Haul" [ref=e185] [cursor=pointer]:
+              - /url: /haul/store?ref_=nav_cs_hul_disb
+          - listitem [ref=e186]:
+            - link "Los más vendidos" [ref=e188] [cursor=pointer]:
+              - /url: /gp/bestsellers/?ref_=nav_cs_bestsellers
+          - listitem [ref=e189]:
+            - link "Últimas Novedades" [ref=e191] [cursor=pointer]:
+              - /url: /gp/new-releases/?ref_=nav_cs_newreleases
+          - listitem [ref=e192]:
+            - link "Ofertas" [ref=e194] [cursor=pointer]:
+              - /url: /deals?ref_=nav_cs_gb
+          - listitem [ref=e195]:
+            - generic [ref=e196]:
+              - link "Prime" [ref=e197] [cursor=pointer]:
+                - /url: /prime?ref_=nav_cs_primelink_nonmember
+              - button "Datos de Prime" [ref=e198] [cursor=pointer]
+          - listitem [ref=e199]:
+            - link "Hogar y cocina" [ref=e201] [cursor=pointer]:
+              - /url: /Hogar-y-cocina/b/?ie=UTF8&node=599391031&ref_=nav_cs_home
+          - listitem [ref=e202]:
+            - link "Informática" [ref=e204] [cursor=pointer]:
+              - /url: /informatica/b/?ie=UTF8&node=667049031&ref_=nav_cs_pc
+          - listitem [ref=e205]:
+            - link "Salud y cuidado personal" [ref=e207] [cursor=pointer]:
+              - /url: /Salud-y-cuidado-personal/b/?ie=UTF8&node=3677430031&ref_=nav_cs_hpc
+          - listitem [ref=e208]:
+            - link "Electrónica y Fotografía" [ref=e210] [cursor=pointer]:
+              - /url: /electronica/b/?ie=UTF8&node=599370031&ref_=nav_cs_electronics
+          - listitem [ref=e211]:
+            - link "Juguetes y juegos" [ref=e213] [cursor=pointer]:
+              - /url: /Juguetes-y-juegos/b/?ie=UTF8&node=599385031&ref_=nav_cs_toys
+          - listitem [ref=e214]:
+            - generic [ref=e215]:
+              - link "Tarjetas regalo" [ref=e216] [cursor=pointer]:
+                - /url: /cheques-regalo/b/?ie=UTF8&node=3564279031&ref_=nav_cs_gc
+              - button "Datos de Tarjetas regalo" [ref=e217] [cursor=pointer]
+          - listitem [ref=e218]:
+            - link "Bricolaje y herramientas" [ref=e220] [cursor=pointer]:
+              - /url: /Bricolaje-Herramientas-Fontaneria-Ferreteria-Jardineria/b/?ie=UTF8&node=2454133031&ref_=nav_cs_hi
+          - listitem [ref=e221]:
+            - link "Deportes y Aire libre" [ref=e223] [cursor=pointer]:
+              - /url: /deportes-aire-libre/b/?ie=UTF8&node=2454136031&ref_=nav_cs_sports
+          - listitem [ref=e224]:
+            - link "Videojuegos" [ref=e226] [cursor=pointer]:
+              - /url: /videojuegos-accesorios-consolas/b/?ie=UTF8&node=599382031&ref_=nav_cs_video_games
+          - listitem [ref=e227]:
+            - link "Coche y moto" [ref=e229] [cursor=pointer]:
+              - /url: /Coche-y-moto/b/?ie=UTF8&node=1951051031&ref_=nav_cs_automotive
+          - listitem [ref=e230]:
+            - link "Moda" [ref=e232] [cursor=pointer]:
+              - /url: /moda/b/?ie=UTF8&node=5512276031&ref_=nav_cs_fashion
+          - listitem [ref=e233]:
+            - link "Bebé" [ref=e235] [cursor=pointer]:
+              - /url: /bebe/b/?ie=UTF8&node=1703495031&ref_=nav_cs_baby
+          - listitem [ref=e236]:
+            - link "Productos personalizados" [ref=e238] [cursor=pointer]:
+              - /url: /Amazon-Custom/b/?ie=UTF8&node=14578063031&ref_=nav_cs_custom
+          - listitem [ref=e239]:
+            - link "Básicos del día a día" [ref=e241] [cursor=pointer]:
+              - /url: /fmc/everyday-essentials?ref_=nav_cs_ee
+          - listitem [ref=e242]:
+            - link "Belleza" [ref=e244] [cursor=pointer]:
+              - /url: /Belleza/b/?ie=UTF8&node=6198054031&ref_=nav_cs_beauty
+          - listitem [ref=e245]:
+            - link "Vender en Amazon" [ref=e247] [cursor=pointer]:
+              - /url: /b/?_encoding=UTF8&ld=AZESGNOSellC&node=2383605031&ref_=nav_cs_sell
+          - listitem [ref=e248]:
+            - link "Kit de Compras" [ref=e250] [cursor=pointer]:
+              - /url: /b/?node=15419504031&ref_=nav_cs_shoppertoolkit
+          - listitem [ref=e251]:
+            - link "Envío Gratis" [ref=e253] [cursor=pointer]:
+              - /url: /b/?node=27173191031&ref_=nav_cs_freeshipping
+          - listitem [ref=e254]:
+            - link "Suscríbete y ahorra" [ref=e256] [cursor=pointer]:
+              - /url: /auto-deliveries/landing?ref_=nav_cs_sns
+          - listitem [ref=e257]:
+            - link "eBooks Kindle" [ref=e259] [cursor=pointer]:
+              - /url: /ebooks-kindle/b/?ie=UTF8&node=827231031&ref_=nav_cs_kindle_books
+          - listitem [ref=e260]:
+            - link "Atención al Cliente" [ref=e262] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=508510&ref_=nav_cs_help
+        - link "Prime" [ref=e266] [cursor=pointer]:
+          - /url: /gp/video/ssoredirect/?ie=UTF8&pvp=%2Fdetail%2Famzn1.dv.gti.7d0961d9-a70a-433a-a211-b8c592f49452%2Fref%3Ddvm_crs_nav_es_s_dt_swm_l_al_lsun_tp&ref_=nav_swm_dvm_crs_nav_es_s_dt_swm_l_al_lsun_tp&pf_rd_p=1467308f-cb9c-4cd7-90fe-8d63ca099281&pf_rd_s=nav-sitewide-msg&pf_rd_t=4201&pf_rd_i=navbar-4201&pf_rd_m=A1RKKUPIHCS9HS&pf_rd_r=MJ74PDP9TBSQCJEEWQW1
+          - img "Prime" [ref=e267]
+      - list [ref=e270]:
+        - listitem [ref=e271]:
+          - link "Alimentación y bebidas" [ref=e273] [cursor=pointer]:
+            - /url: /Categorias/b/?ie=UTF8&node=6198073031&ref_=topnav_storetab_sv_grocery_1
+        - listitem [ref=e274]:
+          - link "Ofertas" [ref=e276] [cursor=pointer]:
+            - /url: https://www.amazon.es/gp/goldbox/?ie=UTF8&deals-widget=%257B%2522version%2522%253A1%252C%2522viewIndex%2522%253A0%252C%2522presetId%2522%253A%25226C2C54F43CC0E0912AD2DD734C615F84%2522%252C%2522departments%2522%253A%255B%25226198072031%2522%255D%252C%2522sorting%2522%253A%2522BY_SCORE%2522%257D&ref_=sv_sv_grocery_1_1
+        - listitem [ref=e277]:
+          - link "Los más vendidos" [ref=e279] [cursor=pointer]:
+            - /url: /gp/bestsellers/grocery/?ie=UTF8&ref_=sv_sv_grocery_1_2
+        - listitem [ref=e280]:
+          - link "Aperitivos" [ref=e282] [cursor=pointer]:
+            - /url: /Aperitivos/b/?ie=UTF8&node=6347413031&ref_=sv_sv_grocery_1_3
+        - listitem [ref=e283]:
+          - link "Legumbres, arroces y harinas" [ref=e285] [cursor=pointer]:
+            - /url: /Legumbres-Arroces-Harinas/b/?ie=UTF8&node=6349951031&ref_=sv_sv_grocery_1_4
+        - listitem [ref=e286]:
+          - link "Salsas, condimentos y aliños" [ref=e288] [cursor=pointer]:
+            - /url: /Salsas/b/?ie=UTF8&node=6373017031&ref_=sv_sv_grocery_1_5
+        - listitem [ref=e289]:
+          - link "Café, té y bebidas" [ref=e291] [cursor=pointer]:
+            - /url: /Cafe-Te-Bebidas/b/?ie=UTF8&node=6347509031&ref_=sv_sv_grocery_1_6
+        - listitem [ref=e292]:
+          - link "Dulces" [ref=e294] [cursor=pointer]:
+            - /url: /Dulces-Chocolates-Chicles/b/?ie=UTF8&node=6348124031&ref_=sv_sv_grocery_1_7
+        - listitem [ref=e295]:
+          - link "Bebidas alcohólicas" [ref=e297] [cursor=pointer]:
+            - /url: /Cervezas-Vinos-Licores/b/?ie=UTF8&node=6347711031&ref_=sv_sv_grocery_1_8
+        - listitem [ref=e298]:
+          - link "Alimentación y vinos de España" [ref=e300] [cursor=pointer]:
+            - /url: /b/?ie=UTF8&node=11529232031&ref_=sv_sv_grocery_1_9
+        - listitem [ref=e301]:
+          - link "Suscríbete y ahorra" [ref=e303] [cursor=pointer]:
+            - /url: /Suscribete-Ahorra/b/?ie=UTF8&node=9699700031&ref_=sv_sv_grocery_1_10
+      - dialog [ref=e304]
+  - generic [ref=e306]:
+    - heading "El resumen del producto presenta información clave del producto Método abreviado de teclado mayús + opt + D" [level=1] [ref=e308]:
+      - button "El resumen del producto presenta información clave del producto" [ref=e310] [cursor=pointer]
+      - separator [ref=e313]
+      - generic [ref=e314]:
+        - text: Método abreviado de teclado
+        - generic [ref=e315]: mayús + opt + D
+    - main [ref=e316]:
+      - list [ref=e322]:
+        - listitem [ref=e323]:
+          - link "Alimentación y bebidas" [ref=e325] [cursor=pointer]:
+            - /url: /Supermercado/b/ref=dp_bc_1?ie=UTF8&node=6198072031
+        - listitem [ref=e326]: ›
+        - listitem [ref=e327]:
+          - link "Café, té y bebidas" [ref=e329] [cursor=pointer]:
+            - /url: /Cafe-Te-Bebidas/b/ref=dp_bc_2?ie=UTF8&node=6347509031
+        - listitem [ref=e330]: ›
+        - listitem [ref=e331]:
+          - link "Café" [ref=e333] [cursor=pointer]:
+            - /url: /Cafe-Espreso/b/ref=dp_bc_3?ie=UTF8&node=6347531031
+        - listitem [ref=e334]: ›
+        - listitem [ref=e335]:
+          - link "Granos de café enteros" [ref=e337] [cursor=pointer]:
+            - /url: /Granos-caf%C3%A9-enteros/b/ref=dp_bc_4?ie=UTF8&node=28055437031
+        - listitem [ref=e338]: ›
+        - listitem [ref=e339]:
+          - link "Café de grano tostado" [ref=e341] [cursor=pointer]:
+            - /url: /Caf%C3%A9-grano-tostado/b/ref=dp_bc_5?ie=UTF8&node=12668276031
+      - generic [ref=e342]:
+        - generic [ref=e343]:
+          - generic [ref=e347]:
+            - img "Logo de Amazon Prime" [ref=e349]
+            - generic [ref=e350]: Disfruta de entregas rápidas y gratis, ofertas exclusivas y películas y series de televisión galardonadas.
+            - button "Únete a Prime" [ref=e352] [cursor=pointer]
+          - generic [ref=e356]:
+            - group [ref=e359]:
+              - generic [ref=e361]:
+                - button [expanded] [ref=e362]:
+                  - heading "Compra única 10,56€ 10,56&nbsp;&euro; por kg" [level=5] [ref=e364]:
+                    - generic: Compra única
+                    - generic [ref=e372]:
+                      - generic [ref=e373]:
+                        - generic [ref=e374]: 10,56€
+                        - generic [ref=e375]:
+                          - generic [ref=e376]:
+                            - text: "10"
+                            - generic [ref=e377]: ","
+                          - text: 56€
+                      - generic [ref=e378]:
+                        - generic [ref=e379]: 10,56&nbsp;&euro; por kg
+                        - generic [ref=e380]:
+                          - text: (
+                          - generic [ref=e381]:
+                            - generic [ref=e382]: 10,56€
+                            - text: 10,56€
+                          - text: / kg)
+                - generic [ref=e387]:
+                  - generic [ref=e389]:
+                    - generic [ref=e392]:
+                      - generic [ref=e394]:
+                        - text: Entrega GRATIS el jueves, 10 de septiembre en pedidos enviados por Amazon de más de 35€.
+                        - link "Detalles sobre los gastos de entrega y los métodos de envío" [ref=e395] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/?nodeId=202093880
+                          - text: Ver detalles
+                      - generic [ref=e397]:
+                        - text: Entrega más rápida mañana, 8 de septiembre.
+                        - generic [ref=e398]: Haz el pedido en 11 mins
+                        - text: .
+                        - link "Detalles sobre los gastos de entrega y los métodos de envío" [ref=e400] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/?nodeId=202093880
+                          - text: Ver detalles
+                    - button "Entrega en Lugo 27004 - Actualizar ubicación" [ref=e403] [cursor=pointer]
+                  - generic [ref=e410]: En stock
+                  - generic [ref=e419]:
+                    - generic [ref=e420]: "Cantidad:"
+                    - combobox "Cantidad:" [ref=e421]:
+                      - option "1" [selected]
+                      - option "2"
+                      - option "3"
+                      - option "4"
+                      - option "5"
+                    - generic [ref=e422] [cursor=pointer]: Cantidad:1
+                  - generic [ref=e430] [cursor=pointer]:
+                    - button "Añadir a la cesta" [ref=e431]
+                    - generic [ref=e432]: Añadir a la cesta
+                  - generic [ref=e437] [cursor=pointer]:
+                    - button "Comprar ya" [ref=e438]
+                    - generic [ref=e439]: Comprar ya
+                  - generic [ref=e442]:
+                    - group "Información del vendedor, el envío y las opciones de compra" [ref=e444]:
+                      - generic [ref=e445]:
+                        - heading "Remitente / Vendedor" [level=4] [ref=e446]
+                        - generic [ref=e448]: Amazon
+                      - generic [ref=e451]:
+                        - heading "Devoluciones" [level=4] [ref=e452]
+                        - button "Ver política de devoluciones" [ref=e456] [cursor=pointer]
+                      - generic [ref=e459]:
+                        - generic [ref=e460]:
+                          - heading "Pago" [level=4] [ref=e461]
+                          - button "Transacción segura" [ref=e465] [cursor=pointer]
+                        - generic [ref=e467]:
+                          - heading "Opciones de regalo" [level=4] [ref=e468]
+                          - button "Disponible al tramitar el pedido" [ref=e472] [cursor=pointer]
+                    - button "Ver más" [ref=e476] [cursor=pointer]
+              - button [ref=e480] [cursor=pointer]:
+                - heading "Suscríbete y ahorra 10,56€ 10,56&nbsp;&euro; por kg Entrega GRATIS el jueves, 10 de septiembre en pedidos enviados por Amazon de más de 35€ Remitente / Vendedor Amazon" [level=5] [ref=e482]:
+                  - generic [ref=e483]:
+                    - generic [ref=e484]: Suscríbete y ahorra
+                    - generic [ref=e496]:
+                      - generic [ref=e497]:
+                        - generic [ref=e498]: 10,56€
+                        - generic [ref=e499]:
+                          - generic [ref=e500]:
+                            - text: "10"
+                            - generic [ref=e501]: ","
+                          - text: 56€
+                      - generic [ref=e502]:
+                        - generic [ref=e503]: 10,56&nbsp;&euro; por kg
+                        - generic [ref=e504]:
+                          - text: (
+                          - generic [ref=e505]:
+                            - generic [ref=e506]: 10,56€
+                            - text: 10,56€
+                          - text: / kg)
+                    - generic [ref=e507]: Entrega GRATIS el jueves, 10 de septiembre en pedidos enviados por Amazon de más de 35€
+                    - generic [ref=e516]:
+                      - generic [ref=e517]: Remitente / Vendedor
+                      - generic [ref=e519]: Amazon
+            - link "Añadir a la Lista de deseos" [ref=e530] [cursor=pointer]:
+              - /url: https://www.amazon.es/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.es%2Fgp%2Faw%2Fd%2FB0F1NG6ZNX&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=esamazon&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&
+        - generic [ref=e534]:
+          - button [ref=e535]:
+            - button "Compartir" [ref=e536] [cursor=pointer]
+          - generic [ref=e539]:
+            - radiogroup [ref=e541]:
+              - listitem [ref=e542]:
+                - radio [ref=e547] [cursor=pointer]
+              - listitem [ref=e549]:
+                - radio [ref=e554] [cursor=pointer]
+              - listitem [ref=e556]:
+                - radio [ref=e561] [cursor=pointer]
+              - listitem [ref=e563]:
+                - radio [ref=e568] [cursor=pointer]
+              - listitem [ref=e570]:
+                - radio [ref=e575] [cursor=pointer]
+              - listitem [ref=e577]:
+                - radio [ref=e582] [cursor=pointer]
+            - generic [ref=e584]:
+              - generic [ref=e586]:
+                - list
+                - list [ref=e587]:
+                  - listitem [ref=e588] [cursor=pointer]:
+                    - button [ref=e591]:
+                      - img "by Amazon Fuerte Café En Grano De Tueste Natural, 1kg" [ref=e592]
+              - link "Haz clic para ver la vista completa" [ref=e596] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e597]:
+          - heading "by Amazon Fuerte Café En Grano De Tueste Natural, 1kg" [level=1] [ref=e600]
+          - link "Visita la tienda de by Amazon" [ref=e603] [cursor=pointer]:
+            - /url: /stores/byAmazon/page/B188E508-712F-44C9-8E59-BD1222E58434?lp_asin=B0F1NG6ZNX&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override
+          - generic [ref=e605]:
+            - generic "4,4 de 5 estrellas" [ref=e607]:
+              - button "4,4 de 5 estrellas" [ref=e609] [cursor=pointer]: 4,4
+            - link "225 Reseñas" [ref=e614] [cursor=pointer]:
+              - /url: "#averageCustomerReviewsAnchor"
+              - text: (225)
+          - generic [ref=e615]: Opción Amazon
+          - button "4 características de sostenibilidad" [ref=e623] [cursor=pointer]
+          - generic [ref=e624]: 600+ comprados el mes pasado
+          - separator [ref=e628]
+          - generic [ref=e633]:
+            - generic [ref=e635]:
+              - generic [ref=e636]:
+                - generic [ref=e637]: 10,56 € con un ahorro del 9 %
+                - generic [ref=e638]: "-9 %"
+                - generic [ref=e640]:
+                  - generic [ref=e641]:
+                    - text: "10"
+                    - generic [ref=e642]: ","
+                  - text: 56€
+                - generic [ref=e644]:
+                  - generic [ref=e645]: 10,56&nbsp;&euro; por kg
+                  - generic [ref=e646]:
+                    - text: (
+                    - generic [ref=e647]:
+                      - generic [ref=e648]: 10,56€
+                      - text: 10,56€
+                    - text: / kg)
+              - generic [ref=e651]:
+                - generic [ref=e652]:
+                  - generic [ref=e653]: "Precio mediano: 11,55 €"
+                  - generic [ref=e654]:
+                    - text: "Precio mediano:"
+                    - generic [ref=e655]:
+                      - generic [ref=e656]: 11,55€
+                      - text: 11,55€
+                - link [ref=e659] [cursor=pointer]:
+                  - /url: "#"
+                  - img "Más información sobre los precios y descuentos de Amazon" [ref=e660]
+            - generic [ref=e662]:
+              - text: Los precios de los productos vendidos en Amazon incluyen el IVA. Dependiendo de tu dirección de entrega, el IVA puede variar al finalizar la compra. Para obtener más información, haz clic
+              - link "aqui" [ref=e663] [cursor=pointer]:
+                - /url: https://www.amazon.es/-/es/gp/help/customer/display.html?ref_=hp_bc_nav&nodeId=G7MYTK9H5NVW7QVW
+              - text: .
+            - generic:
+              - table
+            - generic [ref=e670]:
+              - generic [ref=e671] [cursor=pointer]: Ahorra 5 %
+              - generic [ref=e672]:
+                - text: en cada 4 o más
+                - link "Comprar artículos seleccionados" [ref=e674] [cursor=pointer]:
+                  - /url: /promotion/psp/A2OL7RHTLFC3YF?ref=psp_external&redirectAsin=B0F1NG6ZNX&redirectMerchantId=A1AT7YVPFBWXBL&ref=cxcw_psp_af_A2OL7RHTLFC3YF&source=dp_cxcw
+          - generic [ref=e679]:
+            - generic [ref=e680]:
+              - generic "La selección de Sabor es Forte. Toca para plegar." [ref=e681] [cursor=pointer]: "Sabor: Forte"
+              - generic "Hay 11 opciones." [ref=e684]:
+                - group "Selecciona un Sabor" [ref=e686]:
+                  - radiogroup [ref=e687]:
+                    - listitem [ref=e688]:
+                      - generic [ref=e691] [cursor=pointer]:
+                        - radio "Arabica/Robusta Blend" [ref=e692]
+                        - generic [ref=e693]: Arabica/Robusta Blend
+                    - listitem [ref=e697]:
+                      - generic [ref=e700] [cursor=pointer]:
+                        - radio "Decaf" [ref=e701]
+                        - generic [ref=e702]: Decaf
+                    - listitem [ref=e706]:
+                      - generic [ref=e709] [cursor=pointer]:
+                        - radio "Decaff" [ref=e710]
+                        - generic [ref=e711]: Decaff
+                    - listitem [ref=e715]:
+                      - generic [ref=e718] [cursor=pointer]:
+                        - radio "Espresso Crema" [ref=e719]
+                        - generic [ref=e720]: Espresso Crema
+                    - listitem [ref=e724]:
+                      - generic [ref=e727] [cursor=pointer]:
+                        - radio "Forte" [checked] [ref=e728]
+                        - generic [ref=e729]: Forte
+                    - listitem [ref=e733]:
+                      - generic [ref=e736] [cursor=pointer]:
+                        - radio "House Blend Arabica/Robusta" [ref=e737]
+                        - generic [ref=e738]: House Blend Arabica/Robusta
+                    - listitem [ref=e742]:
+                      - generic [ref=e745] [cursor=pointer]:
+                        - radio "House Blend Gold" [ref=e746]
+                        - generic [ref=e747]: House Blend Gold
+                    - listitem [ref=e751]:
+                      - generic [ref=e754] [cursor=pointer]:
+                        - radio "House Blend Gold Coffee Beans" [ref=e755]
+                        - generic [ref=e756]: House Blend Gold Coffee Beans
+                    - listitem [ref=e760]:
+                      - generic [ref=e763] [cursor=pointer]:
+                        - radio "Houseblend Gold" [ref=e764]
+                        - generic [ref=e765]: Houseblend Gold
+                    - listitem [ref=e769]:
+                      - generic [ref=e772] [cursor=pointer]:
+                        - radio "Intenso" [ref=e773]
+                        - generic [ref=e774]: Intenso
+                    - listitem [ref=e778]:
+                      - generic [ref=e781] [cursor=pointer]:
+                        - radio "Puro arabica" [ref=e782]
+                        - generic [ref=e783]: Puro arabica
+            - generic [ref=e787]:
+              - generic "La selección de Tamaño es 1 kg (Paquete de 1). Toca para plegar." [ref=e788] [cursor=pointer]: "Tamaño: 1 kg (Paquete de 1)"
+              - generic "Hay 8 opciones." [ref=e791]:
+                - group "Selecciona un Tamaño" [ref=e793]:
+                  - radiogroup [ref=e794]:
+                    - listitem [ref=e795]:
+                      - generic [ref=e798] [cursor=pointer]:
+                        - radio "1 kg (Paquete de 1) 10,56 € con un ahorro del 9 % 10,56€ 10,56&nbsp;&euro; por kg ( 10,56€ 10,56€ / kg) 11,55€ 11,55€ En stock" [checked] [ref=e799]
+                        - generic [ref=e801]:
+                          - generic [ref=e802]: 1 kg (Paquete de 1)
+                          - separator [ref=e804]
+                          - generic [ref=e809]:
+                            - generic [ref=e810]:
+                              - generic [ref=e811]: 10,56 € con un ahorro del 9 %
+                              - generic [ref=e812]: 10,56€
+                            - generic [ref=e814]:
+                              - generic [ref=e815]: 10,56&nbsp;&euro; por kg
+                              - generic [ref=e816]:
+                                - text: (
+                                - generic [ref=e817]:
+                                  - generic [ref=e818]: 10,56€
+                                  - text: 10,56€
+                                - text: / kg)
+                            - generic [ref=e821]:
+                              - generic [ref=e822]: 11,55€
+                              - text: 11,55€
+                    - listitem [ref=e823]:
+                      - generic [ref=e826] [cursor=pointer]:
+                        - radio "1 kg (Paquete de 2) 21,12 € con un ahorro del 9 % 21,12€ 10,56&nbsp;&euro; por kg ( 10,56€ 10,56€ / kg) 23,10€ 23,10€ En stock" [ref=e827]
+                        - generic [ref=e829]:
+                          - generic [ref=e830]: 1 kg (Paquete de 2)
+                          - separator [ref=e832]
+                          - generic [ref=e837]:
+                            - generic [ref=e838]:
+                              - generic [ref=e839]: 21,12 € con un ahorro del 9 %
+                              - generic [ref=e840]: 21,12€
+                            - generic [ref=e842]:
+                              - generic [ref=e843]: 10,56&nbsp;&euro; por kg
+                              - generic [ref=e844]:
+                                - text: (
+                                - generic [ref=e845]:
+                                  - generic [ref=e846]: 10,56€
+                                  - text: 10,56€
+                                - text: / kg)
+                            - generic [ref=e849]:
+                              - generic [ref=e850]: 23,10€
+                              - text: 23,10€
+                  - navigation
+          - button [ref=e856] [cursor=pointer]:
+            - heading "Ingredientes" [level=5] [ref=e858]
+          - generic [ref=e859]:
+            - generic [ref=e861]:
+              - button [ref=e865] [cursor=pointer]:
+                - heading "Lo más destacado" [level=5] [ref=e867]
+              - button [ref=e871] [cursor=pointer]:
+                - heading "Detalles del producto" [level=5] [ref=e873]
+              - button [ref=e877] [cursor=pointer]:
+                - heading "Medidas" [level=5] [ref=e879]
+            - link "Ver todas las especificaciones del producto" [disabled] [ref=e885] [cursor=pointer]:
+              - /url: javascript:void(0)
+          - generic [ref=e889]:
+            - heading [level=2] [ref=e890]:
+              - paragraph [ref=e892]: Marca destacada
+              - paragraph [ref=e893]: by Amazon
+            - list [ref=e894]:
+              - listitem [ref=e895]:
+                - paragraph [ref=e896]: 89% de valoraciones positivas de 10K+ clientes
+              - listitem [ref=e897]:
+                - paragraph [ref=e898]: 100K+ pedidos recientes de esta marca
+          - link "Informar de un problema con este producto" [ref=e904] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - generic [ref=e906]:
+          - separator [ref=e907]
+          - generic [ref=e913]:
+            - link [ref=e915] [cursor=pointer]:
+              - /url: /b/?_encoding=UTF8&node=14608924031&pf_rd_p=56e57f0c-9f37-4f45-8605-1bebb1428786&pf_rd_r=MJ74PDP9TBSQCJEEWQW1
+            - generic [ref=e916]:
+              - generic [ref=e917]: Solimo
+              - generic [ref=e920]:
+                - text: Opciones inteligentes para las necesidades del día a día.
+                - link "Opciones inteligentes para las necesidades del día a día." [ref=e921] [cursor=pointer]:
+                  - /url: /b/?_encoding=UTF8&node=14608924031&pf_rd_p=56e57f0c-9f37-4f45-8605-1bebb1428786&pf_rd_r=MJ74PDP9TBSQCJEEWQW1
+                  - text: Compra ya
+      - generic [ref=e926]:
+        - separator [ref=e927]
+        - heading "Comprados juntos habitualmente" [level=2] [ref=e928]
+        - generic [ref=e929]:
+          - group "Comprados juntos habitualmente" [ref=e930]:
+            - generic [ref=e931]:
+              - generic [ref=e932]:
+                - 'checkbox "Este producto: by Amazon Fuerte Café En Grano De Tueste Natural, 1kg" [checked] [ref=e938]'
+                - generic [ref=e943]:
+                  - generic [ref=e944]: "Este producto: by Amazon Fuerte Café En Grano De Tueste Natural, 1kg"
+                  - generic [ref=e951]:
+                    - generic [ref=e952]:
+                      - generic [ref=e953]: 10,56€
+                      - generic [ref=e954]:
+                        - generic [ref=e955]:
+                          - text: "10"
+                          - generic [ref=e956]: ","
+                        - text: 56€
+                    - text: (10,56 €/kg)
+              - generic [ref=e957]:
+                - generic [ref=e958]:
+                  - generic [ref=e959]: +
+                  - checkbox "by Amazon Granos de Café Intenso, Tostado Ligero, 1kg (2 Paquetes de 500g), Certificado por Rainforest Alliance" [checked] [ref=e963]
+                  - link [ref=e967] [cursor=pointer]:
+                    - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=pd_bxgy_thbs_d_sccl_1/524-0848136-8461663?pd_rd_w=rK7y9&content-id=amzn1.sym.9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_p=9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                    - img "by Amazon Granos de Café Intenso, Tostado Ligero, 1kg (2 Paquetes de 500g), Certificado por Rainforest Alliance" [ref=e968]
+                - generic [ref=e969]:
+                  - link "by Amazon Granos de Café Intenso, Tostado Ligero, 1kg (2 Paquetes de 500g), Certificado por Rainforest Alliance" [ref=e971] [cursor=pointer]:
+                    - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=pd_bxgy_d_sccl_1/524-0848136-8461663?pd_rd_w=rK7y9&content-id=amzn1.sym.9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_p=9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                  - generic [ref=e978]:
+                    - generic [ref=e979]:
+                      - generic [ref=e980]: 11,00€
+                      - generic [ref=e981]:
+                        - generic [ref=e982]:
+                          - text: "11"
+                          - generic [ref=e983]: ","
+                        - text: 00€
+                    - text: (11,00 €/kg)
+              - generic [ref=e984]:
+                - generic [ref=e985]:
+                  - generic [ref=e986]: +
+                  - checkbox "By Amazon Café Colombiano en Grano, 100% Arábica, Tueste Medio, 1Kg (2 paquetes de 500g), Certificado Rainforest Alliance" [checked] [ref=e990]
+                  - link [ref=e994] [cursor=pointer]:
+                    - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_bxgy_thbs_d_sccl_2/524-0848136-8461663?pd_rd_w=rK7y9&content-id=amzn1.sym.9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_p=9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                    - img "By Amazon Café Colombiano en Grano, 100% Arábica, Tueste Medio, 1Kg (2 paquetes de 500g), Certificado Rainforest Alliance" [ref=e995]
+                - generic [ref=e996]:
+                  - link "By Amazon Café Colombiano en Grano, 100% Arábica, Tueste Medio, 1Kg (2 paquetes de 500g), Certificado Rainforest Alliance" [ref=e998] [cursor=pointer]:
+                    - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_bxgy_d_sccl_2/524-0848136-8461663?pd_rd_w=rK7y9&content-id=amzn1.sym.9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_p=9abfd478-06b8-4d16-a5ae-d877fea17aae&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                  - generic [ref=e1005]:
+                    - generic [ref=e1006]:
+                      - generic [ref=e1007]: 15,40€
+                      - generic [ref=e1008]:
+                        - generic [ref=e1009]:
+                          - text: "15"
+                          - generic [ref=e1010]: ","
+                        - text: 40€
+                    - text: (15,40 €/kg)
+          - generic [ref=e1012]:
+            - generic [ref=e1014]:
+              - text: "Precio total:"
+              - generic [ref=e1015]:
+                - generic [ref=e1016]: 36.96 €
+                - generic [ref=e1017]:
+                  - generic [ref=e1018]: 36,
+                  - text: 96 €
+            - generic [ref=e1024] [cursor=pointer]:
+              - button "Añadir 3 a la cesta, by Amazon Fuerte Café En Grano De Tueste Natural, 1kg" [ref=e1025]
+              - generic [ref=e1026]: Añadir 3 a la cesta
+      - generic [ref=e1029]:
+        - separator [ref=e1030]
+        - group [ref=e1033]:
+          - heading "Explorar más en la tienda" [level=2] [ref=e1038]
+          - group [ref=e1043]:
+            - list [ref=e1044]:
+              - listitem [ref=e1045]:
+                - generic [ref=e1047]:
+                  - link [ref=e1049] [cursor=pointer]:
+                    - /url: /Philips-Serie-2200-EP2220-10/dp/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R&psc=1
+                  - generic [ref=e1052]:
+                    - link "PHILIPS Serie 2200 Cafetera Espresso Automática - 2 Cafés, Pantalla Táctil, Espumador de Leche Clásico, Molinillo Cerámico, Negro Mate (EP2220/10)" [ref=e1053] [cursor=pointer]:
+                      - /url: /Philips-Serie-2200-EP2220-10/dp/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R&psc=1
+                    - link "4,0 de 5 estrellas, 25.502 calificaciones" [ref=e1058] [cursor=pointer]:
+                      - /url: /product-reviews/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R
+                      - generic [ref=e1059]: 4,0 de 5 estrellas
+                      - text: "25.502"
+                    - generic [ref=e1061]:
+                      - link "El n.º 1 más vendido":
+                        - /url: /gp/bestsellers/kitchen/2165187031/ref=zg_b_bs_2165187031_1/ref=bmx_dp_d_sccl_1_1_bsb/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R
+                    - generic [ref=e1066]:
+                      - generic [ref=e1068]:
+                        - generic [ref=e1069]:
+                          - link "-23 %" [ref=e1070] [cursor=pointer]:
+                            - /url: /Philips-Serie-2200-EP2220-10/dp/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R&psc=1
+                          - link "286,53€" [ref=e1071] [cursor=pointer]:
+                            - /url: /Philips-Serie-2200-EP2220-10/dp/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R&psc=1
+                            - generic [ref=e1072]:
+                              - generic [ref=e1073]: 286,53€
+                              - generic [ref=e1074]:
+                                - generic [ref=e1075]: 286,
+                                - text: 53€
+                        - 'link "Recomendado: 369,99 €" [ref=e1077] [cursor=pointer]':
+                          - /url: /Philips-Serie-2200-EP2220-10/dp/B07MMSHC4R/ref=bmx_dp_d_sccl_1_1/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07MMSHC4R&psc=1
+                      - generic [ref=e1080]: Recíbelo Del 30 de sep al 2 de oct
+                    - generic [ref=e1082]: Envío en 5 a 6 días
+              - listitem [ref=e1085]:
+                - generic [ref=e1087]:
+                  - link [ref=e1089] [cursor=pointer]:
+                    - /url: /DeLonghi-Magnifica-ECAM11-112-B-Superautom%C3%A1tica-Soft-Touch/dp/B0BWSFGQ49/ref=bmx_dp_d_sccl_1_2/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BWSFGQ49&psc=1
+                  - generic [ref=e1092]:
+                    - link "De'Longhi Magnifica S - Cafetera Superautomática 2 Bebidas Negro | Cafetera Automática, Espumador de Leche Manual, Espresso y Cappuccino, Función para 2 Tazas, Panel con Botones, ECAM11.112.B" [ref=e1093] [cursor=pointer]:
+                      - /url: /DeLonghi-Magnifica-ECAM11-112-B-Superautom%C3%A1tica-Soft-Touch/dp/B0BWSFGQ49/ref=bmx_dp_d_sccl_1_2/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BWSFGQ49&psc=1
+                    - link "4,0 de 5 estrellas, 7.651 calificaciones" [ref=e1098] [cursor=pointer]:
+                      - /url: /product-reviews/B0BWSFGQ49/ref=bmx_dp_d_sccl_1_2_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BWSFGQ49
+                      - generic [ref=e1099]: 4,0 de 5 estrellas
+                      - text: "7.651"
+                    - generic [ref=e1101]:
+                      - link "299,99€" [ref=e1105] [cursor=pointer]:
+                        - /url: /DeLonghi-Magnifica-ECAM11-112-B-Superautom%C3%A1tica-Soft-Touch/dp/B0BWSFGQ49/ref=bmx_dp_d_sccl_1_2/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BWSFGQ49&psc=1
+                        - generic [ref=e1106]:
+                          - generic [ref=e1107]: 299,99€
+                          - generic [ref=e1108]:
+                            - generic [ref=e1109]: 299,
+                            - text: 99€
+                      - generic [ref=e1110]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS por Amazon
+              - listitem [ref=e1112]:
+                - generic [ref=e1114]:
+                  - link [ref=e1116] [cursor=pointer]:
+                    - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                  - generic [ref=e1119]:
+                    - link "by Amazon Granos de Café Intenso, Tostado Ligero, 1kg (2 Paquetes de 500g), Certificado por Rainforest Alliance" [ref=e1120] [cursor=pointer]:
+                      - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                    - link "4,2 de 5 estrellas, 4.305 calificaciones" [ref=e1125] [cursor=pointer]:
+                      - /url: /product-reviews/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC
+                      - generic [ref=e1126]: 4,2 de 5 estrellas
+                      - text: "4.305"
+                    - generic [ref=e1128]:
+                      - generic [ref=e1130]:
+                        - generic [ref=e1131]:
+                          - link "-15 %" [ref=e1132] [cursor=pointer]:
+                            - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                          - link "11,00€" [ref=e1133] [cursor=pointer]:
+                            - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                            - generic [ref=e1134]:
+                              - generic [ref=e1135]: 11,00€
+                              - generic [ref=e1136]:
+                                - generic [ref=e1137]: 11,
+                                - text: 00€
+                          - link "(11,00 €/kg)" [ref=e1138] [cursor=pointer]:
+                            - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                        - 'link "Mediano: 12,87 €" [ref=e1140] [cursor=pointer]':
+                          - /url: /Marca-Amazon-tueste-natural-Intenso/dp/B07CTSZXRC/ref=bmx_dp_d_sccl_1_3/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07CTSZXRC&psc=1
+                      - generic [ref=e1143]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+                  - button "4 características de sostenibilidad" [ref=e1148] [cursor=pointer]
+              - listitem [ref=e1151]:
+                - generic [ref=e1153]:
+                  - link [ref=e1155] [cursor=pointer]:
+                    - /url: /Corsini-SuperCremoso-Strong-Coffee-Cremeso/dp/B06XPJ5432/ref=bmx_dp_d_sccl_1_4/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B06XPJ5432&psc=1
+                  - generic [ref=e1158]:
+                    - link "Café Corsini en Granos, Súper Cremoso. Envase de 1 kg. Selección de granos para un café fuerte y de una agradable cremosidad" [ref=e1159] [cursor=pointer]:
+                      - /url: /Corsini-SuperCremoso-Strong-Coffee-Cremeso/dp/B06XPJ5432/ref=bmx_dp_d_sccl_1_4/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B06XPJ5432&psc=1
+                    - link "4,0 de 5 estrellas, 691 calificaciones" [ref=e1164] [cursor=pointer]:
+                      - /url: /product-reviews/B06XPJ5432/ref=bmx_dp_d_sccl_1_4_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B06XPJ5432
+                      - generic [ref=e1165]: 4,0 de 5 estrellas
+                      - text: "691"
+                    - generic [ref=e1167]:
+                      - generic [ref=e1170]:
+                        - link "22,99€" [ref=e1171] [cursor=pointer]:
+                          - /url: /Corsini-SuperCremoso-Strong-Coffee-Cremeso/dp/B06XPJ5432/ref=bmx_dp_d_sccl_1_4/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B06XPJ5432&psc=1
+                          - generic [ref=e1172]:
+                            - generic [ref=e1173]: 22,99€
+                            - generic [ref=e1174]:
+                              - generic [ref=e1175]: 22,
+                              - text: 99€
+                        - link "(22,99 €/kg)" [ref=e1176] [cursor=pointer]:
+                          - /url: /Corsini-SuperCremoso-Strong-Coffee-Cremeso/dp/B06XPJ5432/ref=bmx_dp_d_sccl_1_4/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B06XPJ5432&psc=1
+                      - generic [ref=e1177]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+              - listitem [ref=e1179]:
+                - generic [ref=e1181]:
+                  - link [ref=e1183] [cursor=pointer]:
+                    - /url: /Cecotec-Molinillo-Thermoblock-Accesorios-Incluidos/dp/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ&psc=1
+                  - generic [ref=e1186]:
+                    - link "Cecotec Cafetera Express Barista Power Espresso 20 Barista Steel & Grind. 2200W, 20Bares, Molinillo Cónico, 2.1L Depósito Agua, 180g Café, 30 Niveles, Thermoblock, Doble Brazo, Accesorios Incluidos" [ref=e1187] [cursor=pointer]:
+                      - /url: /Cecotec-Molinillo-Thermoblock-Accesorios-Incluidos/dp/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ&psc=1
+                    - link "3,5 de 5 estrellas, 30 calificaciones" [ref=e1192] [cursor=pointer]:
+                      - /url: /product-reviews/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ
+                      - generic [ref=e1193]: 3,5 de 5 estrellas
+                      - text: "30"
+                    - generic [ref=e1195]:
+                      - generic [ref=e1197]:
+                        - generic [ref=e1198]:
+                          - link "-8 %" [ref=e1199] [cursor=pointer]:
+                            - /url: /Cecotec-Molinillo-Thermoblock-Accesorios-Incluidos/dp/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ&psc=1
+                          - link "219,00€" [ref=e1200] [cursor=pointer]:
+                            - /url: /Cecotec-Molinillo-Thermoblock-Accesorios-Incluidos/dp/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ&psc=1
+                            - generic [ref=e1201]:
+                              - generic [ref=e1202]: 219,00€
+                              - generic [ref=e1203]:
+                                - generic [ref=e1204]: 219,
+                                - text: 00€
+                        - 'link "Mediano: 239,00 €" [ref=e1206] [cursor=pointer]':
+                          - /url: /Cecotec-Molinillo-Thermoblock-Accesorios-Incluidos/dp/B0FKSV91VZ/ref=bmx_dp_d_sccl_1_5/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0FKSV91VZ&psc=1
+                      - generic [ref=e1209]: Obtenlo el sábado, 12 de septiembre como muy tarde.
+                    - text: Envío GRATIS por Amazon
+              - listitem [ref=e1211]:
+                - generic [ref=e1213]:
+                  - link [ref=e1215] [cursor=pointer]:
+                    - /url: /Caff%C3%A8-Mauro-Mezcla-Arabica-Intensitad/dp/B0D6W6G1RG/ref=bmx_dp_d_sccl_1_6/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0D6W6G1RG&psc=1
+                  - generic [ref=e1218]:
+                    - link "Caffè Mauro Torrefazione - Cafè En Grano - 1 Kg - Mezcla 100% Arabica - Intensitad 5/10 - Made In Italy" [ref=e1219] [cursor=pointer]:
+                      - /url: /Caff%C3%A8-Mauro-Mezcla-Arabica-Intensitad/dp/B0D6W6G1RG/ref=bmx_dp_d_sccl_1_6/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0D6W6G1RG&psc=1
+                    - link "4,3 de 5 estrellas, 419 calificaciones" [ref=e1224] [cursor=pointer]:
+                      - /url: /product-reviews/B0D6W6G1RG/ref=bmx_dp_d_sccl_1_6_cr/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0D6W6G1RG
+                      - generic [ref=e1225]: 4,3 de 5 estrellas
+                      - text: "419"
+                    - generic [ref=e1227]:
+                      - generic [ref=e1230]:
+                        - link "18,49€" [ref=e1231] [cursor=pointer]:
+                          - /url: /Caff%C3%A8-Mauro-Mezcla-Arabica-Intensitad/dp/B0D6W6G1RG/ref=bmx_dp_d_sccl_1_6/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0D6W6G1RG&psc=1
+                          - generic [ref=e1232]:
+                            - generic [ref=e1233]: 18,49€
+                            - generic [ref=e1234]:
+                              - generic [ref=e1235]: 18,
+                              - text: 49€
+                        - link "(18,49 €/kg)" [ref=e1236] [cursor=pointer]:
+                          - /url: /Caff%C3%A8-Mauro-Mezcla-Arabica-Intensitad/dp/B0D6W6G1RG/ref=bmx_dp_d_sccl_1_6/524-0848136-8461663?pd_rd_w=EoSiK&content-id=amzn1.sym.b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_p=b35bde52-f16e-4ad6-8e63-ebc30312579e&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0D6W6G1RG&psc=1
+                      - generic [ref=e1237]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+      - generic [ref=e1243]:
+        - separator [ref=e1244]
+        - group [ref=e1247]:
+          - heading "Productos Climate Pledge Friendly relacionados" [level=2] [ref=e1252]
+          - group [ref=e1257]:
+            - list [ref=e1258]:
+              - listitem [ref=e1259]:
+                - generic [ref=e1261]:
+                  - link [ref=e1263] [cursor=pointer]:
+                    - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                  - generic [ref=e1266]:
+                    - link "by Amazon Crema Café En Grano De Tueste Natural Intensidad 4 - Medio Fuerte, 1kg" [ref=e1267] [cursor=pointer]:
+                      - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                    - link "4,3 de 5 estrellas, 192 calificaciones" [ref=e1272] [cursor=pointer]:
+                      - /url: /product-reviews/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T
+                      - generic [ref=e1273]: 4,3 de 5 estrellas
+                      - text: "192"
+                    - generic [ref=e1275]:
+                      - generic [ref=e1277]:
+                        - generic [ref=e1278]:
+                          - link "-4 %" [ref=e1279] [cursor=pointer]:
+                            - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                          - link "10,56€" [ref=e1280] [cursor=pointer]:
+                            - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                            - generic [ref=e1281]:
+                              - generic [ref=e1282]: 10,56€
+                              - generic [ref=e1283]:
+                                - generic [ref=e1284]: 10,
+                                - text: 56€
+                          - link "(10,56 €/kg)" [ref=e1285] [cursor=pointer]:
+                            - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                        - 'link "Mediano: 11,00 €" [ref=e1287] [cursor=pointer]':
+                          - /url: /Amazon-Crema-Tueste-Natural-Intensidad/dp/B0F1NDZ96T/ref=pd_sim_cpf_related_desktop_d_sccl_2_1/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0F1NDZ96T&psc=1
+                      - generic [ref=e1290]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+                  - button "4 características de sostenibilidad" [ref=e1295] [cursor=pointer]
+              - listitem [ref=e1298]:
+                - generic [ref=e1300]:
+                  - link [ref=e1302] [cursor=pointer]:
+                    - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_sim_cpf_related_desktop_d_sccl_2_2/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                  - generic [ref=e1305]:
+                    - link "By Amazon Café Colombiano en Grano, 100% Arábica, Tueste Medio, 1Kg (2 paquetes de 500g), Certificado Rainforest Alliance" [ref=e1306] [cursor=pointer]:
+                      - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_sim_cpf_related_desktop_d_sccl_2_2/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                    - link "4,2 de 5 estrellas, 1.308 calificaciones" [ref=e1311] [cursor=pointer]:
+                      - /url: /product-reviews/B0BHSRPJMJ/ref=pd_sim_cpf_related_desktop_d_sccl_2_2_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ
+                      - generic [ref=e1312]: 4,2 de 5 estrellas
+                      - text: "1.308"
+                    - generic [ref=e1314]:
+                      - generic [ref=e1317]:
+                        - link "15,40€" [ref=e1318] [cursor=pointer]:
+                          - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_sim_cpf_related_desktop_d_sccl_2_2/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                          - generic [ref=e1319]:
+                            - generic [ref=e1320]: 15,40€
+                            - generic [ref=e1321]:
+                              - generic [ref=e1322]: 15,
+                              - text: 40€
+                        - link "(15,40 €/kg)" [ref=e1323] [cursor=pointer]:
+                          - /url: /Amazon-Granos-Caf%C3%A9-Colombiano-Paquetes/dp/B0BHSRPJMJ/ref=pd_sim_cpf_related_desktop_d_sccl_2_2/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0BHSRPJMJ&psc=1
+                      - generic [ref=e1324]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+                  - button "4 características de sostenibilidad" [ref=e1329] [cursor=pointer]
+              - listitem [ref=e1332]:
+                - generic [ref=e1334]:
+                  - link [ref=e1336] [cursor=pointer]:
+                    - /url: /Schwiizer-Sch%C3%BC%C3%BCmli-Mild-Granos-Caf%C3%A9/dp/B006G0EX1U/ref=pd_sim_cpf_related_desktop_d_sccl_2_3/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B006G0EX1U&psc=1
+                  - generic [ref=e1339]:
+                    - link "Schwiizer Schüümli Mild Granos de Café, 1000 g" [ref=e1340] [cursor=pointer]:
+                      - /url: /Schwiizer-Sch%C3%BC%C3%BCmli-Mild-Granos-Caf%C3%A9/dp/B006G0EX1U/ref=pd_sim_cpf_related_desktop_d_sccl_2_3/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B006G0EX1U&psc=1
+                    - link "4,5 de 5 estrellas, 1.637 calificaciones" [ref=e1345] [cursor=pointer]:
+                      - /url: /product-reviews/B006G0EX1U/ref=pd_sim_cpf_related_desktop_d_sccl_2_3_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B006G0EX1U
+                      - generic [ref=e1346]: 4,5 de 5 estrellas
+                      - text: "1.637"
+                    - generic [ref=e1348]:
+                      - generic [ref=e1351]:
+                        - link "33,89€" [ref=e1352] [cursor=pointer]:
+                          - /url: /Schwiizer-Sch%C3%BC%C3%BCmli-Mild-Granos-Caf%C3%A9/dp/B006G0EX1U/ref=pd_sim_cpf_related_desktop_d_sccl_2_3/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B006G0EX1U&psc=1
+                          - generic [ref=e1353]:
+                            - generic [ref=e1354]: 33,89€
+                            - generic [ref=e1355]:
+                              - generic [ref=e1356]: 33,
+                              - text: 89€
+                        - link "(33,89 €/kg)" [ref=e1357] [cursor=pointer]:
+                          - /url: /Schwiizer-Sch%C3%BC%C3%BCmli-Mild-Granos-Caf%C3%A9/dp/B006G0EX1U/ref=pd_sim_cpf_related_desktop_d_sccl_2_3/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B006G0EX1U&psc=1
+                      - generic [ref=e1358]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+                  - button "4 características de sostenibilidad" [ref=e1363] [cursor=pointer]
+              - listitem [ref=e1366]:
+                - generic [ref=e1368]:
+                  - link [ref=e1370] [cursor=pointer]:
+                    - /url: /Extremadamente-Altamente-Cafeinado-Black-Donkey/dp/B07YDKB4G3/ref=pd_sim_cpf_related_desktop_d_sccl_2_4/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07YDKB4G3&psc=1
+                  - generic [ref=e1373]:
+                    - link "Black Donkey - 1KG Café Natural En Grano (DEVIL'S ROAST) | Extremadamente Fuerte | Altamente Cafeinado" [ref=e1374] [cursor=pointer]:
+                      - /url: /Extremadamente-Altamente-Cafeinado-Black-Donkey/dp/B07YDKB4G3/ref=pd_sim_cpf_related_desktop_d_sccl_2_4/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07YDKB4G3&psc=1
+                    - link "4,4 de 5 estrellas, 1.092 calificaciones" [ref=e1379] [cursor=pointer]:
+                      - /url: /product-reviews/B07YDKB4G3/ref=pd_sim_cpf_related_desktop_d_sccl_2_4_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07YDKB4G3
+                      - generic [ref=e1380]: 4,4 de 5 estrellas
+                      - text: "1.092"
+                    - generic [ref=e1382]:
+                      - generic [ref=e1385]:
+                        - link "21,99€" [ref=e1386] [cursor=pointer]:
+                          - /url: /Extremadamente-Altamente-Cafeinado-Black-Donkey/dp/B07YDKB4G3/ref=pd_sim_cpf_related_desktop_d_sccl_2_4/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07YDKB4G3&psc=1
+                          - generic [ref=e1387]:
+                            - generic [ref=e1388]: 21,99€
+                            - generic [ref=e1389]:
+                              - generic [ref=e1390]: 21,
+                              - text: 99€
+                        - link "(21,99 €/kg)" [ref=e1391] [cursor=pointer]:
+                          - /url: /Extremadamente-Altamente-Cafeinado-Black-Donkey/dp/B07YDKB4G3/ref=pd_sim_cpf_related_desktop_d_sccl_2_4/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B07YDKB4G3&psc=1
+                      - generic [ref=e1392]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+              - listitem [ref=e1394]:
+                - generic [ref=e1396]:
+                  - link [ref=e1398] [cursor=pointer]:
+                    - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                  - generic [ref=e1401]:
+                    - link "Lavazza, Espresso Barista Intenso, Café en Grano Natural Tostado, Ideal para Máquina de Café Espresso o Superautomática, con Notas Aromáticas de Cacao y Madera, Intensidad 9/10, Tueste Medio, 1 kg" [ref=e1402] [cursor=pointer]:
+                      - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                    - link "4,5 de 5 estrellas, 5.789 calificaciones" [ref=e1407] [cursor=pointer]:
+                      - /url: /product-reviews/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169
+                      - generic [ref=e1408]: 4,5 de 5 estrellas
+                      - text: "5.789"
+                    - generic [ref=e1410]:
+                      - link "El n.º 1 más vendido":
+                        - /url: /gp/bestsellers/grocery/ref=zg_b_bs_grocery_display_on_website_1/ref=pd_sim_cpf_related_desktop_d_sccl_2_5_bsb/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169
+                    - generic [ref=e1415]:
+                      - generic [ref=e1417]:
+                        - generic [ref=e1418]:
+                          - link "-25 %" [ref=e1419] [cursor=pointer]:
+                            - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                          - link "25,25€" [ref=e1420] [cursor=pointer]:
+                            - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                            - generic [ref=e1421]:
+                              - generic [ref=e1422]: 25,25€
+                              - generic [ref=e1423]:
+                                - generic [ref=e1424]: 25,
+                                - text: 25€
+                          - link "(25,25 €/kg)" [ref=e1425] [cursor=pointer]:
+                            - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                        - 'link "Recomendado: 33,50 €" [ref=e1427] [cursor=pointer]':
+                          - /url: /Lavazza-Espresso-Superautom%C3%A1tica-Arom%C3%A1ticas-Intensidad/dp/B084B9C169/ref=pd_sim_cpf_related_desktop_d_sccl_2_5/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B084B9C169&psc=1
+                      - generic [ref=e1430]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+              - listitem [ref=e1432]:
+                - generic [ref=e1434]:
+                  - link [ref=e1436] [cursor=pointer]:
+                    - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                  - generic [ref=e1439]:
+                    - link "L'OR Espresso Colombia Café en Grano Natural 100% Arábica | 500g | Intensidad 8, 100% Natural" [ref=e1440] [cursor=pointer]:
+                      - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                    - link "4,4 de 5 estrellas, 465 calificaciones" [ref=e1445] [cursor=pointer]:
+                      - /url: /product-reviews/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6_cr/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D
+                      - generic [ref=e1446]: 4,4 de 5 estrellas
+                      - text: "465"
+                    - generic [ref=e1448]:
+                      - generic [ref=e1450]:
+                        - generic [ref=e1451]:
+                          - link "-11 %" [ref=e1452] [cursor=pointer]:
+                            - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                          - link "14,24€" [ref=e1453] [cursor=pointer]:
+                            - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                            - generic [ref=e1454]:
+                              - generic [ref=e1455]: 14,24€
+                              - generic [ref=e1456]:
+                                - generic [ref=e1457]: 14,
+                                - text: 24€
+                          - link "(28,48 €/kg)" [ref=e1458] [cursor=pointer]:
+                            - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                        - 'link "Recomendado: 15,95 €" [ref=e1460] [cursor=pointer]':
+                          - /url: /Espresso-Caf%C3%A9-Grano-Colombia-ar%C3%A1bica/dp/B0B3CF2Q3D/ref=pd_sim_cpf_related_desktop_d_sccl_2_6/524-0848136-8461663?pd_rd_w=qZMgR&content-id=amzn1.sym.629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_p=629d23f1-0a93-40d3-8c72-cb01edc310c1&pf_rd_r=MJ74PDP9TBSQCJEEWQW1&pd_rd_wg=arFA7&pd_rd_r=edaad40d-8012-4cb6-b33a-5aea04363837&pd_rd_i=B0B3CF2Q3D&psc=1
+                      - generic [ref=e1463]: Obtenlo el jueves, 10 de septiembre como muy tarde.
+                    - text: Envío GRATIS disponible
+                  - button "4 características de sostenibilidad" [ref=e1468] [cursor=pointer]
+      - generic [ref=e1474]:
+        - heading "Información importante" [level=2] [ref=e1475]
+        - generic [ref=e1476]:
+          - heading "Ingredientes" [level=4] [ref=e1477]
+          - paragraph
+          - paragraph [ref=e1478]: Granos de café
+          - paragraph
+        - generic [ref=e1479]:
+          - heading "Nota legal" [level=4] [ref=e1480]
+          - paragraph
+          - paragraph [ref=e1481]: Te recomendamos que siempre leas las etiquetas, advertencias e instrucciones del embalaje del producto antes de utilizarlo o consumirlo, ya que podrás encontrar información más detallada y actualizada sobre el mismo.
+          - paragraph
+      - generic [ref=e1484]:
+        - heading "Descripción del producto" [level=2] [ref=e1487]
+        - generic [ref=e1488]:
+          - heading "Descripción del producto" [level=3] [ref=e1489]
+          - paragraph [ref=e1490]: Este café tostado oscuro de inspiración italiana tiene mucho cuerpo con notas de clavo, pasas y toques de chocolate negro. Tiene un regusto fuerte bien equilibrado.
+          - heading "Ingredientes" [level=3] [ref=e1491]
+          - paragraph [ref=e1492]: Granos de café
+      - generic [ref=e1494]:
+        - separator [ref=e1495]
+        - generic [ref=e1496]:
+          - generic [ref=e1497]:
+            - heading "Características de sostenibilidad" [level=2] [ref=e1500]
+            - paragraph [ref=e1502]: Este producto tiene características de sostenibilidad reconocidas por certificaciones de confianza.
+          - generic [ref=e1503]:
+            - generic [ref=e1504]:
+              - generic [ref=e1505]:
+                - generic [ref=e1506]: Prácticas agrícolas
+                - paragraph [ref=e1508]: Fabricado con materiales recolectados de granjas gestionadas de forma responsable.
+                - generic [ref=e1509]: Según lo certificado por
+                - button "Rainforest Alliance" [ref=e1512] [cursor=pointer]
+              - generic [ref=e1515]:
+                - generic [ref=e1516]: Biodiversidad
+                - paragraph [ref=e1518]: Fabricado con materiales recolectados de una manera que ayuda a proteger a los animales y las plantas, y favorece un ecosistema saludable.
+                - generic [ref=e1519]: Según lo certificado por
+                - button "Rainforest Alliance" [ref=e1522] [cursor=pointer]
+              - generic [ref=e1525]:
+                - generic [ref=e1526]: Prácticas forestales
+                - paragraph [ref=e1528]: Fabricado con materiales procedentes de bosques gestionados de forma responsable.
+                - generic [ref=e1529]: Según lo certificado por
+                - button "Rainforest Alliance" [ref=e1532] [cursor=pointer]
+            - generic [ref=e1536]:
+              - generic [ref=e1537]: Bienestar laboral
+              - paragraph [ref=e1539]: Fabricado en granjas o instalaciones que protegen los derechos y/o la salud de los trabajadores.
+              - generic [ref=e1540]: Según lo certificado por
+              - button "Rainforest Alliance" [ref=e1543] [cursor=pointer]
+          - link "Climate Pledge Friendly Descubre más productos con características de sostenibilidad. Más información" [ref=e1547] [cursor=pointer]:
+            - /url: /climatepledgefriendly
+            - generic [ref=e1548]:
+              - heading [level=3] [ref=e1549]:
+                - img "Climate Pledge Friendly" [ref=e1550]
+              - generic [ref=e1551]:
+                - generic [ref=e1552]: Descubre más productos con características de sostenibilidad.
+                - text: Más información
+      - generic:
+        - navigation:
+          - navigation "Navigate within the product detail page":
+            - navigation "Back to top jump link":
+              - generic: Arriba
+            - navigation "About this item widget jump link":
+              - generic: Acerca de este producto
+            - navigation "Similar widget jump link":
+              - generic: Similar
+            - navigation "Product information widget jump link":
+              - generic: Información sobre el producto
+            - navigation "From the brand widget jump link":
+              - generic: De la marca
+            - navigation "Customer reviews widget jump link":
+              - generic: Reseñas
+          - navigation "Back to top Image jump link":
+            - img "by Amazon Fuerte Café En Grano De Tueste Natural, 1kg"
+          - navigation "Back to top title jump link":
+            - generic: by Amazon Fuerte Café En Grano De Tueste Natural, 1kg
+      - generic [ref=e1555]:
+        - separator [ref=e1556]
+        - heading "Más información del producto" [level=2] [ref=e1557]
+        - img "aplus content image" [ref=e1565]
+      - generic [ref=e1567]:
+        - separator [ref=e1568]
+        - heading "Detalles del producto" [level=2] [ref=e1569]
+        - list [ref=e1571]:
+          - listitem [ref=e1572]:
+            - generic [ref=e1573]: "Dimensiones del producto ‏ : ‎ 8,5 x 13,5 x 31,5 cm; 1 kg"
+          - listitem [ref=e1574]:
+            - generic [ref=e1575]: "Fabricante ‏ : ‎ Amazon"
+          - listitem [ref=e1576]:
+            - generic [ref=e1577]: "ASIN ‏ : ‎ B0F1NG6ZNX"
+          - listitem [ref=e1578]:
+            - generic [ref=e1579]: "Número de modelo del producto ‏ : ‎ PD-M71ZQKSWD8"
+          - listitem [ref=e1580]:
+            - generic [ref=e1581]: "País de origen ‏ : ‎ Países Bajos"
+          - listitem [ref=e1582]:
+            - generic [ref=e1583]:
+              - text: "Opiniones de los clientes:"
+              - generic [ref=e1584]:
+                - generic "4,4 de 5 estrellas" [ref=e1586]:
+                  - button "4,4 de 5 estrellas" [ref=e1588] [cursor=pointer]: 4,4
+                - link "225 Reseñas" [ref=e1593] [cursor=pointer]:
+                  - /url: "#averageCustomerReviewsAnchor"
+                  - text: (225)
+      - generic [ref=e1599]:
+        - heading "Vídeos de productos" [level=2] [ref=e1601]
+        - generic [ref=e1606]:
+          - region "Video Player" [ref=e1607]:
+            - generic [ref=e1610]:
+              - button "Play" [ref=e1611] [cursor=pointer]
+              - slider "Progress Bar" [ref=e1614] [cursor=pointer]: .
+              - generic [ref=e1615]: "-0:00"
+              - generic [ref=e1617]:
+                - menu
+              - button "Mute" [ref=e1618] [cursor=pointer]
+          - generic [ref=e1622]:
+            - generic [ref=e1623]:
+              - generic [ref=e1624]: WE
+              - link "Haz clic para ir a la página de información de influencers de Amazon" [ref=e1626] [cursor=pointer]:
+                - /url: /shop/info
+                - text: Gana comisiones
+            - generic [ref=e1627]: ¡Haz clic en "Reproducir" antes de pagar!
+          - button "Play" [ref=e1628] [cursor=pointer]
+      - generic "Reseñas más importantes" [ref=e1702]:
+        - separator [ref=e1703]
+        - generic [ref=e1705]:
+          - generic [ref=e1706]:
+            - generic [ref=e1711]:
+              - heading "Opiniones de clientes" [level=2] [ref=e1713]
+              - generic [ref=e1715]:
+                - generic [ref=e1717]:
+                  - generic [ref=e1718]: 4,4 de 5 estrellas
+                  - generic [ref=e1721]: 4,4 de 5
+                - generic [ref=e1724]: 225 calificaciones globales
+              - list [ref=e1729]:
+                - listitem [ref=e1730]:
+                  - link "Un 69 por ciento de las reseñas tienen 5 estrellas" [ref=e1733] [cursor=pointer]:
+                    - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=acr_dp_hist_5?ie=UTF8&filterByStar=five_star&reviewerType=all_reviews#reviews-filter-bar
+                    - generic [ref=e1734]: 5 estrellas
+                    - progressbar [ref=e1736]
+                    - generic [ref=e1737]: 69%
+                - listitem [ref=e1738]:
+                  - link "Un 19 por ciento de las reseñas tienen 4 estrellas" [ref=e1741] [cursor=pointer]:
+                    - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=acr_dp_hist_4?ie=UTF8&filterByStar=four_star&reviewerType=all_reviews#reviews-filter-bar
+                    - generic [ref=e1742]: 4 estrellas
+                    - progressbar [ref=e1744]
+                    - generic [ref=e1745]: 19%
+                - listitem [ref=e1746]:
+                  - link "Un 7 por ciento de las reseñas tienen 3 estrellas" [ref=e1749] [cursor=pointer]:
+                    - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=acr_dp_hist_3?ie=UTF8&filterByStar=three_star&reviewerType=all_reviews#reviews-filter-bar
+                    - generic [ref=e1750]: 3 estrellas
+                    - progressbar [ref=e1752]
+                    - generic [ref=e1753]: 7%
+                - listitem [ref=e1754]:
+                  - generic "Un 0 por ciento de las reseñas tienen 2 estrellas" [ref=e1757]:
+                    - generic [ref=e1758]: 2 estrellas
+                    - progressbar [ref=e1760]
+                    - generic [ref=e1761]: 0%
+                - listitem [ref=e1762]:
+                  - link "Un 5 por ciento de las reseñas tienen 1 estrellas" [ref=e1765] [cursor=pointer]:
+                    - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=acr_dp_hist_1?ie=UTF8&filterByStar=one_star&reviewerType=all_reviews#reviews-filter-bar
+                    - generic [ref=e1766]: 1 estrella
+                    - progressbar [ref=e1768]
+                    - generic [ref=e1769]: 5%
+              - button "Cómo funcionan las opiniones y las valoraciones de los clientes" [ref=e1774] [cursor=pointer]
+            - separator [ref=e1776]
+          - generic [ref=e1780]:
+            - generic [ref=e1784]:
+              - heading "Los clientes dicen" [level=3] [ref=e1785]
+              - generic [ref=e1786]: Los clientes destacan que el café está muy bueno y tiene una buena relación calidad-precio, considerándolo una compra excelente. Mencionan que presenta un sabor afrutado con intensidad adecuada y buena fuerza.
+              - generic [ref=e1788]:
+                - generic [ref=e1789]:
+                  - generic [ref=e1790]: Generado por IA a partir del texto de las opiniones de los clientes
+                  - generic [ref=e1792]: Generado por IA a partir del texto de las opiniones de los clientes
+                - heading "Selecciona para obtener más información" [level=4] [ref=e1793]
+                - tablist "Selecciona para obtener más información" [ref=e1794]:
+                  - generic [ref=e1795]:
+                    - tab "Aspecto positivo, calidad del café, 47 menciones" [ref=e1799]:
+                      - button "Calidad del café(47)" [ref=e1800] [cursor=pointer]
+                    - tab "Aspecto positivo, sabor, 39 menciones" [ref=e1809]:
+                      - button "Sabor(39)" [ref=e1810] [cursor=pointer]
+                    - tab "Aspecto positivo, precio, 37 menciones" [ref=e1819]:
+                      - button "Precio(37)" [ref=e1820] [cursor=pointer]
+                    - tab "Aspecto positivo, intensidad, 9 menciones" [ref=e1829]:
+                      - button "Intensidad(9)" [ref=e1830] [cursor=pointer]
+            - generic [ref=e1837]:
+              - group [ref=e1840]:
+                - generic [ref=e1841]:
+                  - heading "Reseñas con imágenes" [level=3] [ref=e1843]
+                  - link "Ver todas las fotos" [ref=e1846] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                - group [ref=e1850]:
+                  - list [ref=e1851]:
+                    - listitem [ref=e1852]:
+                      - button [ref=e1854] [cursor=pointer]:
+                        - img "Imagen del cliente, haz clic para abrir la reseña del cliente" [ref=e1855]
+                    - listitem [ref=e1857]:
+                      - button [ref=e1859] [cursor=pointer]:
+                        - img "Imagen del cliente, haz clic para abrir la reseña del cliente" [ref=e1860]
+                    - listitem [ref=e1862]:
+                      - button [ref=e1864] [cursor=pointer]:
+                        - img "Imagen del cliente, haz clic para abrir la reseña del cliente" [ref=e1865]
+              - separator [ref=e1867]
+            - generic [ref=e1872]:
+              - generic [ref=e1873]:
+                - heading "Las mejores reseñas de España" [level=3] [ref=e1874]
+                - list [ref=e1875]:
+                  - generic [ref=e1879] [cursor=pointer]:
+                    - button "Traducir todas las reseñas al español" [ref=e1880]
+                    - generic [ref=e1881]: Traducir todas las reseñas al español
+                  - listitem [ref=e1882]:
+                    - generic [ref=e1885]:
+                      - link "Ana R" [ref=e1887] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AHRJLP4GXZD3EN5YKT5WOMUEZXNQ?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e1893]: 5 de 5 estrellas
+                      - link [ref=e1896] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/R1LLNHD7JRS88C/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Buen sabor a buen precio" [level=5] [ref=e1897]
+                      - generic [ref=e1898]: Reseñado en España el 11 de julio de 2026
+                      - generic [ref=e1899]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e1900] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e1901]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e1904] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e1914]: Buen sabor fuerte, pero sin ser especialmente ácido me ha sorprendido gratamente. Está mucho más sabroso y más bueno que otros mucho más caros.
+                      - generic [ref=e1916]:
+                        - generic [ref=e1920] [cursor=pointer]:
+                          - button "Útil" [ref=e1921]
+                          - generic [ref=e1922]: Útil
+                        - button "Revisión del informe" [ref=e1926] [cursor=pointer]: Denuncia
+                  - listitem [ref=e1927]:
+                    - generic [ref=e1930]:
+                      - link "Brainer Silva" [ref=e1932] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AHXATVRQSLHU4JAXXUNKX5SRTRPA?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e1938]: 5 de 5 estrellas
+                      - link [ref=e1941] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/R1W2HHF31RZ459/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Well priced and strong coffee" [level=5] [ref=e1942]
+                      - generic [ref=e1943]: Reseñado en España el 4 de julio de 2026
+                      - generic [ref=e1944]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e1945] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e1946]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e1949] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e1959]: Even though I came from qualita oro, this one did not disappoint. It’s a good choice considering it’s price.
+                      - generic [ref=e1961]:
+                        - generic [ref=e1965] [cursor=pointer]:
+                          - button "Útil" [ref=e1966]
+                          - generic [ref=e1967]: Útil
+                        - button "Revisión del informe" [ref=e1971] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e1974] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - listitem [ref=e1975]:
+                    - generic [ref=e1978]:
+                      - link "hugo" [ref=e1980] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AFFZQFGCRDZI4Y56AYUCVGJXPJ7Q?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e1986]: 4 de 5 estrellas
+                      - link [ref=e1989] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/RRD2BXJBBXK17/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Buen cafe" [level=5] [ref=e1990]
+                      - generic [ref=e1991]: Reseñado en España el 22 de junio de 2026
+                      - generic [ref=e1992]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e1993] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e1994]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e1997] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2007]: No está mal y de precio muy bueno
+                      - generic [ref=e2008]: A una persona le pareció útil
+                      - generic [ref=e2010]:
+                        - generic [ref=e2014] [cursor=pointer]:
+                          - button "Útil" [ref=e2015]
+                          - generic [ref=e2016]: Útil
+                        - button "Revisión del informe" [ref=e2020] [cursor=pointer]: Denuncia
+                  - listitem [ref=e2021]:
+                    - generic [ref=e2024]:
+                      - link "Francisco Javier" [ref=e2026] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AFCZ5RKDSHPHHSZ5LREZPUNV2T4A?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e2032]: 5 de 5 estrellas
+                      - link [ref=e2035] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/R3UCMGFNFPG0X5/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Genial" [level=5] [ref=e2036]
+                      - generic [ref=e2037]: Reseñado en España el 19 de agosto de 2026
+                      - generic [ref=e2038]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2039] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2040]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2043] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2053]: Compra Excelente
+                      - generic [ref=e2055]:
+                        - generic [ref=e2059] [cursor=pointer]:
+                          - button "Útil" [ref=e2060]
+                          - generic [ref=e2061]: Útil
+                        - button "Revisión del informe" [ref=e2065] [cursor=pointer]: Denuncia
+                  - listitem [ref=e2066]:
+                    - generic [ref=e2069]:
+                      - link "Oibur46" [ref=e2071] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AGVZAHUP363JCEGI3IZVVMHL6SFA?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e2077]: 5 de 5 estrellas
+                      - link [ref=e2080] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/R2NKOJDP3KWB7C/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Potente y oscuro" [level=5] [ref=e2081]
+                      - generic [ref=e2082]: Reseñado en España el 22 de junio de 2026
+                      - generic [ref=e2083]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2084] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2085]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2088] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2098]: Tiene un sabor potente sin azúcar en cafetera superautomatica. Para el a quién le guste cafés con cuerpo es ideal. Los granos son limpios no dejan residuos en la cafetera, su aroma es bueno. Su precio es razonable por su calidad.
+                      - generic [ref=e2099]: A una persona le pareció útil
+                      - generic [ref=e2101]:
+                        - generic [ref=e2105] [cursor=pointer]:
+                          - button "Útil" [ref=e2106]
+                          - generic [ref=e2107]: Útil
+                        - button "Revisión del informe" [ref=e2111] [cursor=pointer]: Denuncia
+                  - listitem [ref=e2112]:
+                    - generic [ref=e2115]:
+                      - link "Alberto R" [ref=e2117] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AGNAIHPQTM4BKLAPFIWSWN6XEGKA?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e2123]: 5 de 5 estrellas
+                      - link [ref=e2126] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/RZEQS6GJDPZG2/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Excelente sabor" [level=5] [ref=e2127]
+                      - generic [ref=e2128]: Reseñado en España el 11 de junio de 2026
+                      - generic [ref=e2129]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2130] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2131]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2134] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2144]: Excelente. Sabor potente con ligero toque ácido y afrutado, pero fundamentalmente amargo y robusto, ideal como café de la mañana.
+                      - generic [ref=e2146]:
+                        - generic [ref=e2150] [cursor=pointer]:
+                          - button "Útil" [ref=e2151]
+                          - generic [ref=e2152]: Útil
+                        - button "Revisión del informe" [ref=e2156] [cursor=pointer]: Denuncia
+                  - listitem [ref=e2157]:
+                    - generic [ref=e2160]:
+                      - link "Adrián Rodríguez Alonso" [ref=e2162] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AHICIEM4SR4XZW3EFYF2ZR5DF2NQ?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e2168]: 3 de 5 estrellas
+                      - link [ref=e2171] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/RAWN3KSJQTQO/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Calidad-precio notable" [level=5] [ref=e2172]
+                      - generic [ref=e2173]: Reseñado en España el 19 de julio de 2026
+                      - generic [ref=e2174]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2175] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2176]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2179] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2189]: Compré este café para probar ya que me sorprendió al verlo y he de decir que por el precio que tiene tienes un buen café para tomar tanto solo como con leche. Es un pelín amargo y deja un regusto agradable, lejos de cafés premium pero si que para tomar a diario es una compra excelente. Le doy un 7 porque no se puede pedir mas a un café tan barato.
+                      - generic [ref=e2191]:
+                        - generic [ref=e2195] [cursor=pointer]:
+                          - button "Útil" [ref=e2196]
+                          - generic [ref=e2197]: Útil
+                        - button "Revisión del informe" [ref=e2201] [cursor=pointer]: Denuncia
+                  - listitem [ref=e2202]:
+                    - generic [ref=e2205]:
+                      - link "Jose Francisco Cano" [ref=e2207] [cursor=pointer]:
+                        - /url: /gp/profile/amzn1.account.AFJJFD4CHF3DHPPXFHAKUTQO4CUQ?ref=cm_cr_dp_d_bdcrb_top
+                      - generic [ref=e2213]: 4 de 5 estrellas
+                      - link [ref=e2216] [cursor=pointer]:
+                        - /url: /portal/customer-reviews/srp/-/R243LKC939PJ99/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8
+                        - heading "Bien producto y buen precio" [level=5] [ref=e2217]
+                      - generic [ref=e2218]: Reseñado en España el 8 de junio de 2026
+                      - generic [ref=e2219]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2220] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2221]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2224] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2234]: Lo compré porque el habitual estaba agotado y este está bien pero prefiero el otro
+                      - generic [ref=e2236]:
+                        - generic [ref=e2240] [cursor=pointer]:
+                          - button "Útil" [ref=e2241]
+                          - generic [ref=e2242]: Útil
+                        - button "Revisión del informe" [ref=e2246] [cursor=pointer]: Denuncia
+              - link "Ver más opiniones" [ref=e2248] [cursor=pointer]:
+                - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews
+              - generic [ref=e2250]:
+                - heading "Las reseñas más importantes de otros países" [level=3] [ref=e2251]
+                - list [ref=e2252]:
+                  - generic [ref=e2256] [cursor=pointer]:
+                    - button "Traducir todas las reseñas al español" [ref=e2257]
+                    - generic [ref=e2258]: Traducir todas las reseñas al español
+                  - listitem [ref=e2259]:
+                    - generic [ref=e2262]:
+                      - generic [ref=e2263]: Valentina F.
+                      - generic [ref=e2270]: 1 de 5 estrellas
+                      - heading "Poco forte" [level=5] [ref=e2273]
+                      - generic [ref=e2274]: Reseñado en Italia el 11 de agosto de 2026
+                      - generic [ref=e2275]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2276] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2277]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2280] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2290]: Caffè un po’ slavato
+                      - button "Revisión del informe" [ref=e2294] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e2297] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - listitem [ref=e2298]:
+                    - generic [ref=e2301]:
+                      - generic [ref=e2302]: wiri
+                      - generic [ref=e2309]: 5 de 5 estrellas
+                      - heading "Guter Kaffee" [level=5] [ref=e2312]
+                      - generic [ref=e2313]: Reseñado en Alemania el 21 de agosto de 2026
+                      - generic [ref=e2314]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2315] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2316]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2319] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2329]: Bin wirklich überrascht, wie gut mir dieser Kaffee schmeckt. Toller Geschmack, alles bestens – werde ich definitiv wieder kaufen!
+                      - button "Revisión del informe" [ref=e2333] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e2336] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - listitem [ref=e2337]:
+                    - generic [ref=e2340]:
+                      - generic [ref=e2341]: le son des Copeaux
+                      - generic [ref=e2348]: 5 de 5 estrellas
+                      - heading "Arômes et goût au rendez vous" [level=5] [ref=e2351]
+                      - generic [ref=e2352]: Reseñado en Francia el 13 de junio de 2026
+                      - generic [ref=e2353]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2354] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2355]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2358] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2368]: Magnifique café avec un arômes de vrais café du bar a l'italienne
+                      - generic [ref=e2370]:
+                        - button [ref=e2371] [cursor=pointer]:
+                          - img "Arômes et goût au rendez vous" [ref=e2372]
+                        - button [ref=e2373] [cursor=pointer]:
+                          - img "Arômes et goût au rendez vous" [ref=e2374]
+                      - button "Revisión del informe" [ref=e2378] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e2381] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - listitem [ref=e2382]:
+                    - generic [ref=e2385]:
+                      - generic [ref=e2386]: Gurcat
+                      - generic [ref=e2393]: 5 de 5 estrellas
+                      - heading "Great coffee beans" [level=5] [ref=e2396]
+                      - generic [ref=e2397]: Reseñado en el Reino Unido el 9 de agosto de 2026
+                      - generic [ref=e2398]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2399] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2400]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2403] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2413]: I decided to try these as they were on offer! What a surprise, they have a lovely fresh aroma and a strong rich taste that we love. They make a very good cup of coffee in my bean to cup machine. I will definitely buy these again and would recommend as they are excellent value for money.
+                      - button "Revisión del informe" [ref=e2417] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e2420] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                  - listitem [ref=e2421]:
+                    - generic [ref=e2424]:
+                      - generic [ref=e2425]: Amazon Kunde
+                      - generic [ref=e2432]: 5 de 5 estrellas
+                      - heading "Schön kräftig und lecker" [level=5] [ref=e2435]
+                      - generic [ref=e2436]: Reseñado en Alemania el 31 de agosto de 2026
+                      - generic [ref=e2437]:
+                        - 'link "Sabor: Forte Tamaño: 1 kg (Paquete de 1)" [ref=e2438] [cursor=pointer]':
+                          - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_rvw_fmt?_encoding=UTF8&formatType=current_format
+                          - generic [ref=e2439]: "Sabor: Forte"
+                          - text: "Tamaño: 1 kg (Paquete de 1)"
+                        - link "Compra verificada" [ref=e2442] [cursor=pointer]:
+                          - /url: /gp/help/customer/display.html/ref=cm_cr_dp_d_rvw_avp?ie=UTF8&nodeId=G8UYX7LALQC8V9KA
+                      - paragraph [ref=e2452]: Super leckerer Kaffee 🙌🏽
+                      - button "Revisión del informe" [ref=e2456] [cursor=pointer]: Denuncia
+                      - link "Traducir reseña al español" [ref=e2459] [cursor=pointer]:
+                        - /url: javascript:void(0)
+              - link "Ver más opiniones" [ref=e2461] [cursor=pointer]:
+                - /url: /portal/customer-reviews/B0F1NG6ZNX/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews
+      - generic [ref=e2465]:
+        - separator [ref=e2466]
+        - generic [ref=e2467]:
+          - heading "Recursos de seguridad y productos" [level=2] [ref=e2468]
+          - generic [ref=e2471]:
+            - heading "Imágenes y contactos" [level=3] [ref=e2472]
+            - button "Imágenes y contactos de seguridad" [ref=e2474] [cursor=pointer]
+  - complementary "Productos que has visto recientemente y recomendaciones destacadas"
+  - generic [ref=e2475]:
+    - button "Volver arriba" [ref=e2476] [cursor=pointer]
+    - generic [ref=e2478]:
+      - generic [ref=e2479]:
+        - heading "Conócenos" [level=6] [ref=e2480]
+        - list [ref=e2481]:
+          - listitem [ref=e2482]:
+            - link "Trabajar en Amazon" [ref=e2483] [cursor=pointer]:
+              - /url: /gp/browse.html?node=923374031&ref_=footer_gw_m_b_careers
+          - listitem [ref=e2484]:
+            - link "Sobre Amazon.es" [ref=e2485] [cursor=pointer]:
+              - /url: https://www.amazon.es/sobreamazon
+          - listitem [ref=e2486]:
+            - link "Sostenibilidad" [ref=e2487] [cursor=pointer]:
+              - /url: https://sostenibilidad.aboutamazon.es/?utm_source=gateway&utm_medium=footer&ref_=susty_footer
+          - listitem [ref=e2488]:
+            - link "Amazon Science" [ref=e2489] [cursor=pointer]:
+              - /url: https://www.amazon.science
+      - generic [ref=e2491]:
+        - heading "Gana dinero con nosotros" [level=6] [ref=e2492]
+        - list [ref=e2493]:
+          - listitem [ref=e2494]:
+            - link "Vender en Amazon" [ref=e2495] [cursor=pointer]:
+              - /url: https://services.amazon.es/sell.html?ld=AZESSOAFooter&ref_=sdes_soa
+          - listitem [ref=e2496]:
+            - link "Vender en Amazon Business" [ref=e2497] [cursor=pointer]:
+              - /url: https://sell.amazon.es/programas/amazon-business/?ld=AZESB2BRetailFooter
+          - listitem [ref=e2498]:
+            - link "Vende en Amazon Handmade" [ref=e2499] [cursor=pointer]:
+              - /url: https://services.amazon.es/handmade.htm?ref=azessoafoo&ld=AZESHNDFooter
+          - listitem [ref=e2500]:
+            - link "Desarrolla y protege tu marca" [ref=e2501] [cursor=pointer]:
+              - /url: https://sell.amazon.es/propietarios-de-marcas/?ref_=AOESABRLGNRFOOT&ld=AZESBrandRegFooter#inscribe-tu-marca
+          - listitem [ref=e2502]:
+            - link "Programa de afiliados" [ref=e2503] [cursor=pointer]:
+              - /url: https://afiliados.amazon.es/
+          - listitem [ref=e2504]:
+            - link "Logística de Amazon" [ref=e2505] [cursor=pointer]:
+              - /url: https://services.amazon.es/servicios/logistica-de-amazon/funciones-y-ventajas/?ld=AZESFBAFooter
+          - listitem [ref=e2506]:
+            - link "Suministrar a Amazon" [ref=e2507] [cursor=pointer]:
+              - /url: https://supply.amazon.com/?ref_=footer_sta
+          - listitem [ref=e2508]:
+            - link "Promociona tus productos" [ref=e2509] [cursor=pointer]:
+              - /url: https://advertising.amazon.es/products-self-serve?ref_=ext_amzn_ftr
+          - listitem [ref=e2510]:
+            - link "Publica tu libro en Kindle" [ref=e2511] [cursor=pointer]:
+              - /url: https://kdp.amazon.com/?language=es_ES
+          - listitem [ref=e2512]:
+            - link "Amazon Pay" [ref=e2513] [cursor=pointer]:
+              - /url: https://pay.amazon.com/es?ld=AWREESAPAFooter
+          - listitem [ref=e2514]:
+            - link "Alojar un Amazon Hub" [ref=e2515] [cursor=pointer]:
+              - /url: https://www.amazon.es/b?node=13350923031
+      - generic [ref=e2517]:
+        - heading "Métodos de pago Amazon" [level=6] [ref=e2518]
+        - list [ref=e2519]:
+          - listitem [ref=e2520]:
+            - link "Métodos de pago" [ref=e2521] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=201262600&ref_=footer_payment
+          - listitem [ref=e2522]:
+            - link "Conversor de divisas de Amazon" [ref=e2523] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=201239250&ref_=footer_tfx
+          - listitem [ref=e2524]:
+            - link "Tarjetas regalo" [ref=e2525] [cursor=pointer]:
+              - /url: /gp/gc?ref_=footer_giftcards
+          - listitem [ref=e2526]:
+            - link "Recarga online" [ref=e2527] [cursor=pointer]:
+              - /url: /gp/gc/create?ref_=footer_topup_es
+          - listitem [ref=e2528]:
+            - link "Recarga en tienda" [ref=e2529] [cursor=pointer]:
+              - /url: /gp/browse.html?node=15417070031&ref_=footer_purchase_code
+      - generic [ref=e2531]:
+        - heading "¿Necesitas ayuda?" [level=6] [ref=e2532]
+        - list [ref=e2533]:
+          - listitem [ref=e2534]:
+            - link "Localizar o gestionar compras" [ref=e2535] [cursor=pointer]:
+              - /url: /gp/css/order-history?ref_=footer_hp_ss_comp_tmp
+          - listitem [ref=e2536]:
+            - link "Tarifas y políticas de envío" [ref=e2537] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=200522630&ref_=footer_shiprates
+          - listitem [ref=e2538]:
+            - link "Amazon Prime" [ref=e2539] [cursor=pointer]:
+              - /url: /gp/prime?ref_=footer_prime
+          - listitem [ref=e2540]:
+            - link "Devolución, Sustitución o Desistimiento" [ref=e2541] [cursor=pointer]:
+              - /url: /gp/css/returns/homepage.html?ref_=footer_hy_f_4
+          - listitem [ref=e2542]:
+            - link "Reciclaje" [ref=e2543] [cursor=pointer]:
+              - /url: /gp/browse.html?node=22380251031&ref_=footer_disposal
+          - listitem [ref=e2544]:
+            - link "Gestionar contenido y dispositivos" [ref=e2545] [cursor=pointer]:
+              - /url: /hz/mycd/myx?ref_=footer_myk
+          - listitem [ref=e2546]:
+            - link "Retiradas y alertas de seguridad de productos" [ref=e2547] [cursor=pointer]:
+              - /url: https://www.amazon.es/your-product-safety-alerts?ref_=footer_bsx_ypsa
+          - listitem [ref=e2548]:
+            - link "App Amazon" [ref=e2549] [cursor=pointer]:
+              - /url: /gp/browse.html?node=5061838031&ref_=footer_mobapp
+          - listitem [ref=e2550]:
+            - link "Atención al Cliente" [ref=e2551] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=200507590&ref_=footer_gw_m_b_cs
+          - listitem [ref=e2552]:
+            - link "IVA sobre los bienes" [ref=e2553] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=201239260&ref_=footer_vat
+          - listitem [ref=e2554]:
+            - link "Accesibilidad" [ref=e2555] [cursor=pointer]:
+              - /url: https://www.amazon.es/gp/help/customer/display.html?nodeId=GUUVBZ8WGVFP8R8X&ref_=nav_foot_accessibility
+          - listitem [ref=e2556]:
+            - link "Listas de regalos" [ref=e2557] [cursor=pointer]:
+              - /url: /registries?ref_=nav_footer_registry_giftlist_desktop
+          - listitem [ref=e2558]:
+            - link "Denunciar contenido ilegal" [ref=e2559] [cursor=pointer]:
+              - /url: /gp/help/customer/display.html?nodeId=TLtMJsPGBmJPpN3hvy&ref_=footer_report_illegal_content
+    - generic [ref=e2561]:
+      - link "Amazon Spain Home" [ref=e2564] [cursor=pointer]:
+        - /url: /?ref_=footer_logo
+      - generic [ref=e2567]:
+        - generic [ref=e2568]:
+          - link "Elige un idioma para comprar. La selección actual es Castellano." [ref=e2569] [cursor=pointer]:
+            - /url: /customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=footer_lang
+            - generic [ref=e2571]: Castellano
+          - button "Expandir para cambiar idioma o país" [ref=e2572] [cursor=pointer]
+        - button "Elige un país y región para comprar. La selección actual es España." [ref=e2573] [cursor=pointer]:
+          - generic [ref=e2575]: España
+    - generic "Más en Amazon" [ref=e2576]:
+      - generic "Más en Amazon" [ref=e2577]:
+        - list [ref=e2578]:
+          - listitem [ref=e2579]:
+            - link [ref=e2580] [cursor=pointer]:
+              - /url: https://music.amazon.es/?ref=dm_aff_amz_es
+              - heading "Amazon Music" [level=5] [ref=e2581]
+              - generic [ref=e2582]: Transmite millonesde canciones
+          - listitem [ref=e2583]
+          - listitem [ref=e2584]:
+            - link [ref=e2585] [cursor=pointer]:
+              - /url: https://www.iberlibro.com/
+              - heading "IberLibro" [level=5] [ref=e2586]
+              - generic [ref=e2587]: Libros, arte& artículos de colección
+          - listitem [ref=e2588]
+          - listitem [ref=e2589]:
+            - link [ref=e2590] [cursor=pointer]:
+              - /url: https://aws.amazon.com/es/?sc_channel=EL&sc_campaign=ES_amazonfooter
+              - heading "Amazon Web Services" [level=5] [ref=e2591]
+              - generic [ref=e2592]: Servicios Cloud Computingde Amazon
+          - listitem [ref=e2593]
+          - listitem [ref=e2594]:
+            - link [ref=e2595] [cursor=pointer]:
+              - /url: https://kdp.amazon.com/?language=es_ES
+              - heading "Kindle Direct Publishing" [level=5] [ref=e2596]
+              - generic [ref=e2597]: Publica tu libro en papel y digitalde manera independiente
+        - list [ref=e2598]:
+          - listitem [ref=e2599]:
+            - link "Amazon Segunda mano Productos devueltos y como nuevos" [ref=e2600] [cursor=pointer]:
+              - /url: /gp/browse.html?node=3582001031&ref_=footer_wrhsdls
+              - heading "Amazon Segunda mano" [level=5] [ref=e2601]
+              - generic [ref=e2602]: Productos devueltos y como nuevos
+          - listitem [ref=e2603]
+          - listitem [ref=e2604]:
+            - link [ref=e2605] [cursor=pointer]:
+              - /url: https://www.shopbop.com/
+              - heading "Shopbop" [level=5] [ref=e2606]
+              - generic [ref=e2607]: Marcasde moda de diseño
+          - listitem [ref=e2608]
+          - listitem [ref=e2609]:
+            - link [ref=e2610] [cursor=pointer]:
+              - /url: /gp/browse.html?node=14862331031&ref_=nav_footer_business
+              - heading "Amazon Business" [level=5] [ref=e2611]
+              - generic [ref=e2612]: Servicio paraclientes de empresa
+          - listitem [ref=e2613]
+          - listitem [ref=e2614]:
+            - link "Audible Disfruta de miles de audiolibros y podcasts originales" [ref=e2615] [cursor=pointer]:
+              - /url: https://www.audible.es
+              - heading "Audible" [level=5] [ref=e2616]
+              - generic [ref=e2617]: Disfruta de miles de audiolibros y podcasts originales
+    - generic [ref=e2618]:
+      - list [ref=e2619]:
+        - listitem [ref=e2620]:
+          - link "Condiciones de Uso y Venta" [ref=e2621] [cursor=pointer]:
+            - /url: /gp/help/customer/display.html?nodeId=201909000&ref_=footer_cou
+        - listitem [ref=e2622]:
+          - link "Aviso de privacidad" [ref=e2623] [cursor=pointer]:
+            - /url: /gp/help/customer/display.html?nodeId=201909010&ref_=footer_privacy
+        - listitem [ref=e2624]:
+          - link "Área legal" [ref=e2625] [cursor=pointer]:
+            - /url: /gp/help/customer/display.html?nodeId=201909250&ref_=footer_legal_area
+        - listitem [ref=e2626]:
+          - link "Cookies" [ref=e2627] [cursor=pointer]:
+            - /url: /gp/help/customer/display.html?nodeId=201890250&ref_=footer_cookies_notice
+        - listitem [ref=e2628]:
+          - link "Publicidad basada en intereses" [ref=e2629] [cursor=pointer]:
+            - /url: /gp/help/customer/display.html?nodeId=201909150&ref_=footer_Interest_Based_Ads_Notice
+      - generic [ref=e2630]: © 1996-2026, Amazon.com, Inc. o sus afiliados

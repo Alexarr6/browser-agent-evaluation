@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 from collections.abc import Iterator
@@ -13,6 +14,7 @@ import httpx
 from browser_agent_evaluation.agents.browser_use.model import BrowserUseChatModel
 from browser_agent_evaluation.agents.browser_use.usage import ChatCompletionsUsageCapture
 from browser_agent_evaluation.browser.environment import BROWSER_USE_PRIVACY_OVERRIDES
+from browser_agent_evaluation.browser.verification import COLLECT_FACTS
 from browser_agent_evaluation.core.assertions import PageState, evaluate_acceptance
 from browser_agent_evaluation.core.budget import ModelBudget
 from browser_agent_evaluation.core.models import TaskSpec, UsageEvidence, render_runner_instruction
@@ -74,6 +76,7 @@ class BrowserUsePilotResult:
     final_url: str | None
     assertion_results: dict[str, bool]
     last_model_output: str
+    verification_evidence: dict[str, str] | None = None
 
 
 async def run_browser_use_task(
@@ -151,6 +154,13 @@ async def run_browser_use_task(
                     await browser.navigate_to(task.start_url)
                     history = await agent.run(max_steps=max_steps)
                     state = await browser.get_browser_state_summary(include_screenshot=False)
+                    facts = {}
+                    answer = ""
+                    if task.acceptance.verifier:
+                        page = await browser.get_current_page()
+                        if page is not None:
+                            facts = json.loads(await page.evaluate(COLLECT_FACTS))
+                        answer = history.final_result() or ""
                 finally:
                     await browser.kill()
                     cleanup_verified = True
@@ -171,6 +181,8 @@ async def run_browser_use_task(
                 title=state.title,
                 visible_text=state.dom_state.llm_representation(),
                 input_values={},
+                facts=facts,
+                answer=answer,
             ),
         )
         return BrowserUsePilotResult(
@@ -181,6 +193,7 @@ async def run_browser_use_task(
             final_url=urls[-1] if urls else None,
             assertion_results=assertions,
             last_model_output=llm.evidence_trace,
+            verification_evidence={**facts, "answer": answer} if facts else {},
         )
     except BrowserUsePilotError:
         raise

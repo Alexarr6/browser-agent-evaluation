@@ -13,6 +13,7 @@ policy:
   allow_form_submit: false
 max_actions: 12
 timeout_seconds: 60
+verification_mode: task_completion
 acceptance:
   url_contains: /Web/CSS/Reference/Selectors/:has
   visible_text: ":has()"

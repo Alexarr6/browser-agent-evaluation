@@ -1,0 +1,32 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "page_title": true,
+    "url_contains": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 15573,
+  "ended_at": "2026-09-07T18:07:42.621794Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T18:07:27.048710Z",
+  "task_id": "wikipedia-search-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully navigated to the allowed English Wikipedia article page and verified that the page title is \\\"Playwright\\\".\",\"memory\":\"The browser is on https://en.wikipedia.org/wiki/Playwright, an allowed domain. The visible article heading is \\\"Playwright\\\" and the page shows the main article content; no login, download, CAPTCHA bypass, or disallowed-domain action occurred.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"Completed. The final page shows the English Wikipedia article titled \\\"Playwright\\\" at https://en.wikipedia.org/wiki/Playwright.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:01d13ae7c7ce6880709e2ada418552a713730ddebaedd8e76aa39dfd985fcafd",
+  "trial_id": "browser_use-r3-8269101a3caa",
+  "usage": {
+    "completion_tokens": 673,
+    "cost_usd": null,
+    "prompt_tokens": 35591,
+    "request_count": 4,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  },
+  "verification_evidence": {}
+}

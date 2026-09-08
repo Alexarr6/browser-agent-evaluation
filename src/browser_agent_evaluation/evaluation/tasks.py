@@ -13,11 +13,16 @@ def load_task(path: Path) -> TaskSpec:
 
 def reference_actions(task: TaskSpec) -> list[RestrictedBrowserAction]:
     task_id = task.id.removesuffix("-en")
-    if task_id in {"marca-real-madrid-open", "amazon-cheapest-coffee-beans"}:
-        return [RestrictedBrowserAction(type="navigate", value=task.start_url)]
+    if task.acceptance.verifier:
+        raise ValueError("Open tasks require the dynamic reference recipe and independent verifier")
     if task_id == "wikipedia-search":
         return [
             RestrictedBrowserAction(type="navigate", value=task.start_url),
+            RestrictedBrowserAction(
+                type="select",
+                target={"role": "combobox"},
+                value="English" if task.id.endswith("-en") else "Español",
+            ),
             RestrictedBrowserAction(
                 type="fill", target={"label": "Search Wikipedia"}, value="Playwright"
             ),

@@ -174,6 +174,8 @@ def main(argv: Sequence[str] | None = None) -> None:
                     for field, value in task.acceptance.model_dump().items()
                     if value is not None
                 ],
+                verification_mode=task.verification_mode,
+                verifier=task.acceptance.verifier,
             )
             for path, task in zip(task_paths, tasks, strict=True)
         ],

@@ -1,0 +1,44 @@
+{
+  "action_count": 4,
+  "assertion_results": {
+    "answer_name_matches": true,
+    "answer_price_matches": true,
+    "answer_url_matches": true,
+    "below_14_eur_kg": true,
+    "coffee_beans": true,
+    "not_accessory_or_ground": true,
+    "observed_heading": true,
+    "product_url": true,
+    "unit_price_observed": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 20231,
+  "ended_at": "2026-09-07T17:57:08.573406Z",
+  "invalidation_reason": null,
+  "model_id": null,
+  "observation_mode": "accessibility_dom",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "restricted",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:56:48.342236Z",
+  "task_id": "amazon-cheapest-coffee-beans-en",
+  "trace": "{\"step_index\":2,\"step_status\":\"in_progress\",\"action\":{\"type\":\"navigate\",\"value\":\"https://www.amazon.es/s?k=cafe+en+grano\"},\"expected_state\":{\"kind\":\"url_contains\",\"value\":\"amazon.es/s\"}}\n{\"step_index\":1,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"Rechazar\"}},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"Resultados\"}}\n{\"step_index\":3,\"step_status\":\"in_progress\",\"action\":{\"type\":\"click\",\"target\":{\"text\":\"by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\"}},\"expected_state\":{\"kind\":\"url_or_text_changes\",\"value\":\"La p\u00e1gina del producto de caf\u00e9 en grano se abre\"}}\n{\"step_index\":4,\"step_status\":\"in_progress\",\"action\":{\"type\":\"extract_text\",\"target\":{\"role\":\"main\"}},\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"\u20ac/kg\"}}\n{\"result\":\"{\\\"name\\\":\\\"by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\\\",\\\"url\\\":\\\"https://www.amazon.es/dp/B0F1NG6ZNX\\\",\\\"eur_per_kg\\\":10.56}\",\"step_index\":5,\"step_status\":\"complete\",\"expected_state\":{\"kind\":\"text_visible\",\"value\":\"10,56 \u20ac por kg\"}}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:53042fee6cae2dfa4c0cd511cd6ca7c80585c4fcee53e83136908015c9e748f1",
+  "trial_id": "restricted-r2-07b25c2ea73a",
+  "usage": {
+    "completion_tokens": 632,
+    "cost_usd": 0.0075704399999999995,
+    "prompt_tokens": 17172,
+    "request_count": 5,
+    "unavailable_reason": null
+  },
+  "verification_evidence": {
+    "answer": "{\"name\":\"by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg\",\"url\":\"https://www.amazon.es/dp/B0F1NG6ZNX\",\"eur_per_kg\":10.56}",
+    "heading": "by Amazon Fuerte Caf\u00e9 En Grano De Tueste Natural, 1kg",
+    "price_text": "10,56\u00a0\u20ac con un ahorro del 9\u00a0%\n-9\u00a0% \n10\n,\n56\u20ac \n10,56&nbsp;&euro; por kg\n(\n10,56\u20ac\n10,56\u20ac / kg)\nPrecio mediano: 11,55\u00a0\u20ac\nPrecio mediano: \n11,55\u20ac\n11,55\u20ac",
+    "url": "https://www.amazon.es/Amazon-Fuerte-Grano-Tueste-Natural/dp/B0F1NG6ZNX/ref=sr_1_1?dib=eyJ2IjoiMSJ9.IxKqqAaQ1ltc6CozJ3mnbuSebve4hyeiAvpo8ogryNzE7fQju5qPTcUu4Xw_pcoD9cR92AURCQ0L1q-42MV5L4U10__dhJwKQs9Hi983USwPdIT-75g0QFmXYO-iLCjBM7U1lggIJ5VmqlMoZ772nYiwGJuBGw8x8BtpbbCSaCMcCsZ1Eev-_-GD6brG7OtTNUanL1lA01sr87RUkhVmXZLrjd6aX9V4RNeCv27OwYO4ilU6WSQ0qDsw-ZDPAIhjwX0b3pgt_tCEKog1vVVqnvEPwTHp_p1Vs0rvHahfutU.n92N8zvG759fEacUidd5zEpealaYprnUuXM_h39u7dA&dib_tag=se&keywords=cafe%2Ben%2Bgrano&qid=1788803812&sr=8-1&th=1"
+  }
+}

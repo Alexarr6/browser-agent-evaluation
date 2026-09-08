@@ -1,0 +1,31 @@
+{
+  "action_count": 8,
+  "assertion_results": {
+    "visible_text": true
+  },
+  "cleanup_verified": true,
+  "duration_ms": 19426,
+  "ended_at": "2026-09-07T17:48:50.151867Z",
+  "invalidation_reason": null,
+  "model_id": "gpt-5.6-luna",
+  "observation_mode": "framework_owned",
+  "outcome": "passed",
+  "policy_events": [],
+  "retry_count": 0,
+  "runner": "browser_use",
+  "schema_version": 1,
+  "started_at": "2026-09-07T17:48:30.725673Z",
+  "task_id": "selenium-key-events-en",
+  "trace": "{\"evaluation_previous_goal\":\"Successfully pressed Tab, and the visible event log includes the required change event.\",\"memory\":\"Completed the required key sequence on the Selenium key logger page: A, d, a, ArrowLeft, Backspace, then Tab. The visible log confirms key events and includes change.\",\"next_goal\":null,\"current_plan_item\":null,\"plan_update\":null,\"action\":[{\"done\":{\"text\":\"The key sequence was completed on www.selenium.dev: focused the field, entered A, d, a, pressed ArrowLeft, Backspace, and Tab. The visible log confirms the change event.\",\"success\":true,\"files_to_display\":[]}}]}",
+  "trace_redaction_events": [],
+  "trace_sha256": "sha256:47256cfa4c13e6f98dcfdf0439444d569fbc1ad19ec7d54a293755374fce2d36",
+  "trial_id": "browser_use-r1-df67abea76df",
+  "usage": {
+    "completion_tokens": 1144,
+    "cost_usd": null,
+    "prompt_tokens": 61718,
+    "request_count": 8,
+    "unavailable_reason": "configured provider does not report per-request USD cost"
+  },
+  "verification_evidence": {}
+}

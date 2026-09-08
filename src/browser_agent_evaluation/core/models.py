@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import json
 import re
 from datetime import UTC, datetime
 from typing import Literal
 from urllib.parse import urlparse
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 _TASK_ID = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 
@@ -30,6 +31,7 @@ class TaskPolicy(BrowserEvalModel):
 
 
 class AcceptanceSpec(BrowserEvalModel):
+    verifier: Literal["marca_article", "amazon_coffee_under_14"] | None = None
     page_title: str | None = Field(default=None, min_length=1, max_length=200)
     url_contains: str | None = Field(default=None, min_length=1, max_length=500)
     visible_text: str | None = Field(default=None, min_length=1, max_length=500)
@@ -37,7 +39,9 @@ class AcceptanceSpec(BrowserEvalModel):
 
     @model_validator(mode="after")
     def require_assertion(self) -> AcceptanceSpec:
-        if not any((self.page_title, self.url_contains, self.visible_text, self.input_value)):
+        if not any(
+            (self.verifier, self.page_title, self.url_contains, self.visible_text, self.input_value)
+        ):
             raise ValueError("acceptance requires at least one assertion")
         return self
 
@@ -52,6 +56,7 @@ class TaskSpec(BrowserEvalModel):
     max_actions: int = Field(ge=1, le=50)
     timeout_seconds: int = Field(ge=1, le=300)
     acceptance: AcceptanceSpec
+    verification_mode: Literal["task_completion", "reachability"] = "task_completion"
 
     @model_validator(mode="after")
     def validate_identity_and_start_url(self) -> TaskSpec:
@@ -85,9 +90,7 @@ class ExpectedState(BrowserEvalModel):
 
 
 class RestrictedBrowserAction(BrowserEvalModel):
-    type: Literal[
-        "navigate", "click", "fill", "select", "check", "press", "wait", "extract_text"
-    ]
+    type: Literal["navigate", "click", "fill", "select", "check", "press", "wait", "extract_text"]
     target: ActionTarget | None = None
     value: str | None = Field(default=None, max_length=2_000)
 
@@ -109,10 +112,16 @@ class RestrictedBrowserAction(BrowserEvalModel):
 
 
 class BrowserActionProposal(BrowserEvalModel):
+    result: str | None = Field(default=None, max_length=4000)
     step_index: int = Field(ge=1, le=100)
     step_status: Literal["in_progress", "complete", "blocked"]
     action: RestrictedBrowserAction | None = None
     expected_state: ExpectedState | None = None
+
+    @field_validator("result", mode="before")
+    @classmethod
+    def serialize_result_object(cls, value: object) -> object:
+        return json.dumps(value, ensure_ascii=False) if isinstance(value, dict) else value
 
     @model_validator(mode="after")
     def validate_status(self) -> BrowserActionProposal:
@@ -147,6 +156,9 @@ class UsageEvidence(BrowserEvalModel):
 RunnerName = Literal[
     "playwright_reference", "browser_use", "stagehand", "playwright_mcp", "restricted"
 ]
+TrialOutcome = Literal[
+    "passed", "unverified", "failed", "invalidated", "timed_out", "policy_denied"
+]
 
 
 class RunnerInput(BrowserEvalModel):
@@ -155,6 +167,7 @@ class RunnerInput(BrowserEvalModel):
 
 
 class TrialEvidence(BrowserEvalModel):
+    verification_evidence: dict[str, str] = Field(default_factory=dict)
     schema_version: Literal[1] = 1
     trial_id: str
     task_id: str
@@ -162,7 +175,7 @@ class TrialEvidence(BrowserEvalModel):
     model_id: str | None = Field(default=None, min_length=1, max_length=200)
     started_at: datetime
     ended_at: datetime
-    outcome: Literal["passed", "failed", "invalidated", "timed_out", "policy_denied"]
+    outcome: TrialOutcome
     duration_ms: int = Field(ge=0)
     action_count: int = Field(ge=0)
     retry_count: int = Field(ge=0)
@@ -183,7 +196,19 @@ class TrialEvidence(BrowserEvalModel):
             raise ValueError("invalidated trial requires a reason")
         if self.outcome != "invalidated" and self.invalidation_reason:
             raise ValueError("only invalidated trials may include an invalidation reason")
+        if self.outcome in {"passed", "unverified"} and (
+            not self.assertion_results or not all(self.assertion_results.values())
+        ):
+            raise ValueError("accepted or reached trials require successful independent assertions")
         return self
+
+
+def acceptance_outcome(task: TaskSpec, *, accepted: bool) -> TrialOutcome:
+    if not accepted:
+        return "failed"
+    if task.verification_mode == "reachability":
+        return "unverified"
+    return "passed"
 
 
 def render_runner_instruction(task: TaskSpec) -> str:

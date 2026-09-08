@@ -14,6 +14,7 @@ policy:
   allowed_submit_labels: [Search Wikipedia]
 max_actions: 12
 timeout_seconds: 60
+verification_mode: task_completion
 acceptance:
   page_title: Playwright
   url_contains: /wiki/Playwright

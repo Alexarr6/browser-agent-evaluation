@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from browser_agent_evaluation.core.models import AcceptanceSpec
+from browser_agent_evaluation.core.open_verification import verify_open
 
 
 @dataclass(frozen=True)
@@ -11,10 +12,14 @@ class PageState:
     title: str
     visible_text: str
     input_values: dict[str, str]
+    facts: dict[str, str] = field(default_factory=dict)
+    answer: str = ""
 
 
 def evaluate_acceptance(acceptance: AcceptanceSpec, state: PageState) -> dict[str, bool]:
     results: dict[str, bool] = {}
+    if acceptance.verifier:
+        results.update(verify_open(acceptance.verifier, state.facts, state.answer))
     if acceptance.page_title is not None:
         results["page_title"] = acceptance.page_title.casefold() in state.title.casefold()
     if acceptance.url_contains is not None:

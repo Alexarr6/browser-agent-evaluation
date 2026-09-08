@@ -2,30 +2,26 @@ schema_version: 1
 id: amazon-cheapest-coffee-beans-en
 start_url: https://www.amazon.es/
 instruction: |
-  1. If a cookie consent banner appears, reject all non-essential cookies.
-  2. Search for coffee beans sold on Amazon.
-  3. Consider only the first page of search results.
-  4. Ignore results explicitly marked as sponsored, advertised or promoted.
-  5. Exclude ground coffee, capsules, pods, coffee machines, accessories, subscriptions,
-     coupons and bundles whose total weight is unclear.
-  6. Exclude products whose one-time price or package weight is not visible.
-  7. For every eligible coffee-bean product, calculate:
-     price_per_kg = one-time displayed price / package weight in grams * 1000
-  8. Select the eligible product with the lowest calculated price per kilogram.
-  9. Open the product page and verify the title, ASIN if visible, package weight,
-     one-time price, seller and calculated price per kilogram.
-  10. Add exactly one unit of that product to the cart.
-  11. Confirm that the selected product appears in the cart and stop immediately.
-  12. Do not log in, enter an address or payment details, choose a subscription,
-      click Buy Now, proceed to checkout or place an order.
-  13. Return the exact product title, ASIN if visible, package weight, displayed price,
-      seller, calculated price per kilogram and final product URL.
-completion: The cheapest eligible coffee-bean product per kilogram is in the anonymous cart, and the response contains its exact product details and URL.
+  1. Reject non-essential cookies if a consent banner appears.
+  2. Search Amazon.es for "cafe en grano".
+  3. From the first results page, open a coffee-bean product.
+  4. Find a product with a displayed unit price strictly below 14 EUR/kg in its
+     main price block. Ignore recommendations, coupon and subscription prices.
+     You may inspect another product from that first page.
+  5. Leave the qualifying product page open.
+  6. Return JSON with "name" (exact product title), "url" (URL of the opened product;
+     a canonical /dp/ASIN URL is accepted),
+     and "eur_per_kg" (displayed unit price as a JSON number, e.g. 12.99).
+     Put this JSON in your final response (restricted runner: result; MCP: summary).
+  7. Do not add to cart, log in, subscribe, enter personal data or purchase anything.
+completion: A coffee-bean product page is open with a visible unit price below 14 EUR/kg; the response gives its exact name, final URL and unit price.
 policy:
   allowed_domains: [www.amazon.es, amazon.es]
   risk: read_only
   allow_form_submit: false
+  allowed_submit_labels: [Buscar Amazon.es, Buscar en Amazon.es, Search Amazon.es]
 max_actions: 48
 timeout_seconds: 300
+verification_mode: task_completion
 acceptance:
-  url_contains: amazon.es
+  verifier: amazon_coffee_under_14

@@ -4,6 +4,9 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pytest
+from pydantic import ValidationError
+
 from browser_agent_evaluation.core.models import TrialEvidence, UsageEvidence
 from browser_agent_evaluation.reporting.evidence import redact_and_bound, write_trial_evidence
 
@@ -54,3 +57,12 @@ def test_trial_summary_is_redacted_and_atomic(tmp_path: Path) -> None:
     assert "secret-token" not in payload["trace"]
     assert "/home/pi/private" not in payload["trace"]
     assert payload["trace_redaction_events"] == ["marker", "path"]
+
+
+@pytest.mark.parametrize("outcome", ["passed", "unverified"])
+def test_positive_outcomes_require_positive_assertions(outcome: str) -> None:
+    payload = evidence().model_dump()
+    payload.update({"outcome": outcome, "assertion_results": {}})
+
+    with pytest.raises(ValidationError, match="successful independent assertions"):
+        TrialEvidence.model_validate(payload)

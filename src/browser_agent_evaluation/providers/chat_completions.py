@@ -104,7 +104,10 @@ class ChatCompletionsPlanner:
             "navigate, click, fill, select, check, press, wait, and extract_text. For "
             "select, value may be either the option's visible label or its HTML value. "
             "For wait, omit target. For Enter on a search control, preserve its accessible "
-            "name or placeholder so the task policy can authorize it."
+            "name or placeholder so the task policy can authorize it. "
+            "For a JSON answer, use a terminal proposal with step_index, "
+            "step_status=complete, and result containing the JSON answer as an encoded "
+            "string. Do not put answer fields at the top level."
         )
         request_payload: dict[str, object] = {
             "model": self._model,
